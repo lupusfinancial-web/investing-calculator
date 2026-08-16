@@ -25,12 +25,16 @@
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       background: var(--bg);
       color: var(--navy-2);
       font-family: Arial, Helvetica, sans-serif;
-      line-height: 1.55;
+      line-height: 1.6;
     }
 
     header {
@@ -115,6 +119,48 @@
       box-shadow: var(--shadow);
     }
 
+    .education-intro {
+      padding: 30px;
+      color: #ffffff;
+      background:
+        radial-gradient(circle at 90% 20%, rgba(37, 99, 235, .38), transparent 28%),
+        linear-gradient(135deg, #102a43, #164e78);
+      border: 0;
+    }
+
+    .education-intro h2,
+    .education-intro p {
+      color: #ffffff;
+    }
+
+    .education-intro p {
+      max-width: 850px;
+      margin: 0;
+      color: #e0efff;
+    }
+
+    .education-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 20px;
+    }
+
+    .education-nav a {
+      padding: 7px 10px;
+      color: #ffffff;
+      text-decoration: none;
+      background: rgba(255, 255, 255, .13);
+      border: 1px solid rgba(255, 255, 255, .22);
+      border-radius: 999px;
+      font-size: .82rem;
+      font-weight: 700;
+    }
+
+    .education-nav a:hover {
+      background: rgba(255, 255, 255, .23);
+    }
+
     h2 {
       margin: 0 0 6px;
       color: var(--navy);
@@ -126,6 +172,20 @@
       margin: 0;
       color: var(--navy);
       font-size: 1.06rem;
+    }
+
+    h4 {
+      margin: 0 0 8px;
+      color: var(--navy);
+      font-size: .98rem;
+    }
+
+    p {
+      margin: 0 0 14px;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
     }
 
     .section-copy {
@@ -459,6 +519,124 @@
       font-weight: 850;
     }
 
+    .education-card {
+      border-left: 5px solid var(--blue);
+    }
+
+    .education-card.green {
+      border-left-color: var(--green);
+    }
+
+    .education-card.amber {
+      border-left-color: #f59e0b;
+    }
+
+    .education-card.purple {
+      border-left-color: var(--purple);
+    }
+
+    .plain-list,
+    .check-list,
+    .number-list {
+      margin: 14px 0 0;
+      padding-left: 22px;
+    }
+
+    .plain-list li,
+    .check-list li,
+    .number-list li {
+      margin: 8px 0;
+    }
+
+    .check-list {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .check-list li {
+      position: relative;
+      padding-left: 29px;
+    }
+
+    .check-list li::before {
+      position: absolute;
+      left: 0;
+      top: 1px;
+      content: "✓";
+      color: var(--green);
+      font-size: 1.05rem;
+      font-weight: 900;
+    }
+
+    .callout {
+      margin-top: 18px;
+      padding: 16px 18px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 12px;
+    }
+
+    .callout.green {
+      background: #ecfdf5;
+      border-color: #a7f3d0;
+    }
+
+    .callout.amber {
+      color: #713f12;
+      background: #fffbeb;
+      border-color: #fbd38d;
+    }
+
+    .callout strong {
+      color: var(--navy);
+    }
+
+    .callout.amber strong {
+      color: #78350f;
+    }
+
+    .definition {
+      padding: 17px;
+      background: #f8fbff;
+      border: 1px solid #d7e5f1;
+      border-radius: 12px;
+    }
+
+    .definition p {
+      margin: 8px 0 0;
+      color: #486581;
+    }
+
+    .compare-table {
+      width: 100%;
+      min-width: 700px;
+      border-collapse: separate;
+      border-spacing: 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+
+    .compare-table th,
+    .compare-table td {
+      padding: 15px;
+      text-align: left;
+      white-space: normal;
+      vertical-align: top;
+    }
+
+    .compare-table th {
+      position: static;
+      color: var(--navy);
+      background: #edf5ff;
+      font-size: .82rem;
+    }
+
+    .compare-table td {
+      color: #486581;
+      background: #ffffff;
+    }
+
     .resource {
       display: block;
       margin-bottom: 10px;
@@ -504,7 +682,8 @@
         padding: 42px 18px 35px;
       }
 
-      .card {
+      .card,
+      .education-intro {
         padding: 18px;
       }
 
@@ -530,6 +709,42 @@
 
       .field + .field {
         margin-top: 24px;
+      }
+    }
+
+    @media print {
+      body {
+        background: #ffffff;
+      }
+
+      header {
+        padding: 24px;
+        color: var(--navy);
+        background: #ffffff;
+      }
+
+      header .eyebrow,
+      header .hero-copy {
+        color: var(--navy-2);
+      }
+
+      .pills,
+      .button-row {
+        display: none;
+      }
+
+      main {
+        padding: 0;
+      }
+
+      .card {
+        box-shadow: none;
+        break-inside: avoid;
+      }
+
+      .table-wrap {
+        max-height: none;
+        overflow: visible;
       }
     }
   </style>
@@ -770,38 +985,368 @@
       </div>
     </section>
 
-    <section class="card">
-      <h2>How a simple plan works</h2>
+    <!-- EDUCATION SECTION -->
+
+    <section class="card education-intro" id="learn">
+      <div class="eyebrow">Simple investing guide</div>
+      <h2>A simple way to start investing</h2>
+      <p>
+        You do not need to be wealthy, an expert, or someone who watches the market every day to begin.
+        The basic idea is simple: choose an amount you can consistently afford, automatically invest it every month into a broad fund, and give it time.
+      </p>
+
+      <div class="education-nav">
+        <a href="#what-is-voo">What is VOO?</a>
+        <a href="#how-it-works">How it works</a>
+        <a href="#drip">What is DRIP?</a>
+        <a href="#setup">Simple setup</a>
+        <a href="#taxes">Taxes & accounts</a>
+        <a href="#retirement">Retirement</a>
+      </div>
+    </section>
+
+    <section class="card education-card" id="start">
+      <h2>What you are trying to do</h2>
+      <p>
+        The goal is not to get rich quickly or guess what the market will do next week. The goal is to gradually build an asset that may give you more choices later in life.
+      </p>
+      <p>
+        The early years can look slow because your account is still small. The benefit comes from repeating the process for years and leaving the money invested. Markets rise and fall, and there will be periods when your account value is down. That is normal investing risk, not necessarily a sign that the plan has failed.
+      </p>
+
+      <div class="callout">
+        <strong>The basic habit:</strong> Pick a realistic monthly amount, automate it, invest in a broad fund, reinvest dividends, and let time do the work.
+      </div>
+    </section>
+
+    <section class="card education-card green" id="what-is-voo">
+      <h2>What VOO is</h2>
+
+      <div class="grid two">
+        <div>
+          <p>
+            VOO is an exchange-traded fund, commonly called an ETF. It is designed to follow the S&amp;P 500, an index made up of large U.S. companies.
+          </p>
+          <p>
+            Buying VOO does not mean you are betting everything on one business. It means you own small pieces of many large companies through one investment.
+          </p>
+        </div>
+
+        <div class="definition">
+          <h3>Why people use a broad fund</h3>
+          <p>
+            One fund can be easier than researching individual stocks, choosing which company to buy, constantly trading, or managing a complicated portfolio.
+          </p>
+        </div>
+      </div>
+
+      <p>
+        A one-fund approach is not the only valid approach, and VOO is not the only broad fund. It can be a simple, practical choice for someone who wants long-term U.S. stock exposure without turning investing into a hobby.
+      </p>
+
+      <div class="callout amber">
+        <strong>Important:</strong> VOO can go down in value. Holding many companies reduces the risk of relying on one company, but it does not prevent losses when the overall stock market falls.
+      </div>
+    </section>
+
+    <section class="card education-card" id="how-it-works">
+      <h2>What makes it work</h2>
+      <p class="section-copy">
+        The plan is simple, but three things do most of the work over time.
+      </p>
 
       <div class="grid three">
         <div class="step">
           <div class="step-num">1</div>
-          <h3>Choose an account</h3>
-          <p>Consider a Roth IRA if eligible, a Traditional IRA, or a taxable brokerage account.</p>
+          <h3>Regular contributions</h3>
+          <p>
+            You add money consistently: $25, $50, $100, $150, or any other amount that fits your real budget. The amount does not need to be impressive to be meaningful.
+          </p>
         </div>
 
         <div class="step">
           <div class="step-num">2</div>
-          <h3>Automate a realistic amount</h3>
-          <p>Schedule a regular transfer and invest an amount that fits your budget.</p>
+          <h3>Time</h3>
+          <p>
+            The longer money stays invested, the more time it has to potentially grow. Starting earlier gives even small contributions more time to work.
+          </p>
         </div>
 
         <div class="step">
           <div class="step-num">3</div>
-          <h3>Stay hands-off</h3>
-          <p>Review occasionally, avoid reacting to headlines, and keep contributing through market changes.</p>
+          <h3>Reinvestment</h3>
+          <p>
+            When dividends and growth stay invested, future returns can apply to both your original deposits and past growth. This is called compounding.
+          </p>
         </div>
+      </div>
+
+      <div class="callout green">
+        <strong>Dollar-cost averaging:</strong> Investing the same dollar amount at regular intervals—such as every payday or every month—rather than waiting for the “perfect” time. When prices are lower, the same amount buys more shares; when prices are higher, it buys fewer. It removes the need to guess what the market will do next.
       </div>
     </section>
 
-    <section class="card">
-      <h2>Important reminders</h2>
-      <ul>
-        <li>Keep emergency savings and address high-interest debt before committing money needed soon.</li>
-        <li>Markets can lose value and returns are not guaranteed.</li>
-        <li>This calculator does not include taxes, fees, inflation, or actual market volatility.</li>
-      </ul>
+    <section class="card education-card purple" id="drip">
+      <h2>What DRIP means</h2>
+      <p>
+        DRIP means <strong>Dividend Reinvestment Plan</strong>. Some funds pay dividends—cash payments based on the fund’s underlying holdings. When DRIP is turned on, those dividends automatically buy more shares instead of sitting as cash.
+      </p>
+
+      <div class="grid two">
+        <div class="definition">
+          <h3>During working years</h3>
+          <p>
+            Many long-term investors leave DRIP on. The dividends buy additional shares automatically, and those shares may produce future dividends and potential growth.
+          </p>
+        </div>
+
+        <div class="definition">
+          <h3>During retirement</h3>
+          <p>
+            Some people turn DRIP off so dividends arrive as cash. Dividends alone may not cover all spending needs, so retirement income usually requires a larger withdrawal plan.
+          </p>
+        </div>
+      </div>
+
+      <div class="callout">
+        <strong>For this calculator:</strong> The return assumption is treated as growth remaining invested. It does not separately model DRIP on or off, dividend taxes, or cash dividends paid out.
+      </div>
     </section>
+
+    <section class="card education-card green" id="setup">
+      <h2>A simple setup</h2>
+      <p class="section-copy">
+        You do not need a complicated system. A basic long-term setup can look like this:
+      </p>
+
+      <ol class="number-list">
+        <li>Build a small emergency cushion first, so an unexpected expense does not force you to sell investments or use high-interest debt.</li>
+        <li>Choose an account: often a Roth IRA if eligible and the money is for retirement; otherwise, a Traditional IRA or taxable brokerage account may be appropriate.</li>
+        <li>Open the account at a major brokerage firm.</li>
+        <li>Link your checking account.</li>
+        <li>Pick a monthly amount you can afford in a normal, imperfect month.</li>
+        <li>Schedule an automatic transfer and automatic investment purchase.</li>
+        <li>Turn on dividend reinvestment if you want dividends to remain invested.</li>
+        <li>Leave the plan alone through normal market ups and downs.</li>
+        <li>Review once or twice per year, and increase the amount only when your real budget supports it.</li>
+      </ol>
+
+      <div class="callout amber">
+        <strong>Start with what is sustainable.</strong> The best monthly amount is not the largest amount you can invest once. It is the amount you can invest month after month without missing rent, food, bills, debt payments, or emergency savings.
+      </div>
+    </section>
+
+    <section class="card education-card" id="starting-amount">
+      <h2>How much should I start with?</h2>
+      <p>
+        Start with an amount you can keep investing. $25 per month is a real start. $50 per month is a real start. $100 per month is a real start. $150 per month is a real start.
+      </p>
+
+      <div class="grid four">
+        <div class="metric blue">
+          <div class="label">A real start</div>
+          <div class="value">$25</div>
+          <div class="sub">per month</div>
+        </div>
+
+        <div class="metric green">
+          <div class="label">A real start</div>
+          <div class="value">$50</div>
+          <div class="sub">per month</div>
+        </div>
+
+        <div class="metric blue">
+          <div class="label">A real start</div>
+          <div class="value">$100</div>
+          <div class="sub">per month</div>
+        </div>
+
+        <div class="metric amber">
+          <div class="label">A real start</div>
+          <div class="value">$150</div>
+          <div class="sub">per month</div>
+        </div>
+      </div>
+
+      <p>
+        If your income increases, a debt is paid off, or a monthly bill ends, you can raise the automatic investment later. Small increases matter because they repeat every month.
+      </p>
+    </section>
+
+    <section class="card education-card" id="calculator-guide">
+      <h2>How to use the calculator</h2>
+
+      <div class="grid two">
+        <div>
+          <h3>Enter your own plan</h3>
+          <ol class="number-list">
+            <li>Enter your current age.</li>
+            <li>Enter the age when you hope to retire or want to see the result.</li>
+            <li>Enter money already invested, if any.</li>
+            <li>Enter the monthly amount you could invest automatically.</li>
+            <li>Choose a return illustration, such as 6%, 8%, or 10%.</li>
+            <li>Choose a withdrawal rate if you want to see a first-year retirement-income estimate.</li>
+            <li>Review both the amount you personally contributed and the modeled growth.</li>
+          </ol>
+        </div>
+
+        <div>
+          <h3>Try these comparisons</h3>
+          <ul class="check-list">
+            <li>What happens if I add $25 more per month?</li>
+            <li>What happens if I start now versus waiting five years?</li>
+            <li>What happens if I raise contributions by 2% each year?</li>
+            <li>What does the result look like at 6% instead of 10%?</li>
+            <li>How does a different retirement age change the result?</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout amber">
+        <strong>Return choices are illustrations only.</strong> Real market returns are not smooth, do not arrive in a straight line, and can be negative for months or years.
+      </div>
+    </section>
+
+    <section class="card education-card purple" id="taxes">
+      <h2>What happens at tax time</h2>
+      <p>
+        Tax treatment depends mainly on the type of account, not just the investment you buy. Rules can change, and personal eligibility depends on income and filing situation.
+      </p>
+
+      <div class="table-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Account type</th>
+              <th>How it generally works</th>
+              <th>What to remember</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Roth IRA</strong></td>
+              <td>You contribute money that has already been taxed. If account rules are met, qualified retirement withdrawals are generally tax-free.</td>
+              <td>For 2026, the general IRA contribution limit is $7,500 if you are under age 50 and $8,600 if you are age 50 or older. Roth eligibility depends on income and tax-filing status.</td>
+            </tr>
+            <tr>
+              <td><strong>Traditional IRA</strong></td>
+              <td>You may be able to deduct some or all contributions now, depending on your income and workplace retirement-plan coverage.</td>
+              <td>Withdrawals are generally taxed as ordinary income in retirement. Deductibility and contribution rules can vary.</td>
+            </tr>
+            <tr>
+              <td><strong>Taxable brokerage account</strong></td>
+              <td>You can invest and withdraw without retirement-account age rules.</td>
+              <td>Dividends, interest, and investment sales may create tax forms each year. Your brokerage normally provides those documents.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout">
+        <strong>Keep it simple:</strong> If you are unsure which account fits your situation, use current IRS information or speak with a qualified tax professional before making a decision.
+      </div>
+    </section>
+
+    <section class="card education-card green" id="while-investing">
+      <h2>What to do while investing</h2>
+      <p class="section-copy">
+        The hands-off part matters. A simple plan is meant to reduce emotional decisions.
+      </p>
+
+      <div class="grid two">
+        <div class="definition">
+          <h3>Do</h3>
+          <ul class="check-list">
+            <li>Keep your automatic investment running if your cash situation supports it.</li>
+            <li>Review the plan once or twice each year.</li>
+            <li>Increase contributions when income rises or expenses fall.</li>
+            <li>Keep emergency savings separate from long-term investments.</li>
+            <li>Focus on your timeline instead of daily headlines.</li>
+          </ul>
+        </div>
+
+        <div class="definition">
+          <h3>Avoid</h3>
+          <ul class="plain-list">
+            <li>Watching the account every day.</li>
+            <li>Selling simply because news headlines are scary.</li>
+            <li>Stopping investments because the market dropped, unless your cash situation requires it.</li>
+            <li>Investing money you expect to need soon.</li>
+            <li>Trying to buy and sell based on short-term predictions.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout amber">
+        <strong>A down market feels bad because it is real risk.</strong> Long-term stock investing requires accepting that account values will sometimes fall. There is no guaranteed return.
+      </div>
+    </section>
+
+    <section class="card education-card amber" id="retirement">
+      <h2>What happens in retirement</h2>
+      <p>
+        Retirement is when the focus shifts from building the account to using it carefully. A projected account balance is not guaranteed spending money; future market returns, taxes, inflation, health costs, and the length of retirement all matter.
+      </p>
+
+      <div class="grid three">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>Adjust contributions</h3>
+          <p>
+            When paychecks stop, you may stop or reduce new automatic investment contributions and shift your focus to income and spending.
+          </p>
+        </div>
+
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>Keep near-term cash</h3>
+          <p>
+            Keep near-term spending money outside stocks, such as in cash or cash-like savings, so you are less likely to sell investments immediately after a major decline.
+          </p>
+        </div>
+
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>Use a planned schedule</h3>
+          <p>
+            Transfer a planned amount from investments to checking monthly or quarterly, then review the plan each year for taxes, spending, markets, and other income such as Social Security.
+          </p>
+        </div>
+      </div>
+
+      <div class="callout amber">
+        <strong>Withdrawal rates are estimates, not guarantees.</strong> The calculator’s monthly drawdown figure is only a first-year illustration based on the withdrawal percentage you enter. It does not prove that a portfolio will last for a specific number of years.
+      </div>
+    </section>
+
+    <section class="card education-card" id="final-reminder">
+      <h2>The simple takeaway</h2>
+      <p>
+        A small automatic investment may not feel powerful today. Given enough time, consistency can make it meaningful.
+      </p>
+
+      <div class="grid three">
+        <div class="step">
+          <h3>Choose a realistic amount</h3>
+          <p>Start with money you can afford to invest every month.</p>
+        </div>
+
+        <div class="step">
+          <h3>Automate it</h3>
+          <p>Make the contribution happen without needing a new decision every month.</p>
+        </div>
+
+        <div class="step">
+          <h3>Give it time</h3>
+          <p>Stay focused on the long-term plan through normal market changes.</p>
+        </div>
+      </div>
+
+      <p class="fineprint">
+        This page is educational and is not financial, investment, tax, or legal advice. It does not guarantee a return, prevent losses, or account for every real-life detail such as inflation, taxes, fees, job changes, health costs, or unexpected expenses.
+      </p>
+    </section>
+
   </main>
 
   <script>
