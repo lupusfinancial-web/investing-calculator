@@ -558,12 +558,12 @@
 
           <div class="field">
             <label for="age">Current age</label>
-            <input id="age" type="number" min="0" max="100" step="1" value="0">
+            <input id="age" type="number" min="0" max="100" step="1">
           </div>
 
           <div class="field">
             <label for="retireAge">Target age</label>
-            <input id="retireAge" type="number" min="0" max="110" step="1" value="0">
+            <input id="retireAge" type="number" min="0" max="110" step="1">
             <p class="help">Use a target age greater than your current age to see a projection.</p>
           </div>
         </div>
@@ -579,17 +579,17 @@
 
           <div class="field">
             <label for="starting">Current investment balance</label>
-            <input id="starting" type="number" min="0" step="1" value="0">
+            <input id="starting" type="text" inputmode="decimal">
           </div>
 
           <div class="field">
             <label for="monthly">Monthly auto-investment</label>
-            <input id="monthly" type="number" min="0" step="1" value="0">
+            <input id="monthly" type="text" inputmode="decimal">
           </div>
 
           <div class="field">
             <label for="increase">Annual increase to monthly investment (%)</label>
-            <input id="increase" type="number" min="0" max="100" step="0.01" value="0">
+            <input id="increase" type="number" min="0" max="100" step="0.01">
             <p class="help">Example: enter 2 to increase your monthly investment by 2% each year.</p>
           </div>
         </div>
@@ -605,7 +605,7 @@
 
           <div class="field">
             <label for="returnRate">Annual total return (%)</label>
-            <input id="returnRate" type="number" min="-99.99" max="100" step="0.01" value="0">
+            <input id="returnRate" type="number" min="-99.99" max="100" step="0.01">
             <p class="help">This is an assumption, not a prediction. You may enter a positive or negative number.</p>
           </div>
         </div>
@@ -621,7 +621,7 @@
 
           <div class="field">
             <label for="withdrawalRate">Annual withdrawal rate (%) — 4% guideline assumes about 30 years</label>
-            <input id="withdrawalRate" type="number" min="0" max="100" step="0.01" value="4">
+            <input id="withdrawalRate" type="number" min="0" max="100" step="0.01">
             <p class="help">
               This estimates your first year of retirement withdrawals. The commonly cited 4% guideline assumes about a 30-year retirement and then adjusts the dollar withdrawal for inflation. Change this percentage to model your own drawdown amount; it is not guaranteed.
             </p>
@@ -630,7 +630,7 @@
       </div>
 
       <div class="button-row">
-        <button class="plain" id="resetBtn" type="button">Reset all numbers to 0</button>
+        <button class="plain" id="resetBtn" type="button">Clear all fields</button>
         <button class="plain" type="button" onclick="window.print()">Print / Save PDF</button>
       </div>
     </section>
@@ -657,7 +657,7 @@
       <div class="metric amber">
         <div class="label">Estimated monthly drawdown</div>
         <div class="value" id="monthlyIncome">$0/mo</div>
-        <div class="sub" id="withdrawalLabel">Based on a 4% annual withdrawal rate</div>
+        <div class="sub" id="withdrawalLabel">Enter a withdrawal rate above</div>
       </div>
     </section>
 
@@ -715,7 +715,7 @@
       <div class="goal-area">
         <div>
           <label for="goal">Target portfolio value</label>
-          <input id="goal" type="number" min="0" step="1" value="0">
+          <input id="goal" type="text" inputmode="decimal">
         </div>
 
         <div>
@@ -865,9 +865,6 @@
     commaFieldIds.forEach(id => {
       const field = $(id);
 
-      field.type = "text";
-      field.inputMode = "decimal";
-
       field.addEventListener("focus", () => {
         field.value = field.value.replace(/,/g, "");
       });
@@ -885,8 +882,8 @@
     function formatCommaField(field) {
       const rawValue = field.value.replace(/,/g, "").trim();
 
-      if (rawValue === "" || Number(rawValue) === 0) {
-        field.value = "0";
+      if (rawValue === "") {
+        field.value = "";
         return;
       }
 
@@ -894,12 +891,16 @@
 
       field.value = Number.isFinite(value)
         ? commaNumber.format(value)
-        : "0";
+        : "";
     }
 
     function num(id) {
-      const value = $(id).value.replace(/,/g, "");
-      return parseFloat(value) || 0;
+      const value = $(id).value.replace(/,/g, "").trim();
+      return value === "" ? 0 : (parseFloat(value) || 0);
+    }
+
+    function hasValue(id) {
+      return $(id).value.replace(/,/g, "").trim() !== "";
     }
 
     function format(value) {
@@ -977,8 +978,9 @@
       $("monthlyIncome").textContent =
         `${format(model.balance * settings.withdrawalRate / 12)}/mo`;
 
-      $("withdrawalLabel").textContent =
-        `Based on a ${withdrawalPercent}% annual withdrawal rate`;
+      $("withdrawalLabel").textContent = hasValue("withdrawalRate")
+        ? `Based on a ${withdrawalPercent}% annual withdrawal rate`
+        : "Enter a withdrawal rate above";
 
       renderTable(model.rows);
       drawChart(model.rows);
@@ -1163,26 +1165,29 @@
       $("goalResult").classList.remove("hidden");
     }
 
-    function resetAllToZero() {
-      $("age").value = "0";
-      $("retireAge").value = "0";
-      $("starting").value = "0";
-      $("monthly").value = "0";
-      $("increase").value = "0";
-      $("returnRate").value = "0";
-      $("withdrawalRate").value = "0";
-      $("goal").value = "0";
+    function clearAllFields() {
+      [
+        "age",
+        "retireAge",
+        "starting",
+        "monthly",
+        "increase",
+        "returnRate",
+        "withdrawalRate",
+        "goal"
+      ].forEach(id => {
+        $(id).value = "";
+      });
 
       $("goalResult").classList.add("hidden");
       calculate();
     }
 
     $("goalBtn").addEventListener("click", solveGoal);
-    $("resetBtn").addEventListener("click", resetAllToZero);
+    $("resetBtn").addEventListener("click", clearAllFields);
 
     window.addEventListener("resize", calculate);
 
-    commaFieldIds.forEach(id => formatCommaField($(id)));
     calculate();
   </script>
 </body>
