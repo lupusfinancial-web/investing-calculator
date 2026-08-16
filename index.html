@@ -837,7 +837,11 @@
       maximumFractionDigits: 0
     });
 
-    const inputIds = [
+    const commaNumber = new Intl.NumberFormat("en-US", {
+      maximumFractionDigits: 2
+    });
+
+    const calculatorInputIds = [
       "age",
       "retireAge",
       "starting",
@@ -847,13 +851,55 @@
       "withdrawalRate"
     ];
 
-    inputIds.forEach(id => {
+    const commaFieldIds = [
+      "starting",
+      "monthly",
+      "goal"
+    ];
+
+    calculatorInputIds.forEach(id => {
       $(id).addEventListener("input", calculate);
       $(id).addEventListener("change", calculate);
     });
 
+    commaFieldIds.forEach(id => {
+      const field = $(id);
+
+      field.type = "text";
+      field.inputMode = "decimal";
+
+      field.addEventListener("focus", () => {
+        field.value = field.value.replace(/,/g, "");
+      });
+
+      field.addEventListener("input", () => {
+        calculate();
+      });
+
+      field.addEventListener("blur", () => {
+        formatCommaField(field);
+        calculate();
+      });
+    });
+
+    function formatCommaField(field) {
+      const rawValue = field.value.replace(/,/g, "").trim();
+
+      if (rawValue === "" || Number(rawValue) === 0) {
+        field.value = "0";
+        return;
+      }
+
+      const value = Number(rawValue);
+
+      field.value = Number.isFinite(value)
+        ? commaNumber.format(value)
+        : "0";
+    }
+
     function num(id) {
-      return parseFloat($(id).value) || 0;
+      const value = $(id).value.replace(/,/g, "");
+      return parseFloat(value) || 0;
     }
 
     function format(value) {
@@ -928,13 +974,17 @@
         ? `Over ${model.years} year${model.years === 1 ? "" : "s"}`
         : "Enter a timeline above";
 
-      $("monthlyIncome").textContent = `${format(model.balance * settings.withdrawalRate / 12)}/mo`;
-      $("withdrawalLabel").textContent = `Based on a ${withdrawalPercent}% annual withdrawal rate`;
+      $("monthlyIncome").textContent =
+        `${format(model.balance * settings.withdrawalRate / 12)}/mo`;
+
+      $("withdrawalLabel").textContent =
+        `Based on a ${withdrawalPercent}% annual withdrawal rate`;
 
       renderTable(model.rows);
       drawChart(model.rows);
 
       const waitYears = Math.min(5, Math.max(0, model.years - 1));
+
       const waitModel = runModel(
         { ...settings, starting: 0 },
         Math.max(0, model.years - waitYears)
@@ -1114,14 +1164,15 @@
     }
 
     function resetAllToZero() {
-      $("age").value = 0;
-      $("retireAge").value = 0;
-      $("starting").value = 0;
-      $("monthly").value = 0;
-      $("increase").value = 0;
-      $("returnRate").value = 0;
-      $("withdrawalRate").value = 0;
-      $("goal").value = 0;
+      $("age").value = "0";
+      $("retireAge").value = "0";
+      $("starting").value = "0";
+      $("monthly").value = "0";
+      $("increase").value = "0";
+      $("returnRate").value = "0";
+      $("withdrawalRate").value = "0";
+      $("goal").value = "0";
+
       $("goalResult").classList.add("hidden");
       calculate();
     }
@@ -1130,6 +1181,8 @@
     $("resetBtn").addEventListener("click", resetAllToZero);
 
     window.addEventListener("resize", calculate);
+
+    commaFieldIds.forEach(id => formatCommaField($(id)));
     calculate();
   </script>
 </body>
