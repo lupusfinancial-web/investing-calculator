@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  <meta http-equiv="pragma" content="no-cache">
   <title>Simple Investing Planner</title>
 
   <style>
@@ -21,9 +24,7 @@
       --shadow: 0 8px 22px rgba(16, 42, 67, .08);
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -41,8 +42,7 @@
         linear-gradient(135deg, #0b2036, #164e78);
     }
 
-    .shell,
-    main {
+    .shell, main {
       max-width: 1180px;
       margin: auto;
     }
@@ -102,9 +102,7 @@
       border-radius: 12px;
     }
 
-    .notice strong {
-      color: #78350f;
-    }
+    .notice strong { color: #78350f; }
 
     .card {
       margin-bottom: 20px;
@@ -138,18 +136,11 @@
       gap: 24px;
     }
 
-    .two {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
+    .two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 
-    .three {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-    .four {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-
+    /* TOP INPUT PANELS */
     .input-card {
       overflow: hidden;
       padding: 0;
@@ -189,18 +180,10 @@
       font-weight: 850;
     }
 
-    .contribution-card .box-number {
-      background: var(--green);
-    }
+    .contribution-card .box-number { background: var(--green); }
+    .return-card .box-number { background: var(--amber); }
 
-    .return-card .box-number {
-      background: var(--amber);
-    }
-
-    .drip-card .box-number {
-      background: var(--purple);
-    }
-
+    /* INDIVIDUAL ADJUSTABLE FIELDS: EXTRA SEPARATION */
     .field {
       margin: 20px;
       padding: 18px;
@@ -211,7 +194,7 @@
     }
 
     .field + .field {
-      margin-top: 26px;
+      margin-top: 28px;
     }
 
     .field:last-child {
@@ -253,26 +236,22 @@
       line-height: 1.5;
     }
 
-    .drip-info {
+    .drip-note {
       margin: 20px;
-      padding: 18px;
+      padding: 20px;
       background: #faf7ff;
       border: 2px solid #e3d5ff;
       border-radius: 13px;
       box-shadow: 0 3px 9px rgba(16, 42, 67, .035);
     }
 
-    .drip-info h3 {
+    .drip-note h3 {
       color: #5b21b6;
     }
 
-    .drip-info p {
-      margin: 8px 0 0;
+    .drip-note p {
+      margin: 9px 0 0;
       color: #4c3b67;
-    }
-
-    .drip-info strong {
-      color: #5b21b6;
     }
 
     .button-row {
@@ -296,18 +275,14 @@
       background: var(--blue);
     }
 
-    .primary:hover {
-      background: #1d4ed8;
-    }
+    .primary:hover { background: #1d4ed8; }
 
     .plain {
       color: #334e68;
       background: #eaf0f6;
     }
 
-    .plain:hover {
-      background: #dce5ed;
-    }
+    .plain:hover { background: #dce5ed; }
 
     .metric {
       min-height: 122px;
@@ -318,17 +293,9 @@
       box-shadow: 0 4px 12px rgba(16, 42, 67, .05);
     }
 
-    .metric.blue {
-      border-top: 5px solid var(--blue);
-    }
-
-    .metric.green {
-      border-top: 5px solid var(--green);
-    }
-
-    .metric.amber {
-      border-top: 5px solid #f59e0b;
-    }
+    .metric.blue { border-top: 5px solid var(--blue); }
+    .metric.green { border-top: 5px solid var(--green); }
+    .metric.amber { border-top: 5px solid #f59e0b; }
 
     .metric .label {
       color: var(--muted);
@@ -350,9 +317,7 @@
       font-size: .8rem;
     }
 
-    .negative {
-      color: var(--red) !important;
-    }
+    .negative { color: var(--red) !important; }
 
     .chart-wrap {
       position: relative;
@@ -385,13 +350,8 @@
       border-radius: 50%;
     }
 
-    .dot.blue {
-      background: var(--blue);
-    }
-
-    .dot.green {
-      background: var(--green);
-    }
+    .dot.blue { background: var(--blue); }
+    .dot.green { background: var(--green); }
 
     .milestones {
       display: flex;
@@ -416,9 +376,7 @@
       border-radius: 12px;
     }
 
-    .hidden {
-      display: none;
-    }
+    .hidden { display: none; }
 
     .table-wrap {
       max-height: 430px;
@@ -435,8 +393,7 @@
       font-size: .91rem;
     }
 
-    th,
-    td {
+    th, td {
       padding: 10px 12px;
       text-align: right;
       white-space: nowrap;
@@ -453,14 +410,8 @@
       text-transform: uppercase;
     }
 
-    th:first-child,
-    td:first-child {
-      text-align: left;
-    }
-
-    tr:last-child td {
-      border-bottom: 0;
-    }
+    th:first-child, td:first-child { text-align: left; }
+    tr:last-child td { border-bottom: 0; }
 
     .goal-area {
       display: grid;
@@ -469,9 +420,7 @@
       align-items: end;
     }
 
-    .goal-area button {
-      width: 100%;
-    }
+    .goal-area button { width: 100%; }
 
     .step {
       padding: 17px;
@@ -523,56 +472,37 @@
     }
 
     @media (max-width: 850px) {
-      .two,
-      .three,
-      .four {
+      .two, .three, .four {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .chart-wrap {
-        height: 290px;
-      }
+      .chart-wrap { height: 290px; }
     }
 
     @media (max-width: 580px) {
-      header {
-        padding: 42px 18px 35px;
-      }
+      header { padding: 42px 18px 35px; }
+      .card { padding: 18px; }
 
-      .card {
-        padding: 18px;
-      }
-
-      .two,
-      .three,
-      .four,
-      .goal-area {
+      .two, .three, .four, .goal-area {
         grid-template-columns: 1fr;
       }
 
-      .chart-wrap {
-        height: 250px;
-      }
-
-      .button-row button {
-        width: 100%;
-      }
+      .chart-wrap { height: 250px; }
+      .button-row button { width: 100%; }
 
       .field,
-      .drip-info {
+      .drip-note {
         margin: 16px;
         padding: 16px;
       }
 
       .field + .field {
-        margin-top: 22px;
+        margin-top: 24px;
       }
     }
 
     @media print {
-      body {
-        background: #ffffff;
-      }
+      body { background: #ffffff; }
 
       header {
         padding: 24px;
@@ -591,9 +521,7 @@
         display: none !important;
       }
 
-      main {
-        padding: 0;
-      }
+      main { padding: 0; }
 
       .card {
         box-shadow: none;
@@ -621,7 +549,7 @@
       <div class="pills">
         <span class="pill">One-fund friendly</span>
         <span class="pill">Monthly auto-investing</span>
-        <span class="pill">Dividend reinvestment explained</span>
+        <span class="pill">Simple beginner view</span>
         <span class="pill">No account or data required</span>
       </div>
     </div>
@@ -647,7 +575,7 @@
 
       <div class="grid two">
 
-        <div class="input-card timeline-card">
+        <div class="input-card">
           <div class="box-heading">
             <span class="box-number">1</span>
             <div>
@@ -713,26 +641,26 @@
           </div>
         </div>
 
-        <div class="input-card drip-card">
+        <div class="input-card">
           <div class="box-heading">
-            <span class="box-number">4</span>
+            <span class="box-number" style="background:#7c3aed">4</span>
             <div>
               <h3>Dividend reinvestment</h3>
-              <p>A simple explanation—no number required.</p>
+              <p>One simple setting to understand at your brokerage.</p>
             </div>
           </div>
 
-          <div class="drip-info">
+          <div class="drip-note">
             <h3>What does DRIP mean?</h3>
             <p>
               <strong>DRIP</strong> means Dividend Reinvestment Plan.
-              When a fund pays a dividend, your brokerage can automatically use that cash
+              When a fund pays a dividend, your brokerage can automatically use that money
               to buy more shares instead of leaving it as cash.
             </p>
             <p>
-              For a long-term investing plan, many people choose dividend reinvestment.
-              This calculator already treats your annual return as a <strong>total return</strong>,
-              meaning dividends are included in the return assumption.
+              This calculator already uses an annual <strong>total return</strong> assumption,
+              so dividends are already included in the number you choose. No dividend-yield
+              number is needed here.
             </p>
           </div>
         </div>
@@ -1079,9 +1007,7 @@
 
       const milestones = targets.map(target => {
         const reached = rows.find(row => row.balance >= target);
-
         if (!reached) return "";
-
         return `<span class="milestone">${format(target)}: age ${reached.age} (year ${reached.year})</span>`;
       }).filter(Boolean);
 
@@ -1109,13 +1035,7 @@
 
       if (!rows.length) return;
 
-      const padding = {
-        left: 72,
-        right: 18,
-        top: 22,
-        bottom: 42
-      };
-
+      const padding = { left: 72, right: 18, top: 22, bottom: 42 };
       const chartWidth = width - padding.left - padding.right;
       const chartHeight = height - padding.top - padding.bottom;
 
@@ -1158,13 +1078,9 @@
       );
 
       context.beginPath();
-
       rows.forEach((row, index) => {
-        if (index === 0) {
-          context.moveTo(x(index), y(row.deposited));
-        } else {
-          context.lineTo(x(index), y(row.deposited));
-        }
+        if (index === 0) context.moveTo(x(index), y(row.deposited));
+        else context.lineTo(x(index), y(row.deposited));
       });
 
       context.lineTo(x(rows.length - 1), y(0));
@@ -1175,13 +1091,9 @@
       context.fill();
 
       context.beginPath();
-
       rows.forEach((row, index) => {
-        if (index === 0) {
-          context.moveTo(x(index), y(row.deposited));
-        } else {
-          context.lineTo(x(index), y(row.deposited));
-        }
+        if (index === 0) context.moveTo(x(index), y(row.deposited));
+        else context.lineTo(x(index), y(row.deposited));
       });
 
       context.strokeStyle = "#0f9d6a";
@@ -1189,13 +1101,9 @@
       context.stroke();
 
       context.beginPath();
-
       rows.forEach((row, index) => {
-        if (index === 0) {
-          context.moveTo(x(index), y(row.balance));
-        } else {
-          context.lineTo(x(index), y(row.balance));
-        }
+        if (index === 0) context.moveTo(x(index), y(row.balance));
+        else context.lineTo(x(index), y(row.balance));
       });
 
       context.strokeStyle = "#2563eb";
@@ -1222,17 +1130,13 @@
 
         for (let i = 0; i < 70; i++) {
           const middle = (low + high) / 2;
-
           const result = runModel({
             ...settings,
             monthly: middle
           }).balance;
 
-          if (result < goal) {
-            low = middle;
-          } else {
-            high = middle;
-          }
+          if (result < goal) low = middle;
+          else high = middle;
         }
 
         $("goalResult").innerHTML =
@@ -1251,9 +1155,7 @@
       $("increase").value = 0;
       $("returnRate").value = 8;
       $("goal").value = 500000;
-
       $("goalResult").classList.add("hidden");
-
       calculate();
     }
 
@@ -1262,7 +1164,6 @@
     $("resetBtn").addEventListener("click", reset);
 
     window.addEventListener("resize", calculate);
-
     calculate();
   </script>
 </body>
