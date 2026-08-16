@@ -841,6 +841,17 @@
       maximumFractionDigits: 2
     });
 
+    const allEditableFields = [
+      "age",
+      "retireAge",
+      "starting",
+      "monthly",
+      "increase",
+      "returnRate",
+      "withdrawalRate",
+      "goal"
+    ];
+
     const calculatorInputIds = [
       "age",
       "retireAge",
@@ -869,9 +880,7 @@
         field.value = field.value.replace(/,/g, "");
       });
 
-      field.addEventListener("input", () => {
-        calculate();
-      });
+      field.addEventListener("input", calculate);
 
       field.addEventListener("blur", () => {
         formatCommaField(field);
@@ -879,28 +888,29 @@
       });
     });
 
-    function formatCommaField(field) {
-      const rawValue = field.value.replace(/,/g, "").trim();
+    function rawValue(id) {
+      return $(id).value.replace(/,/g, "").trim();
+    }
 
-      if (rawValue === "") {
+    function formatCommaField(field) {
+      const cleanValue = field.value.replace(/,/g, "").trim();
+
+      if (cleanValue === "") {
         field.value = "";
         return;
       }
 
-      const value = Number(rawValue);
-
-      field.value = Number.isFinite(value)
-        ? commaNumber.format(value)
-        : "";
+      const value = Number(cleanValue);
+      field.value = Number.isFinite(value) ? commaNumber.format(value) : "";
     }
 
     function num(id) {
-      const value = $(id).value.replace(/,/g, "").trim();
+      const value = rawValue(id);
       return value === "" ? 0 : (parseFloat(value) || 0);
     }
 
     function hasValue(id) {
-      return $(id).value.replace(/,/g, "").trim() !== "";
+      return rawValue(id) !== "";
     }
 
     function format(value) {
@@ -1136,6 +1146,13 @@
         return;
       }
 
+      if (!hasValue("goal")) {
+        $("goalResult").innerHTML =
+          "<strong>Enter a target portfolio value first.</strong>";
+        $("goalResult").classList.remove("hidden");
+        return;
+      }
+
       const noNewDeposits = runModel({
         ...settings,
         monthly: 0
@@ -1166,17 +1183,9 @@
     }
 
     function clearAllFields() {
-      [
-        "age",
-        "retireAge",
-        "starting",
-        "monthly",
-        "increase",
-        "returnRate",
-        "withdrawalRate",
-        "goal"
-      ].forEach(id => {
+      allEditableFields.forEach(id => {
         $(id).value = "";
+        $(id).defaultValue = "";
       });
 
       $("goalResult").classList.add("hidden");
@@ -1188,7 +1197,7 @@
 
     window.addEventListener("resize", calculate);
 
-    calculate();
+    clearAllFields();
   </script>
 </body>
 </html>
