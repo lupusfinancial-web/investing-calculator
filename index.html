@@ -12,6 +12,7 @@
       --blue: #2563eb;
       --green: #0f9d6a;
       --amber: #b45309;
+      --purple: #7c3aed;
       --bg: #f4f7fb;
       --card: #ffffff;
       --muted: #62758a;
@@ -178,8 +179,8 @@
 
     .contribution-card .box-number { background: var(--green); }
     .return-card .box-number { background: var(--amber); }
+    .withdrawal-card .box-number { background: var(--purple); }
 
-    /* Separate box around every adjustable item */
     .field {
       margin: 20px;
       padding: 18px;
@@ -330,21 +331,6 @@
 
     .dot.blue { background: var(--blue); }
     .dot.green { background: var(--green); }
-
-    .milestones {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 9px;
-      margin-top: 15px;
-    }
-
-    .milestone {
-      padding: 8px 10px;
-      background: #f1f5f9;
-      border: 1px solid #e2e8f0;
-      border-radius: 9px;
-      font-size: .85rem;
-    }
 
     .result-callout {
       margin-top: 16px;
@@ -536,7 +522,7 @@
       <div class="pills">
         <span class="pill">One-fund friendly</span>
         <span class="pill">Monthly auto-investing</span>
-        <span class="pill">Simple beginner view</span>
+        <span class="pill">Custom withdrawal rate</span>
         <span class="pill">No account or data required</span>
       </div>
     </div>
@@ -556,8 +542,8 @@
     <section class="card">
       <h2>Build your illustration</h2>
       <p class="section-copy">
-        Enter your own numbers below. Dollar and age fields move in increments of 1.
-        The return field allows decimal percentages, such as 8.25 or -5.50.
+        Change any number below and the page updates automatically.
+        Dollar and age fields move in increments of 1; percentage fields allow decimals.
       </p>
 
       <div class="grid two">
@@ -572,13 +558,13 @@
 
           <div class="field">
             <label for="age">Current age</label>
-            <input id="age" type="number" min="18" max="100" step="1" value="37">
+            <input id="age" type="number" min="0" max="100" step="1" value="0">
           </div>
 
           <div class="field">
             <label for="retireAge">Target age</label>
-            <input id="retireAge" type="number" min="19" max="110" step="1" value="70">
-            <p class="help">The calculator requires at least one year between these ages.</p>
+            <input id="retireAge" type="number" min="0" max="110" step="1" value="0">
+            <p class="help">Use a target age greater than your current age to see a projection.</p>
           </div>
         </div>
 
@@ -598,7 +584,7 @@
 
           <div class="field">
             <label for="monthly">Monthly auto-investment</label>
-            <input id="monthly" type="number" min="0" step="1" value="150">
+            <input id="monthly" type="number" min="0" step="1" value="0">
           </div>
 
           <div class="field">
@@ -619,19 +605,33 @@
 
           <div class="field">
             <label for="returnRate">Annual total return (%)</label>
-            <input id="returnRate" type="number" min="-99.99" max="100" step="0.01" value="8">
+            <input id="returnRate" type="number" min="-99.99" max="100" step="0.01" value="0">
+            <p class="help">This is an assumption, not a prediction. You may enter a positive or negative number.</p>
+          </div>
+        </div>
+
+        <div class="input-card withdrawal-card">
+          <div class="box-heading">
+            <span class="box-number">4</span>
+            <div>
+              <h3>Retirement drawdown</h3>
+              <p>Set the annual percentage withdrawn from the modeled ending balance.</p>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="withdrawalRate">Annual withdrawal rate (%) — 4% guideline assumes about 30 years</label>
+            <input id="withdrawalRate" type="number" min="0" max="100" step="0.01" value="4">
             <p class="help">
-              You may enter a positive or negative number, such as 8, 8.25, or -5.50.
-              This is an assumption, not a prediction.
+              This estimates your first year of retirement withdrawals. The commonly cited 4% guideline assumes about a 30-year retirement and then adjusts the dollar withdrawal for inflation. Change this percentage to model your own drawdown amount; it is not guaranteed.
             </p>
           </div>
         </div>
       </div>
 
       <div class="button-row">
-        <button class="primary" id="calculateBtn">Update plan</button>
-        <button class="plain" id="resetBtn">Reset example</button>
-        <button class="plain" onclick="window.print()">Print / Save PDF</button>
+        <button class="plain" id="resetBtn" type="button">Reset all numbers to 0</button>
+        <button class="plain" type="button" onclick="window.print()">Print / Save PDF</button>
       </div>
     </section>
 
@@ -651,21 +651,21 @@
       <div class="metric blue">
         <div class="label">Value at target age</div>
         <div class="value" id="ending">$0</div>
-        <div class="sub" id="yearsLabel">Over 0 years</div>
+        <div class="sub" id="yearsLabel">Enter a timeline above</div>
       </div>
 
       <div class="metric amber">
-        <div class="label">Illustrative 4% annual draw</div>
+        <div class="label">Estimated monthly drawdown</div>
         <div class="value" id="monthlyIncome">$0/mo</div>
-        <div class="sub">Not guaranteed retirement income</div>
+        <div class="sub" id="withdrawalLabel">Based on a 4% annual withdrawal rate</div>
       </div>
     </section>
 
     <section class="card">
       <h2>Portfolio value over time</h2>
       <p class="section-copy">
-        The green line shows your own deposits. The blue line shows the modeled portfolio value.
-        The space between them is modeled investment growth.
+        The green line shows your deposits. The blue line shows modeled portfolio value.
+        Enter a current age and a higher target age to draw the projection.
       </p>
 
       <div class="chart-wrap">
@@ -676,8 +676,6 @@
         <span><i class="dot green"></i>Your total deposits</span>
         <span><i class="dot blue"></i>Modeled portfolio value</span>
       </div>
-
-      <div id="milestones" class="milestones"></div>
     </section>
 
     <section class="card">
@@ -717,12 +715,12 @@
       <div class="goal-area">
         <div>
           <label for="goal">Target portfolio value</label>
-          <input id="goal" type="number" min="0" step="1" value="500000">
+          <input id="goal" type="number" min="0" step="1" value="0">
         </div>
 
         <div>
           <label>&nbsp;</label>
-          <button class="primary" id="goalBtn">Calculate monthly amount needed</button>
+          <button class="primary" id="goalBtn" type="button">Calculate monthly amount needed</button>
         </div>
       </div>
 
@@ -771,7 +769,7 @@
         <div class="step">
           <div class="step-num">3</div>
           <h3>Stay hands-off</h3>
-          <p>Review once or twice a year, avoid reacting to headlines, and keep contributing through normal market ups and downs. Dollar-cost averaging means investing a fixed amount regularly instead of trying to guess market timing.</p>
+          <p>Review once or twice a year, avoid reacting to headlines, and keep contributing through normal market ups and downs.</p>
         </div>
       </div>
     </section>
@@ -845,7 +843,8 @@
       "starting",
       "monthly",
       "increase",
-      "returnRate"
+      "returnRate",
+      "withdrawalRate"
     ];
 
     inputIds.forEach(id => {
@@ -862,24 +861,20 @@
     }
 
     function getSettings() {
-      const age = Math.max(18, num("age"));
-      const target = Math.max(age + 1, num("retireAge"));
-
       return {
-        age,
-        target,
+        age: Math.max(0, num("age")),
+        target: Math.max(0, num("retireAge")),
         starting: Math.max(0, num("starting")),
         monthly: Math.max(0, num("monthly")),
         increase: Math.max(0, num("increase")) / 100,
-        annualRate: Math.max(-0.9999, num("returnRate") / 100)
+        annualRate: Math.max(-0.9999, num("returnRate") / 100),
+        withdrawalRate: Math.max(0, num("withdrawalRate")) / 100
       };
     }
 
     function runModel(settings, yearsOverride = null) {
-      const years = yearsOverride === null
-        ? Math.round(settings.target - settings.age)
-        : Math.max(0, yearsOverride);
-
+      const normalYears = Math.max(0, Math.round(settings.target - settings.age));
+      const years = yearsOverride === null ? normalYears : Math.max(0, yearsOverride);
       const monthlyRate = Math.pow(1 + settings.annualRate, 1 / 12) - 1;
 
       let balance = settings.starting;
@@ -922,16 +917,21 @@
     function calculate() {
       const settings = getSettings();
       const model = runModel(settings);
+      const withdrawalPercent = num("withdrawalRate");
 
       $("contributions").textContent = format(model.totalDeposited);
       $("growth").textContent = format(model.growth);
       $("growth").classList.toggle("negative", model.growth < 0);
       $("ending").textContent = format(model.balance);
-      $("yearsLabel").textContent = `Over ${model.years} year${model.years === 1 ? "" : "s"}`;
-      $("monthlyIncome").textContent = `${format(model.balance * 0.04 / 12)}/mo`;
+
+      $("yearsLabel").textContent = model.years > 0
+        ? `Over ${model.years} year${model.years === 1 ? "" : "s"}`
+        : "Enter a timeline above";
+
+      $("monthlyIncome").textContent = `${format(model.balance * settings.withdrawalRate / 12)}/mo`;
+      $("withdrawalLabel").textContent = `Based on a ${withdrawalPercent}% annual withdrawal rate`;
 
       renderTable(model.rows);
-      renderMilestones(model.rows);
       drawChart(model.rows);
 
       const waitYears = Math.min(5, Math.max(0, model.years - 1));
@@ -950,37 +950,27 @@
     }
 
     function renderTable(rows) {
-      $("resultsTable").innerHTML = rows.map(row => `
-        <tr>
-          <td>Year ${row.year} / ${row.age}</td>
-          <td>${format(row.add)}</td>
-          <td>${format(row.deposited)}</td>
-          <td class="${row.growth < 0 ? "negative" : ""}">${format(row.growth)}</td>
-          <td><strong>${format(row.balance)}</strong></td>
-        </tr>
-      `).join("");
-    }
-
-    function renderMilestones(rows) {
-      const targets = [10000, 25000, 50000, 100000, 250000, 500000, 1000000];
-
-      const milestones = targets.map(target => {
-        const reached = rows.find(row => row.balance >= target);
-        return reached
-          ? `<span class="milestone">${format(target)}: age ${reached.age} (year ${reached.year})</span>`
-          : "";
-      }).filter(Boolean);
-
-      $("milestones").innerHTML = milestones.length
-        ? milestones.join("")
-        : `<span class="milestone">No listed milestone reached under these assumptions.</span>`;
+      $("resultsTable").innerHTML = rows.length
+        ? rows.map(row => `
+          <tr>
+            <td>Year ${row.year} / ${row.age}</td>
+            <td>${format(row.add)}</td>
+            <td>${format(row.deposited)}</td>
+            <td class="${row.growth < 0 ? "negative" : ""}">${format(row.growth)}</td>
+            <td><strong>${format(row.balance)}</strong></td>
+          </tr>
+        `).join("")
+        : `
+          <tr>
+            <td colspan="5">Enter a current age and a higher target age to create a year-by-year projection.</td>
+          </tr>
+        `;
     }
 
     function drawChart(rows) {
       const canvas = $("growthChart");
       const parent = canvas.parentElement;
       const dpr = window.devicePixelRatio || 1;
-
       const width = parent.clientWidth - 16;
       const height = parent.clientHeight - 16;
 
@@ -993,7 +983,18 @@
       context.setTransform(dpr, 0, 0, dpr, 0, 0);
       context.clearRect(0, 0, width, height);
 
-      if (!rows.length) return;
+      if (!rows.length) {
+        context.fillStyle = "#62758a";
+        context.font = "16px Arial";
+        context.textAlign = "center";
+        context.fillText(
+          "Enter a current age and a higher target age to see your projection.",
+          width / 2,
+          height / 2
+        );
+        context.textAlign = "left";
+        return;
+      }
 
       const padding = { left: 72, right: 18, top: 22, bottom: 42 };
       const chartWidth = width - padding.left - padding.right;
@@ -1074,6 +1075,14 @@
     function solveGoal() {
       const settings = getSettings();
       const goal = Math.max(0, num("goal"));
+      const years = Math.max(0, Math.round(settings.target - settings.age));
+
+      if (years <= 0) {
+        $("goalResult").innerHTML =
+          "<strong>Enter a current age and a higher target age first.</strong>";
+        $("goalResult").classList.remove("hidden");
+        return;
+      }
 
       const noNewDeposits = runModel({
         ...settings,
@@ -1082,8 +1091,8 @@
 
       if (goal <= noNewDeposits) {
         $("goalResult").innerHTML =
-          `<strong>Approximate monthly amount needed: $0.</strong><br>` +
-          `Your current starting balance and return assumption already reach this target in the illustration.`;
+          "<strong>Approximate monthly amount needed: $0.</strong><br>" +
+          "Your current starting balance and return assumption already reach this target in the illustration.";
       } else {
         let low = 0;
         let high = 100000;
@@ -1098,27 +1107,27 @@
 
         $("goalResult").innerHTML =
           `<strong>Approximate monthly amount needed: ${format(high)} per month.</strong><br>` +
-          `This uses your current timeline, starting balance, annual contribution increase, and return assumption. It is an illustration, not a guarantee.`;
+          "This uses your current timeline, starting balance, annual contribution increase, and return assumption. It is an illustration, not a guarantee.";
       }
 
       $("goalResult").classList.remove("hidden");
     }
 
-    function reset() {
-      $("age").value = 37;
-      $("retireAge").value = 70;
+    function resetAllToZero() {
+      $("age").value = 0;
+      $("retireAge").value = 0;
       $("starting").value = 0;
-      $("monthly").value = 150;
+      $("monthly").value = 0;
       $("increase").value = 0;
-      $("returnRate").value = 8;
-      $("goal").value = 500000;
+      $("returnRate").value = 0;
+      $("withdrawalRate").value = 0;
+      $("goal").value = 0;
       $("goalResult").classList.add("hidden");
       calculate();
     }
 
-    $("calculateBtn").addEventListener("click", calculate);
     $("goalBtn").addEventListener("click", solveGoal);
-    $("resetBtn").addEventListener("click", reset);
+    $("resetBtn").addEventListener("click", resetAllToZero);
 
     window.addEventListener("resize", calculate);
     calculate();
