@@ -1,95 +1,38 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Simple Investing Planner</title>
-  <style>
-    :root{
-      --navy:#102a43; --blue:#2563eb; --green:#0f9d6a; --amber:#b45309;
-      --purple:#7c3aed; --bg:#f4f7fb; --muted:#62758a; --line:#d7e2ee;
-      --red:#b91c1c;
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{margin:0;background:var(--bg);color:#243b53;font:16px/1.6 Arial,Helvetica,sans-serif}
-    header{padding:54px 20px 44px;color:#fff;background:linear-gradient(135deg,#0b2036,#164e78)}
-    .shell,main{max-width:1180px;margin:auto}
-    main{padding:25px 16px 60px}
-    .eyebrow{color:#bfdbfe;text-transform:uppercase;letter-spacing:.1em;font-size:.78rem;font-weight:800}
-    h1{max-width:830px;margin:9px 0 12px;font-size:clamp(2rem,5vw,3.35rem);line-height:1.1}
-    h2{margin:0 0 6px;color:var(--navy);font-size:1.48rem}
-    h3{margin:0;color:var(--navy);font-size:1.06rem}
-    p{margin:0 0 14px}
-    .hero-copy{max-width:790px;color:#e0efff;font-size:1.1rem}
-    .pills,.legend,.button-row,.education-nav{display:flex;flex-wrap:wrap;gap:8px}
-    .pills{margin-top:22px}
-    .pill,.education-nav a{padding:7px 11px;border:1px solid rgba(255,255,255,.24);border-radius:999px;background:rgba(255,255,255,.12);color:#fff;text-decoration:none;font-size:.84rem}
-    .notice,.card{margin-bottom:20px;border-radius:16px}
-    .notice{display:flex;gap:12px;padding:16px 18px;background:#fffbeb;border:1px solid #fbd38d;border-left:5px solid #f59e0b;color:#713f12}
-    .card{padding:24px;background:#fff;border:1px solid var(--line);box-shadow:0 8px 22px rgba(16,42,67,.08)}
-    .section-copy,.sub,.help,.fineprint{color:var(--muted)}
-    .grid{display:grid;gap:20px}
-    .two{grid-template-columns:repeat(2,minmax(0,1fr))}
-    .three{grid-template-columns:repeat(3,minmax(0,1fr))}
-    .four{grid-template-columns:repeat(4,minmax(0,1fr))}
-    .input-card{overflow:hidden;border:2px solid #cbddea;border-radius:16px}
-    .box-heading{display:flex;gap:12px;padding:18px;background:#edf5ff;border-bottom:2px solid #d5e3ee}
-    .box-heading p{margin:3px 0 0;font-size:.84rem;color:var(--muted)}
-    .box-number,.step-num{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:var(--blue);color:#fff;font-weight:bold}
-    .contribution-card .box-number{background:var(--green)}
-    .return-card .box-number{background:var(--amber)}
-    .withdrawal-card .box-number{background:var(--purple)}
-    .field{margin:18px;padding:16px;border:1px solid #d7e5f1;border-radius:12px}
-    label{display:block;margin-bottom:8px;font-weight:800;color:var(--navy)}
-    input{width:100%;min-height:52px;padding:10px 12px;border:1px solid #abc0d2;border-radius:10px;font:inherit;font-size:1.05rem}
-    input:focus{outline:3px solid rgba(37,99,235,.16);border-color:var(--blue)}
-    .help{margin:10px 0 0;padding-top:10px;border-top:1px solid #e3edf5;font-size:.83rem}
-    button{padding:10px 14px;border:0;border-radius:9px;font:inherit;font-weight:800;cursor:pointer}
-    .plain{background:#eaf0f6;color:#334e68}
-    .primary{background:var(--blue);color:#fff}
-    .metric{min-height:122px;padding:18px;border:2px solid #d8e5f2;border-radius:14px;background:#fff}
-    .metric.blue{border-top:5px solid var(--blue)}
-    .metric.green{border-top:5px solid var(--green)}
-    .metric.amber{border-top:5px solid #f59e0b}
-    .label{color:var(--muted);font-size:.82rem;font-weight:800}
-    .value{min-height:34px;margin-top:6px;color:var(--navy);font-size:clamp(1.34rem,3vw,1.85rem);font-weight:850}
-    .negative{color:var(--red)!important}
-    .chart-wrap{height:345px;padding:8px;border:1px solid #e5edf6;border-radius:12px;background:#fff}
-    canvas{width:100%;height:100%}
-    .dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px}
-    .dot.green{background:var(--green)} .dot.blue{background:var(--blue)}
-    .goal-area{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:end}
-    .goal-area button{width:100%}
-    .result-callout,.callout{margin-top:18px;padding:16px 18px;border:1px solid #bfdbfe;border-radius:12px;background:#eff6ff}
-    .callout.amber{background:#fffbeb;border-color:#fbd38d;color:#713f12}
-    .callout.green,.result-callout{background:#ecfdf5;border-color:#a7f3d0}
-    .hidden{display:none}
-    .table-wrap{max-height:430px;overflow:auto;border:1px solid var(--line);border-radius:12px}
-    table{width:100%;min-width:700px;border-collapse:collapse}
-    th,td{padding:10px 12px;text-align:right;border-bottom:1px solid #e7eef5}
-    th{position:sticky;top:0;background:#edf5ff;color:var(--navy);font-size:.8rem;text-transform:uppercase}
-    th:first-child,td:first-child{text-align:left}
-    .education-intro{color:#fff;background:linear-gradient(135deg,#102a43,#164e78);border:0}
-    .education-intro h2,.education-intro p{color:#fff}
-    .education-card{border-left:5px solid var(--blue)}
-    .education-card.green{border-left-color:var(--green)}
-    .education-card.amber{border-left-color:#f59e0b}
-    .education-card.purple{border-left-color:var(--purple)}
-    .step,.definition{padding:17px;border:1px solid var(--line);border-radius:12px;background:#fff}
-    .definition{background:#f8fbff}
-    .step-num{margin-bottom:10px}
-    .number-list,.plain-list{padding-left:22px}
-    .number-list li,.plain-list li{margin:8px 0}
-    .check-list{list-style:none;padding-left:0}
-    .check-list li{margin:8px 0;padding-left:28px;position:relative}
-    .check-list li:before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:bold}
-    @media(max-width:850px){.two,.three,.four{grid-template-columns:repeat(2,minmax(0,1fr))}}
-    @media(max-width:580px){header{padding:42px 18px 35px}.card{padding:18px}.two,.three,.four,.goal-area{grid-template-columns:1fr}.chart-wrap{height:250px}.button-row button{width:100%}}
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Simple Investing Planner</title>
+<style>
+:root{--navy:#102a43;--blue:#2563eb;--green:#0f9d6a;--amber:#b45309;--purple:#7c3aed;--bg:#f4f7fb;--muted:#62758a;--line:#d7e2ee;--red:#b91c1c}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:#243b53;font:16px/1.6 Arial,Helvetica,sans-serif}
+header{padding:54px 20px 44px;color:#fff;background:linear-gradient(135deg,#0b2036,#164e78)}
+.shell,main{max-width:1180px;margin:auto}main{padding:25px 16px 60px}
+.eyebrow{color:#bfdbfe;font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+h1{max-width:830px;margin:9px 0 12px;font-size:clamp(2rem,5vw,3.35rem);line-height:1.1}
+h2{margin:0 0 8px;color:var(--navy);font-size:1.48rem}h3{margin:0;color:var(--navy);font-size:1.06rem}p{margin:0 0 14px}
+.hero-copy{max-width:790px;color:#e0efff;font-size:1.1rem}.pills,.button-row,.legend,.education-nav{display:flex;flex-wrap:wrap;gap:8px}.pills{margin-top:22px}
+.pill,.education-nav a{padding:7px 11px;border:1px solid #ffffff44;border-radius:999px;background:#ffffff1f;color:#fff;text-decoration:none;font-size:.84rem}
+.notice,.card{margin-bottom:20px;border-radius:16px}.notice{padding:16px 18px;background:#fffbeb;border:1px solid #fbd38d;border-left:5px solid #f59e0b;color:#713f12}
+.card{padding:24px;background:#fff;border:1px solid var(--line);box-shadow:0 8px 22px #102a4314}.section-copy,.sub,.help,.fineprint{color:var(--muted)}
+.grid{display:grid;gap:20px}.two{grid-template-columns:repeat(2,minmax(0,1fr))}.three{grid-template-columns:repeat(3,minmax(0,1fr))}.four{grid-template-columns:repeat(4,minmax(0,1fr))}
+.input-card{overflow:hidden;border:2px solid #cbddea;border-radius:16px}.box-heading{display:flex;gap:12px;padding:18px;background:#edf5ff;border-bottom:2px solid #d5e3ee}.box-heading p{margin:3px 0 0;color:var(--muted);font-size:.84rem}
+.box-number,.step-num{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:var(--blue);color:#fff;font-weight:800}.contribution-card .box-number{background:var(--green)}.return-card .box-number{background:var(--amber)}.withdrawal-card .box-number{background:var(--purple)}
+.field{margin:18px;padding:16px;border:1px solid #d7e5f1;border-radius:12px}.field+.field{margin-top:22px}label{display:block;margin-bottom:8px;color:var(--navy);font-weight:800}
+input{width:100%;min-height:52px;padding:10px 12px;border:1px solid #abc0d2;border-radius:10px;font:inherit;font-size:1.05rem}input:focus{outline:3px solid #2563eb22;border-color:var(--blue)}
+.help{margin:10px 0 0;padding-top:10px;border-top:1px solid #e3edf5;font-size:.83rem}button{padding:10px 14px;border:0;border-radius:9px;font:inherit;font-weight:800;cursor:pointer}.plain{background:#eaf0f6;color:#334e68}.primary{background:var(--blue);color:#fff}
+.metric{min-height:122px;padding:18px;background:#fff;border:2px solid #d8e5f2;border-radius:14px}.metric.blue{border-top:5px solid var(--blue)}.metric.green{border-top:5px solid var(--green)}.metric.amber{border-top:5px solid #f59e0b}.label{color:var(--muted);font-size:.82rem;font-weight:800}.value{min-height:34px;margin-top:6px;color:var(--navy);font-size:clamp(1.34rem,3vw,1.85rem);font-weight:850}.negative{color:var(--red)!important}
+.chart-wrap{height:345px;padding:8px;border:1px solid #e5edf6;border-radius:12px}canvas{width:100%;height:100%}.dot{display:inline-block;width:10px;height:10px;margin-right:5px;border-radius:50%}.dot.green{background:var(--green)}.dot.blue{background:var(--blue)}
+.goal-area{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:end}.goal-area button{width:100%}.result-callout,.callout{margin-top:16px;padding:16px 18px;border:1px solid #bfdbfe;border-radius:12px;background:#eff6ff}.result-callout,.callout.green{background:#ecfdf5;border-color:#a7f3d0}.callout.amber{background:#fffbeb;border-color:#fbd38d;color:#713f12}.hidden{display:none}
+.table-wrap{max-height:430px;overflow:auto;border:1px solid var(--line);border-radius:12px}table{width:100%;min-width:700px;border-collapse:collapse;font-size:.91rem}th,td{padding:10px 12px;text-align:right;white-space:nowrap;border-bottom:1px solid #e7eef5}th{position:sticky;top:0;background:#edf5ff;color:var(--navy);font-size:.8rem;text-transform:uppercase}th:first-child,td:first-child{text-align:left}
+.education-intro{color:#fff;background:linear-gradient(135deg,#102a43,#164e78);border:0}.education-intro h2,.education-intro p{color:#fff}.education-card{border-left:5px solid var(--blue)}.education-card.green{border-left-color:var(--green)}.education-card.amber{border-left-color:#f59e0b}.education-card.purple{border-left-color:var(--purple)}
+.step,.definition{padding:17px;background:#fff;border:1px solid var(--line);border-radius:12px}.definition{background:#f8fbff}.step-num{margin-bottom:10px}.plain-list,.number-list{padding-left:22px}.plain-list li,.number-list li{margin:8px 0}.check-list{list-style:none;padding:0}.check-list li{margin:8px 0;padding-left:27px;position:relative}.check-list li:before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:bold}
+@media(max-width:850px){.two,.three,.four{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:580px){header{padding:42px 18px 35px}.card{padding:18px}.two,.three,.four,.goal-area{grid-template-columns:1fr}.chart-wrap{height:250px}.button-row button{width:100%}}
+</style>
 </head>
-
 <body>
+
 <header>
   <div class="shell">
     <div class="eyebrow">Educational retirement planner</div>
@@ -105,37 +48,34 @@
 </header>
 
 <main>
-  <section class="notice">
-    <div>⚠️</div>
-    <div><strong>Educational illustration only.</strong> This tool does not predict market returns. Investments can fall in value, and future results are not guaranteed.</div>
-  </section>
+  <section class="notice"><strong>Educational illustration only.</strong> This tool does not predict market returns. Investments can fall in value, and future results are not guaranteed.</section>
 
   <section class="card">
     <h2>Build your illustration</h2>
-    <p class="section-copy">All editable fields below intentionally start blank. Enter only the values you want to use.</p>
+    <p class="section-copy">All editable fields start blank. Enter only the values you want to use.</p>
 
     <div class="grid two">
       <div class="input-card">
         <div class="box-heading"><span class="box-number">1</span><div><h3>Your timeline</h3><p>When are you starting and when is the goal?</p></div></div>
         <div class="field"><label for="age">Current age</label><input id="age" type="number" min="0" max="100"></div>
-        <div class="field"><label for="retireAge">Target age</label><input id="retireAge" type="number" min="0" max="110"><p class="help">Use a target age greater than your current age to see a projection.</p></div>
+        <div class="field"><label for="retireAge">Target age</label><input id="retireAge" type="number" min="0" max="110"><p class="help">Use a target age greater than your current age.</p></div>
       </div>
 
       <div class="input-card contribution-card">
         <div class="box-heading"><span class="box-number">2</span><div><h3>Your contributions</h3><p>What is already invested and what will you add?</p></div></div>
         <div class="field"><label for="starting">Current investment balance</label><input id="starting" type="number" min="0"></div>
         <div class="field"><label for="monthly">Monthly auto-investment</label><input id="monthly" type="number" min="0"></div>
-        <div class="field"><label for="increase">Annual increase to monthly investment (%)</label><input id="increase" type="number" min="0" max="100" step=".01"><p class="help">Example: enter 2 to increase the monthly amount by 2% each year.</p></div>
+        <div class="field"><label for="increase">Annual increase to monthly investment (%)</label><input id="increase" type="number" min="0" max="100" step=".01"><p class="help">Example: enter 2 to increase the monthly amount by 2% annually.</p></div>
       </div>
 
       <div class="input-card return-card">
         <div class="box-heading"><span class="box-number">3</span><div><h3>Return assumption</h3><p>Choose the annual return used in the illustration.</p></div></div>
-        <div class="field"><label for="returnRate">Annual total return (%)</label><input id="returnRate" type="number" min="-99.99" max="100" step=".01"><p class="help">This is an assumption, not a prediction. You may enter a positive or negative number.</p></div>
+        <div class="field"><label for="returnRate">Annual total return (%)</label><input id="returnRate" type="number" min="-99.99" max="100" step=".01"><p class="help">This is an assumption, not a prediction.</p></div>
       </div>
 
       <div class="input-card withdrawal-card">
         <div class="box-heading"><span class="box-number">4</span><div><h3>Retirement drawdown</h3><p>Set the annual percentage withdrawn from the ending balance.</p></div></div>
-        <div class="field"><label for="withdrawalRate">Annual withdrawal rate (%)</label><input id="withdrawalRate" type="number" min="0" max="100" step=".01"><p class="help">This estimates first-year retirement withdrawals. It is not guaranteed.</p></div>
+        <div class="field"><label for="withdrawalRate">Annual withdrawal rate (%)</label><input id="withdrawalRate" type="number" min="0" max="100" step=".01"><p class="help">This estimates first-year retirement withdrawals only.</p></div>
       </div>
     </div>
 
@@ -191,28 +131,28 @@
 
   <section class="card">
     <h2>How a simple plan works</h2>
-    <p class="section-copy">You do not need to become an investing expert. Create a routine you can realistically maintain.</p>
+    <p class="section-copy">You do not need to become an investing expert. The goal is to create a simple routine you can realistically maintain.</p>
     <div class="grid three">
-      <div class="step"><div class="step-num">1</div><h3>Choose an account</h3><p>Consider a Roth IRA if eligible and investing for retirement. A Traditional IRA or taxable brokerage account may also fit, depending on your situation.</p></div>
-      <div class="step"><div class="step-num">2</div><h3>Automate a realistic amount</h3><p>Schedule regular transfers and choose an amount that fits your real budget, even if it begins at $25 monthly.</p></div>
-      <div class="step"><div class="step-num">3</div><h3>Stay hands-off</h3><p>Keep contributing through normal market changes. Review once or twice yearly instead of reacting to headlines.</p></div>
+      <div class="step"><div class="step-num">1</div><h3>Choose an account</h3><p>Consider a Roth IRA if you are eligible and investing for retirement. A Traditional IRA or regular brokerage account may also fit depending on your situation.</p></div>
+      <div class="step"><div class="step-num">2</div><h3>Automate a realistic amount</h3><p>Schedule a regular transfer and invest an amount that fits your actual budget, even if it starts at $25 per month.</p></div>
+      <div class="step"><div class="step-num">3</div><h3>Stay hands-off</h3><p>Keep contributing through normal market changes. Review once or twice each year instead of reacting to daily headlines.</p></div>
     </div>
   </section>
 
   <section class="card">
     <h2>Important reminders</h2>
     <div class="grid three">
-      <div class="definition"><h3>Protect short-term money</h3><p>Keep emergency savings available and deal with high-interest debt before investing money you may need soon.</p></div>
-      <div class="definition"><h3>Markets can lose value</h3><p>Investments can decline, including for extended periods. Returns are never guaranteed.</p></div>
-      <div class="definition"><h3>This is only a model</h3><p>The calculator does not include taxes, fees, inflation, or the unpredictable path of real markets.</p></div>
+      <div class="definition"><h3>Protect short-term money</h3><p>Keep emergency savings available and address high-interest debt before investing money you may need soon.</p></div>
+      <div class="definition"><h3>Markets can lose value</h3><p>Investments can go down, sometimes for extended periods. Returns are never guaranteed.</p></div>
+      <div class="definition"><h3>This is only a model</h3><p>The calculator does not include taxes, fees, inflation, or the unpredictable way real markets move.</p></div>
     </div>
-    <div class="callout amber"><strong>Use the calculator for planning, not promises.</strong> Focus on an amount you can contribute consistently.</div>
+    <div class="callout amber"><strong>Use the calculator for planning, not promises.</strong> Focus on a contribution amount you can keep investing consistently.</div>
   </section>
 
   <section class="card education-intro" id="learn">
     <div class="eyebrow">Simple investing guide</div>
     <h2>A simple way to start investing</h2>
-    <p>You do not need to be wealthy, an expert, or someone who watches the market every day to begin. Choose an amount you can consistently afford, automatically invest it into a broad fund, and give it time.</p>
+    <p>You do not need to be wealthy, an expert, or someone who watches the market every day to begin. Choose an amount you can consistently afford, automatically invest it every month into a broad fund, and give it time.</p>
     <div class="education-nav">
       <a href="#what-is-voo">What is VOO?</a>
       <a href="#how-it-works">How it works</a>
@@ -226,36 +166,35 @@
   <section class="card education-card">
     <h2>What you are trying to do</h2>
     <p>The goal is not to get rich quickly or guess what the market will do next week. The goal is to gradually build an asset that may give you more choices later in life.</p>
-    <p>The early years can look slow because your account is still small. The benefit comes from repeating the process for years and leaving the money invested.</p>
+    <p>The early years can look slow because your account is still small. The benefit comes from repeating the process for years and leaving the money invested. Markets rise and fall, and there will be periods when your account value is down.</p>
     <div class="callout"><strong>The basic habit:</strong> Pick a realistic monthly amount, automate it, invest in a broad fund, reinvest dividends, and let time do the work.</div>
   </section>
 
   <section class="card education-card green" id="what-is-voo">
     <h2>What VOO is</h2>
-    <p>VOO is an exchange-traded fund (ETF) designed to follow the S&amp;P 500, an index made up of large U.S. companies.</p>
     <div class="grid two">
-      <div class="definition"><h3>Broad ownership</h3><p>Buying a broad fund means owning small pieces of many companies through one investment, rather than relying on one business.</p></div>
-      <div class="definition"><h3>Why people use it</h3><p>One fund can be simpler than researching stocks, picking companies, constantly trading, or managing a complicated portfolio.</p></div>
+      <div><p>VOO is an exchange-traded fund, commonly called an ETF. It is designed to follow the S&amp;P 500, an index made up of large U.S. companies.</p><p>Buying VOO means you own small pieces of many large companies through one investment.</p></div>
+      <div class="definition"><h3>Why people use a broad fund</h3><p>One fund can be easier than researching individual stocks, choosing companies, constantly trading, or managing a complicated portfolio.</p></div>
     </div>
-    <div class="callout amber"><strong>Important:</strong> VOO can decline in value. Diversification does not prevent losses when the overall stock market falls.</div>
+    <div class="callout amber"><strong>Important:</strong> VOO can go down in value. Holding many companies does not prevent losses when the overall stock market falls.</div>
   </section>
 
   <section class="card education-card" id="how-it-works">
     <h2>What makes it work</h2>
     <div class="grid three">
-      <div class="step"><div class="step-num">1</div><h3>Regular contributions</h3><p>Add money consistently: $25, $50, $100, $150, or another amount that fits your budget.</p></div>
+      <div class="step"><div class="step-num">1</div><h3>Regular contributions</h3><p>Add money consistently: $25, $50, $100, $150, or another amount that fits your real budget.</p></div>
       <div class="step"><div class="step-num">2</div><h3>Time</h3><p>The longer money stays invested, the more time it has to potentially grow.</p></div>
-      <div class="step"><div class="step-num">3</div><h3>Reinvestment</h3><p>When dividends and growth stay invested, future returns can apply to both deposits and prior growth.</p></div>
+      <div class="step"><div class="step-num">3</div><h3>Reinvestment</h3><p>When dividends and growth stay invested, future returns can apply to both original deposits and past growth.</p></div>
     </div>
-    <div class="callout green"><strong>Dollar-cost averaging:</strong> Investing the same dollar amount at regular intervals, such as every month, rather than trying to find the perfect time to invest.</div>
+    <div class="callout green"><strong>Dollar-cost averaging:</strong> Investing the same dollar amount at regular intervals rather than waiting for the “perfect” time.</div>
   </section>
 
   <section class="card education-card purple" id="drip">
     <h2>What DRIP means</h2>
-    <p>DRIP means <strong>Dividend Reinvestment Plan</strong>. When it is enabled, dividends automatically buy more shares instead of remaining as cash.</p>
+    <p>DRIP means <strong>Dividend Reinvestment Plan</strong>. When it is turned on, dividends automatically buy more shares instead of sitting as cash.</p>
     <div class="grid two">
-      <div class="definition"><h3>During working years</h3><p>Many long-term investors reinvest dividends so they continue compounding.</p></div>
-      <div class="definition"><h3>During retirement</h3><p>Some investors turn DRIP off so dividends arrive as cash, but dividends alone may not cover all spending.</p></div>
+      <div class="definition"><h3>During working years</h3><p>Many long-term investors reinvest dividends so they can continue compounding.</p></div>
+      <div class="definition"><h3>During retirement</h3><p>Some investors turn DRIP off so dividends arrive as cash, though dividends may not cover all spending needs.</p></div>
     </div>
   </section>
 
@@ -263,44 +202,51 @@
     <h2>A simple setup</h2>
     <ol class="number-list">
       <li>Build a small emergency cushion first.</li>
-      <li>Choose an account appropriate for your goal.</li>
-      <li>Open an account at a major brokerage firm.</li>
+      <li>Choose an account that fits your goal.</li>
+      <li>Open the account at a major brokerage firm.</li>
       <li>Link your checking account.</li>
-      <li>Choose a monthly amount you can afford in a normal month.</li>
-      <li>Schedule automatic transfers and purchases.</li>
+      <li>Pick a monthly amount you can afford in a normal month.</li>
+      <li>Schedule automatic transfers and investment purchases.</li>
       <li>Turn on dividend reinvestment if you want dividends invested.</li>
       <li>Review once or twice per year.</li>
     </ol>
-    <div class="callout amber"><strong>Start with what is sustainable.</strong> The best monthly amount is the amount you can invest month after month without harming rent, food, bills, debt payments, or emergency savings.</div>
+    <div class="callout amber"><strong>Start with what is sustainable.</strong> The best monthly amount is the amount you can invest month after month without hurting rent, food, bills, debt payments, or emergency savings.</div>
   </section>
 
   <section class="card education-card purple" id="taxes">
     <h2>What happens at tax time</h2>
-    <p>Tax treatment depends mainly on the type of account and your personal situation.</p>
+    <p>Tax treatment depends mainly on the account type, your income, and your filing situation.</p>
     <div class="grid three">
-      <div class="definition"><h3>Roth IRA</h3><p>Contributions use after-tax money; qualified retirement withdrawals can generally be tax-free if account rules are met.</p></div>
-      <div class="definition"><h3>Traditional IRA</h3><p>Contributions may be deductible depending on income and workplace-plan coverage; retirement withdrawals are generally taxable.</p></div>
-      <div class="definition"><h3>Taxable brokerage</h3><p>You can invest and withdraw without retirement-age rules, but dividends and sales may create tax forms.</p></div>
+      <div class="definition"><h3>Roth IRA</h3><p>Contributions use after-tax money. Qualified retirement withdrawals can generally be tax-free if account rules are met.</p></div>
+      <div class="definition"><h3>Traditional IRA</h3><p>Contributions may be deductible depending on income and workplace-plan coverage. Withdrawals are generally taxable.</p></div>
+      <div class="definition"><h3>Taxable brokerage</h3><p>You can invest and withdraw without retirement-age rules, but dividends and investment sales may create tax forms.</p></div>
     </div>
-    <div class="callout"><strong>Note:</strong> For 2026, the standard combined IRA limit is $7,500, or $8,600 for people age 50 or older; Roth eligibility also depends on income and filing status. [web:418]</div>
+  </section>
+
+  <section class="card education-card green">
+    <h2>What to do while investing</h2>
+    <div class="grid two">
+      <div class="definition"><h3>Do</h3><ul class="check-list"><li>Keep automatic investing running if your cash situation supports it.</li><li>Review once or twice each year.</li><li>Increase contributions when income rises or expenses fall.</li><li>Keep emergency savings separate.</li></ul></div>
+      <div class="definition"><h3>Avoid</h3><ul class="plain-list"><li>Watching the account every day.</li><li>Selling only because headlines are scary.</li><li>Investing money you expect to need soon.</li><li>Trying to trade based on short-term predictions.</li></ul></div>
+    </div>
   </section>
 
   <section class="card education-card amber" id="retirement">
     <h2>What happens in retirement</h2>
-    <p>Retirement shifts the focus from building the account to using it carefully. Future returns, inflation, taxes, health costs, and the length of retirement matter.</p>
+    <p>Retirement shifts the focus from building the account to using it carefully. Future market returns, taxes, inflation, health costs, and the length of retirement all matter.</p>
     <div class="grid three">
-      <div class="step"><div class="step-num">1</div><h3>Adjust contributions</h3><p>When paychecks stop, you may reduce or stop new investments and focus on income and spending.</p></div>
+      <div class="step"><div class="step-num">1</div><h3>Adjust contributions</h3><p>When paychecks stop, you may reduce or stop new contributions and focus on income and spending.</p></div>
       <div class="step"><div class="step-num">2</div><h3>Keep near-term cash</h3><p>Keep money needed soon outside stocks so you are less likely to sell after a major decline.</p></div>
-      <div class="step"><div class="step-num">3</div><h3>Use a plan</h3><p>Transfer a planned amount monthly or quarterly and review the plan each year.</p></div>
+      <div class="step"><div class="step-num">3</div><h3>Use a planned schedule</h3><p>Transfer a planned amount monthly or quarterly and review the plan each year.</p></div>
     </div>
-    <div class="callout amber"><strong>Withdrawal rates are estimates, not guarantees.</strong> The drawdown figure above is only a first-year illustration.</div>
+    <div class="callout amber"><strong>Withdrawal rates are estimates, not guarantees.</strong> The monthly drawdown figure is only a first-year illustration.</div>
   </section>
 
   <section class="card education-card">
     <h2>The simple takeaway</h2>
     <div class="grid three">
       <div class="step"><h3>Choose a realistic amount</h3><p>Start with money you can afford to invest every month.</p></div>
-      <div class="step"><h3>Automate it</h3><p>Make the contribution happen without a new decision each month.</p></div>
+      <div class="step"><h3>Automate it</h3><p>Make the contribution happen without a new decision every month.</p></div>
       <div class="step"><h3>Give it time</h3><p>Stay focused on the long-term plan through normal market changes.</p></div>
     </div>
     <p class="fineprint">This page is educational and is not financial, investment, tax, or legal advice. It does not guarantee a return or prevent losses.</p>
@@ -308,206 +254,113 @@
 </main>
 
 <script>
-  const $ = id => document.getElementById(id);
-  const ids = ["age","retireAge","starting","monthly","increase","returnRate","withdrawalRate"];
-  const money = new Intl.NumberFormat("en-US",{style:"currency",currency:"USD",maximumFractionDigits:0});
-  const num = id => parseFloat($(id).value) || 0;
-  const fmt = value => money.format(Math.abs(value) < .5 ? 0 : value);
+const $ = id => document.getElementById(id);
+const fields = ["age","retireAge","starting","monthly","increase","returnRate","withdrawalRate"];
+const usd = new Intl.NumberFormat("en-US",{style:"currency",currency:"USD",maximumFractionDigits:0});
+const n = id => parseFloat($(id).value) || 0;
+const fmt = v => usd.format(Math.abs(v) < .5 ? 0 : v);
 
-  function model(settings, yearsOverride = null) {
-    const years = yearsOverride === null
-      ? Math.max(0, Math.round(settings.target - settings.age))
-      : Math.max(0, yearsOverride);
-    const monthlyRate = Math.pow(1 + settings.rate, 1 / 12) - 1;
-    let balance = settings.starting;
-    let deposited = settings.starting;
-    let monthly = settings.monthly;
-    const rows = [];
+function getSettings(){
+  return {
+    age:Math.max(0,n("age")),
+    target:Math.max(0,n("retireAge")),
+    starting:Math.max(0,n("starting")),
+    monthly:Math.max(0,n("monthly")),
+    increase:Math.max(0,n("increase"))/100,
+    rate:Math.max(-.9999,n("returnRate")/100),
+    withdrawal:Math.max(0,n("withdrawalRate"))/100
+  };
+}
 
-    for (let year = 1; year <= years; year++) {
-      const startBalance = balance;
-      const added = monthly * 12;
-
-      for (let month = 0; month < 12; month++) {
-        balance *= 1 + monthlyRate;
-        balance += monthly;
-      }
-
-      deposited += added;
-      rows.push({
-        year,
-        age: settings.age + year,
-        added,
-        deposited,
-        growth: balance - startBalance - added,
-        balance
-      });
-
-      monthly *= 1 + settings.increase;
-    }
-    return {balance,deposited,growth:balance-deposited,rows,years};
+function runModel(s,yearsOverride=null){
+  const years = yearsOverride === null ? Math.max(0,Math.round(s.target-s.age)) : Math.max(0,yearsOverride);
+  const monthlyRate = Math.pow(1+s.rate,1/12)-1;
+  let balance=s.starting, deposited=s.starting, monthly=s.monthly;
+  const rows=[];
+  for(let year=1;year<=years;year++){
+    const before=balance, added=monthly*12;
+    for(let month=0;month<12;month++){balance*=1+monthlyRate;balance+=monthly}
+    deposited+=added;
+    rows.push({year,age:s.age+year,added,deposited,growth:balance-before-added,balance});
+    monthly*=1+s.increase;
   }
+  return {balance,deposited,growth:balance-deposited,rows,years};
+}
 
-  function settings() {
-    return {
-      age: Math.max(0,num("age")),
-      target: Math.max(0,num("retireAge")),
-      starting: Math.max(0,num("starting")),
-      monthly: Math.max(0,num("monthly")),
-      increase: Math.max(0,num("increase")) / 100,
-      rate: Math.max(-.9999,num("returnRate") / 100),
-      withdrawal: Math.max(0,num("withdrawalRate")) / 100
-    };
+function clearResults(){
+  ["contributions","growth","ending","monthlyIncome","startNow","waitFive","waitDifference","yearsLabel","withdrawalLabel"].forEach(id=>$(id).textContent="");
+  $("resultsTable").innerHTML="";
+  const c=$("growthChart");c.getContext("2d").clearRect(0,0,c.width,c.height);
+}
+
+function calculate(){
+  if(fields.every(id=>!$(id).value)){clearResults();return}
+  const s=getSettings(),m=runModel(s);
+  $("contributions").textContent=fmt(m.deposited);
+  $("growth").textContent=fmt(m.growth);
+  $("growth").classList.toggle("negative",m.growth<0);
+  $("ending").textContent=fmt(m.balance);
+  $("yearsLabel").textContent=m.years?`Over ${m.years} year${m.years===1?"":"s"}`:"";
+  $("monthlyIncome").textContent=$("withdrawalRate").value?fmt(m.balance*s.withdrawal/12):"";
+  $("withdrawalLabel").textContent=$("withdrawalRate").value?`Based on a ${n("withdrawalRate")}% annual withdrawal rate`:"";
+
+  const waitYears=Math.min(5,Math.max(0,m.years-1));
+  const waitModel=runModel({...s,starting:0},Math.max(0,m.years-waitYears));
+  const waitValue=s.starting*Math.pow(1+s.rate,waitYears)+waitModel.balance;
+  $("startNow").textContent=fmt(m.balance);
+  $("waitFive").textContent=fmt(waitValue);
+  $("waitDifference").textContent=fmt(m.balance-waitValue);
+
+  $("resultsTable").innerHTML=m.rows.map(r=>`<tr><td>Year ${r.year} / Age ${r.age}</td><td>${fmt(r.added)}</td><td>${fmt(r.deposited)}</td><td class="${r.growth<0?"negative":""}">${fmt(r.growth)}</td><td><strong>${fmt(r.balance)}</strong></td></tr>`).join("");
+  drawChart(m.rows);
+}
+
+function drawChart(rows){
+  const c=$("growthChart"),parent=c.parentElement,dpr=window.devicePixelRatio||1;
+  const width=Math.max(300,parent.clientWidth-16),height=Math.max(180,parent.clientHeight-16);
+  c.width=width*dpr;c.height=height*dpr;c.style.width=width+"px";c.style.height=height+"px";
+  const ctx=c.getContext("2d");ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,width,height);
+  if(!rows.length)return;
+  const p={left:70,right:18,top:20,bottom:38};
+  const max=Math.max(1,...rows.map(r=>r.balance),...rows.map(r=>r.deposited))*1.08;
+  const x=i=>p.left+i/Math.max(1,rows.length-1)*(width-p.left-p.right);
+  const y=v=>p.top+(height-p.top-p.bottom)-v/max*(height-p.top-p.bottom);
+
+  ctx.strokeStyle="#e1eaf3";ctx.fillStyle="#62758a";ctx.font="12px Arial";
+  for(let i=0;i<=4;i++){
+    const val=max*i/4,yy=y(val);
+    ctx.beginPath();ctx.moveTo(p.left,yy);ctx.lineTo(width-p.right,yy);ctx.stroke();
+    ctx.fillText(fmt(val),3,yy+4);
   }
-
-  function clearResults() {
-    ["contributions","growth","ending","monthlyIncome","startNow","waitFive","waitDifference","yearsLabel","withdrawalLabel"].forEach(id => $(id).textContent = "");
-    $("resultsTable").innerHTML = "";
-    const canvas = $("growthChart");
-    canvas.getContext("2d").clearRect(0,0,canvas.width,canvas.height);
-  }
-
-  function calculate() {
-    if (ids.every(id => !$(id).value)) {
-      clearResults();
-      return;
-    }
-
-    const s = settings();
-    const m = model(s);
-
-    $("contributions").textContent = fmt(m.deposited);
-    $("growth").textContent = fmt(m.growth);
-    $("growth").classList.toggle("negative",m.growth < 0);
-    $("ending").textContent = fmt(m.balance);
-    $("yearsLabel").textContent = m.years ? `Over ${m.years} year${m.years === 1 ? "" : "s"}` : "";
-    $("monthlyIncome").textContent = $("withdrawalRate").value ? fmt(m.balance * s.withdrawal / 12) : "";
-    $("withdrawalLabel").textContent = $("withdrawalRate").value ? `Based on a ${num("withdrawalRate")}% annual withdrawal rate` : "";
-
-    const waitYears = Math.min(5,Math.max(0,m.years - 1));
-    const waitModel = model({...s,starting:0},Math.max(0,m.years - waitYears));
-    const waitValue = s.starting * Math.pow(1+s.rate,waitYears) + waitModel.balance;
-    $("startNow").textContent = fmt(m.balance);
-    $("waitFive").textContent = fmt(waitValue);
-    $("waitDifference").textContent = fmt(m.balance - waitValue);
-
-    $("resultsTable").innerHTML = m.rows.map(r => `
-      <tr>
-        <td>Year ${r.year} / Age ${r.age}</td>
-        <td>${fmt(r.added)}</td>
-        <td>${fmt(r.deposited)}</td>
-        <td class="${r.growth < 0 ? "negative" : ""}">${fmt(r.growth)}</td>
-        <td><strong>${fmt(r.balance)}</strong></td>
-      </tr>
-    `).join("");
-
-    drawChart(m.rows);
-  }
-
-  function drawChart(rows) {
-    const canvas = $("growthChart");
-    const box = canvas.parentElement;
-    const dpr = window.devicePixelRatio || 1;
-    const width = Math.max(300,box.clientWidth - 16);
-    const height = Math.max(180,box.clientHeight - 16);
-    canvas.width = width * dpr;
-    canvas.height = height * dpr;
-    canvas.style.width = width + "px";
-    canvas.style.height = height + "px";
-
-    const ctx = canvas.getContext("2d");
-    ctx.setTransform(dpr,0,0,dpr,0,0);
-    ctx.clearRect(0,0,width,height);
-    if (!rows.length) return;
-
-    const p = {left:72,right:18,top:22,bottom:42};
-    const cw = width - p.left - p.right;
-    const ch = height - p.top - p.bottom;
-    const max = Math.max(1,...rows.map(r => r.balance),...rows.map(r => r.deposited)) * 1.08;
-    const x = i => p.left + i / Math.max(1,rows.length - 1) * cw;
-    const y = value => p.top + ch - value / max * ch;
-
-    ctx.font = "12px Arial";
-    ctx.strokeStyle = "#e1eaf3";
-    ctx.fillStyle = "#62758a";
-
-    for (let i=0;i<=4;i++) {
-      const value = max * i / 4;
-      const yy = y(value);
-      ctx.beginPath();
-      ctx.moveTo(p.left,yy);
-      ctx.lineTo(width-p.right,yy);
-      ctx.stroke();
-      ctx.fillText(fmt(value),3,yy+4);
-    }
-
+  [["deposited","#0f9d6a",2],["balance","#2563eb",3]].forEach(([key,color,line])=>{
     ctx.beginPath();
-    rows.forEach((r,i) => i ? ctx.lineTo(x(i),y(r.deposited)) : ctx.moveTo(x(i),y(r.deposited)));
-    ctx.strokeStyle = "#0f9d6a";
-    ctx.lineWidth = 2;
-    ctx.stroke();
-
-    ctx.beginPath();
-    rows.forEach((r,i) => i ? ctx.lineTo(x(i),y(r.balance)) : ctx.moveTo(x(i),y(r.balance)));
-    ctx.strokeStyle = "#2563eb";
-    ctx.lineWidth = 3;
-    ctx.stroke();
-
-    ctx.fillStyle = "#62758a";
-    ctx.fillText(`Age ${rows[0].age}`,p.left,height-12);
-    const end = `Age ${rows.at(-1).age}`;
-    ctx.fillText(end,width-p.right-ctx.measureText(end).width,height-12);
-  }
-
-  function solveGoal() {
-    const s = settings();
-    const goal = Math.max(0,num("goal"));
-    const years = Math.max(0,Math.round(s.target-s.age));
-    const output = $("goalResult");
-
-    if (!goal) {
-      output.innerHTML = "<strong>Enter a target portfolio value first.</strong>";
-      output.classList.remove("hidden");
-      return;
-    }
-
-    if (!years) {
-      output.innerHTML = "<strong>Enter a current age and a higher target age first.</strong>";
-      output.classList.remove("hidden");
-      return;
-    }
-
-    if (model({...s,monthly:0}).balance >= goal) {
-      output.innerHTML = "<strong>Approximate monthly amount needed: $0.</strong><br>Your current balance and assumptions already reach this target in the illustration.";
-      output.classList.remove("hidden");
-      return;
-    }
-
-    let low = 0, high = 100000;
-    for (let i=0;i<70;i++) {
-      const mid = (low+high)/2;
-      if (model({...s,monthly:mid}).balance < goal) low = mid;
-      else high = mid;
-    }
-
-    output.innerHTML = `<strong>Approximate monthly amount needed: ${fmt(high)} per month.</strong><br>This is an illustration, not a guarantee.`;
-    output.classList.remove("hidden");
-  }
-
-  ids.forEach(id => {
-    $(id).addEventListener("input",calculate);
-    $(id).addEventListener("change",calculate);
+    rows.forEach((r,i)=>i?ctx.lineTo(x(i),y(r[key])):ctx.moveTo(x(i),y(r[key])));
+    ctx.strokeStyle=color;ctx.lineWidth=line;ctx.stroke();
   });
+}
 
-  $("goalBtn").addEventListener("click",solveGoal);
+function solveGoal(){
+  const s=getSettings(),goal=Math.max(0,n("goal")),years=Math.max(0,Math.round(s.target-s.age)),out=$("goalResult");
+  if(!goal){out.innerHTML="<strong>Enter a target portfolio value first.</strong>";out.classList.remove("hidden");return}
+  if(!years){out.innerHTML="<strong>Enter a current age and a higher target age first.</strong>";out.classList.remove("hidden");return}
+  if(runModel({...s,monthly:0}).balance>=goal){
+    out.innerHTML="<strong>Approximate monthly amount needed: $0.</strong><br>Your current balance and assumptions already reach this target in the illustration.";
+    out.classList.remove("hidden");return;
+  }
+  let low=0,high=100000;
+  for(let i=0;i<70;i++){const mid=(low+high)/2;if(runModel({...s,monthly:mid}).balance<goal)low=mid;else high=mid}
+  out.innerHTML=`<strong>Approximate monthly amount needed: ${fmt(high)} per month.</strong><br>This is an illustration, not a guarantee.`;
+  out.classList.remove("hidden");
+}
 
-  $("resetBtn").addEventListener("click",() => {
-    [...ids,"goal"].forEach(id => $(id).value = "");
-    $("goalResult").classList.add("hidden");
-    clearResults();
-  });
-
-  window.addEventListener("resize",calculate);
+fields.forEach(id=>$(id).addEventListener("input",calculate));
+$("goalBtn").addEventListener("click",solveGoal);
+$("resetBtn").addEventListener("click",()=>{
+  [...fields,"goal"].forEach(id=>$(id).value="");
+  $("goalResult").classList.add("hidden");
+  clearResults();
+});
+window.addEventListener("resize",calculate);
 </script>
 </body>
 </html>
