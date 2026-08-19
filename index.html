@@ -21,8 +21,7 @@
   --input-bg: #ffffff;
   --header-from: #0b1e33;
   --header-to: #164e78;
-  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.05);
-  --shadow-lg: 0 10px 25px -5px rgb(15 39 68 / 0.12);
+  --shadow: 0 4px 12px rgba(15,39,68,0.08);
   --radius: 16px;
   --radius-sm: 10px;
 }
@@ -37,8 +36,7 @@
   --input-bg: #0f172a;
   --header-from: #020617;
   --header-to: #0f172a;
-  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3);
-  --shadow-lg: 0 10px 25px -5px rgb(0 0 0 / 0.4);
+  --shadow: 0 4px 12px rgba(0,0,0,0.35);
 }
 
 * { box-sizing: border-box; }
@@ -48,7 +46,6 @@ body {
   background: var(--bg);
   color: var(--text);
   font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  transition: background 0.25s, color 0.25s;
 }
 
 header {
@@ -147,7 +144,6 @@ p { margin: 0 0 12px; }
 .grid { display: grid; gap: 18px; }
 .two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 
 .input-card {
   overflow: hidden;
@@ -159,12 +155,16 @@ p { margin: 0 0 12px; }
   display: flex;
   gap: 12px;
   padding: 16px 18px;
-  background: color-mix(in srgb, var(--blue) 8%, transparent);
+  background: #eff6ff;
   border-bottom: 1px solid var(--line);
 }
-.contribution-card .box-heading { background: color-mix(in srgb, var(--green) 9%, transparent); }
-.return-card .box-heading { background: color-mix(in srgb, var(--amber) 10%, transparent); }
-.withdrawal-card .box-heading { background: color-mix(in srgb, var(--purple) 9%, transparent); }
+[data-theme="dark"] .box-heading { background: #1e3a5f; }
+.contribution-card .box-heading { background: #ecfdf5; }
+[data-theme="dark"] .contribution-card .box-heading { background: #064e3b; }
+.return-card .box-heading { background: #fffbeb; }
+[data-theme="dark"] .return-card .box-heading { background: #422006; }
+.withdrawal-card .box-heading { background: #f5f3ff; }
+[data-theme="dark"] .withdrawal-card .box-heading { background: #2e1065; }
 
 .box-number, .step-num {
   display: inline-flex;
@@ -202,12 +202,11 @@ input {
   color: var(--text);
   font: inherit;
   font-size: 1.05rem;
-  transition: border-color 0.15s, box-shadow 0.15s;
 }
 input:focus {
   outline: none;
   border-color: var(--blue);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--blue) 25%, transparent);
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.25);
 }
 input::placeholder { color: #94a3b8; opacity: 0.8; }
 .help {
@@ -230,27 +229,28 @@ button {
   font: inherit;
   font-weight: 700;
   cursor: pointer;
-  transition: transform 0.12s, opacity 0.15s, background 0.15s;
 }
-button:active { transform: scale(0.98); }
 .plain {
-  background: color-mix(in srgb, var(--muted) 15%, transparent);
+  background: #e2e8f0;
   color: var(--text);
 }
-.plain:hover { background: color-mix(in srgb, var(--muted) 25%, transparent); }
+[data-theme="dark"] .plain { background: #334155; }
 .primary {
   background: var(--blue);
   color: #fff;
 }
 .primary:hover { background: var(--blue-light); }
 .sample-btn {
-  background: color-mix(in srgb, var(--green) 15%, transparent);
-  color: var(--green);
-  border: 1.5px solid color-mix(in srgb, var(--green) 40%, transparent);
+  background: #d1fae5;
+  color: #065f46;
+  border: 1.5px solid #6ee7b7;
 }
-.sample-btn:hover { background: color-mix(in srgb, var(--green) 25%, transparent); }
+[data-theme="dark"] .sample-btn {
+  background: #064e3b;
+  color: #6ee7b7;
+  border-color: #34d399;
+}
 
-/* Metrics */
 .metrics-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -281,19 +281,18 @@ button:active { transform: scale(0.98); }
   color: var(--navy);
   font-size: clamp(1.25rem, 2.8vw, 1.7rem);
   font-weight: 800;
-  letter-spacing: -0.02em;
 }
 .negative { color: var(--red) !important; }
 .sub { font-size: 0.82rem; margin-top: 2px; }
 
-/* Chart */
 .chart-wrap {
   height: 340px;
   padding: 10px;
   border: 1px solid var(--line);
   border-radius: 12px;
-  background: color-mix(in srgb, var(--bg) 40%, transparent);
+  background: #f8fafc;
 }
+[data-theme="dark"] .chart-wrap { background: #0f172a; }
 canvas { width: 100%; height: 100%; display: block; }
 .legend {
   display: flex;
@@ -314,7 +313,6 @@ canvas { width: 100%; height: 100%; display: block; }
 .dot.green { background: var(--green); }
 .dot.blue { background: var(--blue); }
 
-/* Goal */
 .goal-area {
   display: grid;
   grid-template-columns: 1fr auto;
@@ -330,13 +328,19 @@ canvas { width: 100%; height: 100%; display: block; }
   color: var(--text);
 }
 [data-theme="dark"] .result-callout,
-[data-theme="dark"] .callout { background: #1e3a5f; border-color: #3b82f6; }
+[data-theme="dark"] .callout {
+  background: #1e3a5f;
+  border-color: #3b82f6;
+}
 .result-callout.green, .callout.green {
   background: #ecfdf5;
   border-color: #6ee7b7;
 }
 [data-theme="dark"] .result-callout.green,
-[data-theme="dark"] .callout.green { background: #064e3b; border-color: #34d399; }
+[data-theme="dark"] .callout.green {
+  background: #064e3b;
+  border-color: #34d399;
+}
 .callout.amber {
   background: #fffbeb;
   border-color: #fcd34d;
@@ -349,7 +353,6 @@ canvas { width: 100%; height: 100%; display: block; }
 }
 .hidden { display: none !important; }
 
-/* Table */
 .table-wrap {
   max-height: 420px;
   overflow: auto;
@@ -371,17 +374,16 @@ th, td {
 th {
   position: sticky;
   top: 0;
-  background: color-mix(in srgb, var(--blue) 8%, var(--card));
+  background: #eff6ff;
   color: var(--navy);
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.03em;
   z-index: 1;
 }
+[data-theme="dark"] th { background: #1e3a5f; }
 th:first-child, td:first-child { text-align: left; }
-tbody tr:hover { background: color-mix(in srgb, var(--blue) 5%, transparent); }
 
-/* Education */
 .education-intro {
   color: #fff;
   background: linear-gradient(135deg, #0f2744, #1e40af);
@@ -404,7 +406,6 @@ tbody tr:hover { background: color-mix(in srgb, var(--blue) 5%, transparent); }
   font-size: 0.84rem;
   font-weight: 500;
 }
-.education-nav a:hover { background: rgba(255,255,255,0.22); }
 
 .education-card { border-left: 5px solid var(--blue); }
 .education-card.green { border-left-color: var(--green); }
@@ -413,10 +414,12 @@ tbody tr:hover { background: color-mix(in srgb, var(--blue) 5%, transparent); }
 
 .step, .definition {
   padding: 16px;
-  background: color-mix(in srgb, var(--bg) 60%, var(--card));
+  background: #f8fafc;
   border: 1px solid var(--line);
   border-radius: 12px;
 }
+[data-theme="dark"] .step,
+[data-theme="dark"] .definition { background: #0f172a; }
 .step-num { margin-bottom: 10px; }
 .plain-list, .number-list { padding-left: 20px; margin: 8px 0; }
 .plain-list li, .number-list li { margin: 7px 0; }
@@ -441,14 +444,13 @@ footer {
   font-size: 0.85rem;
 }
 
-/* Responsive */
 @media (max-width: 900px) {
-  .two, .three, .four, .metrics-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .two, .three, .metrics-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 600px) {
   header { padding: 40px 16px 32px; }
   .card { padding: 18px; }
-  .two, .three, .four, .metrics-grid, .goal-area { grid-template-columns: 1fr; }
+  .two, .three, .metrics-grid, .goal-area { grid-template-columns: 1fr; }
   .chart-wrap { height: 260px; }
   .button-row button { width: 100%; }
   .theme-toggle { top: 12px; right: 12px; font-size: 0.8rem; padding: 6px 11px; }
@@ -484,7 +486,6 @@ footer {
     <strong>Educational illustration only.</strong> This tool does not predict market returns. Investments can fall in value, and future results are never guaranteed. Taxes, fees, and inflation can change real outcomes.
   </section>
 
-  <!-- INPUTS -->
   <section class="card">
     <h2>Build your illustration</h2>
     <p class="section-copy">All fields start blank. Enter only the values you want to explore — or load a realistic sample.</p>
@@ -575,7 +576,6 @@ footer {
     </div>
   </section>
 
-  <!-- KEY METRICS -->
   <div class="metrics-grid" id="metricsSection">
     <div class="metric blue">
       <div class="label">You put in</div>
@@ -599,7 +599,6 @@ footer {
     </div>
   </div>
 
-  <!-- CHART -->
   <section class="card">
     <h2>Portfolio value over time</h2>
     <p class="section-copy">Green = your total deposits. Blue = modeled portfolio value. The gap is the power of compounding under your assumptions.</p>
@@ -612,7 +611,6 @@ footer {
     </div>
   </section>
 
-  <!-- START NOW VS WAIT -->
   <section class="card">
     <h2>Starting now versus waiting 5 years</h2>
     <p class="section-copy">Same assumptions. The only difference is delaying the start of contributions by five years.</p>
@@ -635,7 +633,6 @@ footer {
     </div>
   </section>
 
-  <!-- GOAL CALCULATOR -->
   <section class="card">
     <h2>Goal calculator</h2>
     <p class="section-copy">Want a specific ending portfolio value? See roughly how much you would need to invest each month under your current assumptions.</p>
@@ -651,7 +648,6 @@ footer {
     <div id="goalResult" class="result-callout hidden"></div>
   </section>
 
-  <!-- YEAR-BY-YEAR -->
   <section class="card">
     <h2>Year-by-year detail</h2>
     <div class="table-wrap">
@@ -670,7 +666,6 @@ footer {
     </div>
   </section>
 
-  <!-- HOW A SIMPLE PLAN WORKS -->
   <section class="card">
     <h2>How a simple plan works</h2>
     <p class="section-copy">You do not need to become an expert. The goal is a routine you can actually stick with.</p>
@@ -693,7 +688,6 @@ footer {
     </div>
   </section>
 
-  <!-- IMPORTANT REMINDERS -->
   <section class="card">
     <h2>Important reminders</h2>
     <div class="grid three">
@@ -715,7 +709,6 @@ footer {
     </div>
   </section>
 
-  <!-- EDUCATION INTRO -->
   <section class="card education-intro" id="learn">
     <div class="eyebrow">Simple investing guide</div>
     <h2>A simple way to start investing</h2>
@@ -907,220 +900,345 @@ footer {
 </footer>
 
 <script>
-(() => {
-  const $ = id => document.getElementById(id);
-  const fields = ["age", "retireAge", "starting", "monthly", "increase", "returnRate", "inflation", "withdrawalRate"];
-  const usd = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+(function () {
+  try {
+    var $ = function (id) { return document.getElementById(id); };
+    var fields = ["age", "retireAge", "starting", "monthly", "increase", "returnRate", "inflation", "withdrawalRate"];
+    var usd = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
 
-  const n = id => {
-    const v = parseFloat($(id).value);
-    return Number.isFinite(v) ? v : 0;
-  };
-
-  const fmt = v => {
-    if (!Number.isFinite(v)) return "—";
-    return usd.format(Math.abs(v) < 0.5 ? 0 : v);
-  };
-
-  // Theme
-  const themeToggle = $("themeToggle");
-  const themeIcon = $("themeIcon");
-  const themeLabel = $("themeLabel");
-  const savedTheme = localStorage.getItem("investTheme") || "light";
-  document.documentElement.setAttribute("data-theme", savedTheme);
-  updateThemeUI(savedTheme);
-
-  themeToggle.addEventListener("click", () => {
-    const next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
-    document.documentElement.setAttribute("data-theme", next);
-    localStorage.setItem("investTheme", next);
-    updateThemeUI(next);
-    calculate(); // redraw chart with new colors
-  });
-
-  function updateThemeUI(theme) {
-    if (theme === "dark") {
-      themeIcon.textContent = "☀️";
-      themeLabel.textContent = "Light";
-    } else {
-      themeIcon.textContent = "🌙";
-      themeLabel.textContent = "Dark";
-    }
-  }
-
-  function getSettings() {
-    return {
-      age: Math.max(0, Math.min(100, n("age"))),
-      target: Math.max(0, Math.min(110, n("retireAge"))),
-      starting: Math.max(0, n("starting")),
-      monthly: Math.max(0, n("monthly")),
-      increase: Math.max(0, n("increase")) / 100,
-      rate: Math.max(-0.5, Math.min(0.3, n("returnRate") / 100)),
-      inflation: Math.max(0, Math.min(0.2, n("inflation") / 100)),
-      withdrawal: Math.max(0, Math.min(0.2, n("withdrawalRate") / 100))
-    };
-  }
-
-  function runModel(s, yearsOverride = null) {
-    const years = yearsOverride === null
-      ? Math.max(0, Math.round(s.target - s.age))
-      : Math.max(0, yearsOverride);
-
-    const monthlyRate = Math.pow(1 + s.rate, 1 / 12) - 1;
-    let balance = s.starting;
-    let deposited = s.starting;
-    let monthly = s.monthly;
-    const rows = [];
-
-    for (let year = 1; year <= years; year++) {
-      const before = balance;
-      const added = monthly * 12;
-
-      for (let m = 0; m < 12; m++) {
-        balance = balance * (1 + monthlyRate) + monthly;
-      }
-
-      deposited += added;
-      rows.push({
-        year,
-        age: s.age + year,
-        added,
-        deposited,
-        growth: balance - before - added,
-        balance
-      });
-      monthly *= (1 + s.increase);
+    function n(id) {
+      var v = parseFloat($(id).value);
+      return isFinite(v) ? v : 0;
     }
 
-    return {
-      balance,
-      deposited,
-      growth: balance - deposited,
-      rows,
-      years
-    };
-  }
+    function fmt(v) {
+      if (!isFinite(v)) return "—";
+      return usd.format(Math.abs(v) < 0.5 ? 0 : v);
+    }
 
-  function clearResults() {
-    ["contributions", "growth", "ending", "monthlyIncome", "startNow", "waitFive", "waitDifference"].forEach(id => {
-      $(id).textContent = "—";
-      $(id).classList.remove("negative");
+    // Theme
+    var themeToggle = $("themeToggle");
+    var themeIcon = $("themeIcon");
+    var themeLabel = $("themeLabel");
+    var savedTheme = localStorage.getItem("investTheme") || "light";
+    document.documentElement.setAttribute("data-theme", savedTheme);
+    updateThemeUI(savedTheme);
+
+    themeToggle.addEventListener("click", function () {
+      var next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", next);
+      localStorage.setItem("investTheme", next);
+      updateThemeUI(next);
+      calculate();
     });
-    $("yearsLabel").textContent = "Enter ages to begin";
-    $("withdrawalLabel").textContent = "Set a withdrawal rate";
-    $("resultsTable").innerHTML = "";
-    const c = $("growthChart");
-    const ctx = c.getContext("2d");
-    ctx.clearRect(0, 0, c.width, c.height);
-  }
 
-  function calculate() {
-    if (fields.every(id => !$(id).value.trim())) {
-      clearResults();
-      return;
-    }
-
-    const s = getSettings();
-    if (s.target <= s.age && (s.age || s.target)) {
-      // still run if possible, but years will be 0
-    }
-
-    const m = runModel(s);
-
-    $("contributions").textContent = fmt(m.deposited);
-    $("growth").textContent = fmt(m.growth);
-    $("growth").classList.toggle("negative", m.growth < 0);
-    $("ending").textContent = fmt(m.balance);
-
-    if (m.years > 0) {
-      $("yearsLabel").textContent = `Over ${m.years} year${m.years === 1 ? "" : "s"}`;
-      if (s.inflation > 0) {
-        const real = m.balance / Math.pow(1 + s.inflation, m.years);
-        $("yearsLabel").textContent += ` · ~${fmt(real)} in today’s dollars`;
+    function updateThemeUI(theme) {
+      if (theme === "dark") {
+        themeIcon.textContent = "☀️";
+        themeLabel.textContent = "Light";
+      } else {
+        themeIcon.textContent = "🌙";
+        themeLabel.textContent = "Dark";
       }
-    } else {
+    }
+
+    function getSettings() {
+      return {
+        age: Math.max(0, Math.min(100, n("age"))),
+        target: Math.max(0, Math.min(110, n("retireAge"))),
+        starting: Math.max(0, n("starting")),
+        monthly: Math.max(0, n("monthly")),
+        increase: Math.max(0, n("increase")) / 100,
+        rate: Math.max(-0.5, Math.min(0.3, n("returnRate") / 100)),
+        inflation: Math.max(0, Math.min(0.2, n("inflation") / 100)),
+        withdrawal: Math.max(0, Math.min(0.2, n("withdrawalRate") / 100))
+      };
+    }
+
+    function runModel(s, yearsOverride) {
+      var years = yearsOverride == null
+        ? Math.max(0, Math.round(s.target - s.age))
+        : Math.max(0, yearsOverride);
+
+      var monthlyRate = Math.pow(1 + s.rate, 1 / 12) - 1;
+      var balance = s.starting;
+      var deposited = s.starting;
+      var monthly = s.monthly;
+      var rows = [];
+
+      for (var year = 1; year <= years; year++) {
+        var before = balance;
+        var added = monthly * 12;
+
+        for (var m = 0; m < 12; m++) {
+          balance = balance * (1 + monthlyRate) + monthly;
+        }
+
+        deposited += added;
+        rows.push({
+          year: year,
+          age: s.age + year,
+          added: added,
+          deposited: deposited,
+          growth: balance - before - added,
+          balance: balance
+        });
+        monthly *= (1 + s.increase);
+      }
+
+      return {
+        balance: balance,
+        deposited: deposited,
+        growth: balance - deposited,
+        rows: rows,
+        years: years
+      };
+    }
+
+    function clearResults() {
+      ["contributions", "growth", "ending", "monthlyIncome", "startNow", "waitFive", "waitDifference"].forEach(function (id) {
+        $(id).textContent = "—";
+        $(id).classList.remove("negative");
+      });
       $("yearsLabel").textContent = "Enter ages to begin";
-    }
-
-    if ($("withdrawalRate").value.trim()) {
-      $("monthlyIncome").textContent = fmt(m.balance * s.withdrawal / 12);
-      $("withdrawalLabel").textContent = `Based on ${n("withdrawalRate")}% annual rate`;
-    } else {
-      $("monthlyIncome").textContent = "—";
       $("withdrawalLabel").textContent = "Set a withdrawal rate";
+      $("resultsTable").innerHTML = "";
+      var c = $("growthChart");
+      var ctx = c.getContext("2d");
+      ctx.clearRect(0, 0, c.width, c.height);
     }
 
-    // Start now vs wait
-    const waitYears = Math.min(5, Math.max(0, m.years - 1));
-    const remainingYears = Math.max(0, m.years - waitYears);
-    const waitModel = runModel({ ...s, starting: 0 }, remainingYears);
-    // existing money compounds during the wait, then contributions begin
-    const waitValue = s.starting * Math.pow(1 + s.rate, waitYears) + waitModel.balance;
+    function calculate() {
+      if (fields.every(function (id) { return !$(id).value.trim(); })) {
+        clearResults();
+        return;
+      }
 
-    $("startNow").textContent = fmt(m.balance);
-    $("waitFive").textContent = fmt(waitValue);
-    $("waitDifference").textContent = fmt(m.balance - waitValue);
-    $("waitDifference").classList.toggle("negative", m.balance - waitValue < 0);
+      var s = getSettings();
+      var m = runModel(s);
 
-    // Table
-    $("resultsTable").innerHTML = m.rows.map(r => `
-      <tr>
-        <td>Year ${r.year} · Age ${r.age}</td>
-        <td>${fmt(r.added)}</td>
-        <td>${fmt(r.deposited)}</td>
-        <td class="${r.growth < 0 ? "negative" : ""}">${fmt(r.growth)}</td>
-        <td><strong>${fmt(r.balance)}</strong></td>
-      </tr>
-    `).join("");
+      $("contributions").textContent = fmt(m.deposited);
+      $("growth").textContent = fmt(m.growth);
+      $("growth").classList.toggle("negative", m.growth < 0);
+      $("ending").textContent = fmt(m.balance);
 
-    drawChart(m.rows);
+      if (m.years > 0) {
+        $("yearsLabel").textContent = "Over " + m.years + " year" + (m.years === 1 ? "" : "s");
+        if (s.inflation > 0) {
+          var real = m.balance / Math.pow(1 + s.inflation, m.years);
+          $("yearsLabel").textContent += " · ~" + fmt(real) + " in today’s dollars";
+        }
+      } else {
+        $("yearsLabel").textContent = "Enter ages to begin";
+      }
+
+      if ($("withdrawalRate").value.trim()) {
+        $("monthlyIncome").textContent = fmt(m.balance * s.withdrawal / 12);
+        $("withdrawalLabel").textContent = "Based on " + n("withdrawalRate") + "% annual rate";
+      } else {
+        $("monthlyIncome").textContent = "—";
+        $("withdrawalLabel").textContent = "Set a withdrawal rate";
+      }
+
+      var waitYears = Math.min(5, Math.max(0, m.years - 1));
+      var remainingYears = Math.max(0, m.years - waitYears);
+      var waitModel = runModel(Object.assign({}, s, { starting: 0 }), remainingYears);
+      var waitValue = s.starting * Math.pow(1 + s.rate, waitYears) + waitModel.balance;
+
+      $("startNow").textContent = fmt(m.balance);
+      $("waitFive").textContent = fmt(waitValue);
+      $("waitDifference").textContent = fmt(m.balance - waitValue);
+      $("waitDifference").classList.toggle("negative", m.balance - waitValue < 0);
+
+      $("resultsTable").innerHTML = m.rows.map(function (r) {
+        return "<tr>" +
+          "<td>Year " + r.year + " · Age " + r.age + "</td>" +
+          "<td>" + fmt(r.added) + "</td>" +
+          "<td>" + fmt(r.deposited) + "</td>" +
+          "<td class=\"" + (r.growth < 0 ? "negative" : "") + "\">" + fmt(r.growth) + "</td>" +
+          "<td><strong>" + fmt(r.balance) + "</strong></td>" +
+          "</tr>";
+      }).join("");
+
+      drawChart(m.rows);
+    }
+
+    function drawChart(rows) {
+      var canvas = $("growthChart");
+      var parent = canvas.parentElement;
+      var dpr = window.devicePixelRatio || 1;
+      var width = Math.max(280, parent.clientWidth - 20);
+      var height = Math.max(180, parent.clientHeight - 20);
+
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      canvas.style.width = width + "px";
+      canvas.style.height = height + "px";
+
+      var ctx = canvas.getContext("2d");
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, width, height);
+
+      if (!rows.length) return;
+
+      var isDark = document.documentElement.getAttribute("data-theme") === "dark";
+      var gridColor = isDark ? "#334155" : "#e2e8f0";
+      var textColor = isDark ? "#94a3b8" : "#64748b";
+      var green = "#059669";
+      var blue = "#2563eb";
+
+      var pad = { left: 68, right: 16, top: 18, bottom: 36 };
+      var maxVal = Math.max(1);
+      for (var i = 0; i < rows.length; i++) {
+        if (rows[i].balance > maxVal) maxVal = rows[i].balance;
+        if (rows[i].deposited > maxVal) maxVal = rows[i].deposited;
+      }
+      maxVal *= 1.08;
+
+      function x(i) {
+        return pad.left + (i / Math.max(1, rows.length - 1)) * (width - pad.left - pad.right);
+      }
+      function y(v) {
+        return pad.top + (height - pad.top - pad.bottom) * (1 - v / maxVal);
+      }
+
+      ctx.strokeStyle = gridColor;
+      ctx.fillStyle = textColor;
+      ctx.font = "11px system-ui, sans-serif";
+      ctx.lineWidth = 1;
+
+      for (var g = 0; g <= 4; g++) {
+        var val = maxVal * g / 4;
+        var yy = y(val);
+        ctx.beginPath();
+        ctx.moveTo(pad.left, yy);
+        ctx.lineTo(width - pad.right, yy);
+        ctx.stroke();
+        ctx.fillText(fmt(val), 4, yy + 4);
+      }
+
+      if (rows.length > 1) {
+        ctx.beginPath();
+        for (var a = 0; a < rows.length; a++) {
+          var px = x(a), py = y(rows[a].balance);
+          if (a === 0) ctx.moveTo(px, py);
+          else ctx.lineTo(px, py);
+        }
+        ctx.lineTo(x(rows.length - 1), y(0));
+        ctx.lineTo(x(0), y(0));
+        ctx.closePath();
+        ctx.fillStyle = isDark ? "rgba(37,99,235,0.12)" : "rgba(37,99,235,0.08)";
+        ctx.fill();
+      }
+
+      function drawLine(key, color, lineWidth) {
+        ctx.beginPath();
+        for (var b = 0; b < rows.length; b++) {
+          var px2 = x(b), py2 = y(rows[b][key]);
+          if (b === 0) ctx.moveTo(px2, py2);
+          else ctx.lineTo(px2, py2);
+        }
+        ctx.strokeStyle = color;
+        ctx.lineWidth = lineWidth;
+        ctx.lineJoin = "round";
+        ctx.lineCap = "round";
+        ctx.stroke();
+      }
+
+      drawLine("deposited", green, 2.2);
+      drawLine("balance", blue, 2.8);
+
+      if (rows.length >= 2) {
+        ctx.fillStyle = textColor;
+        ctx.textAlign = "center";
+        var points = [0, Math.floor((rows.length - 1) / 2), rows.length - 1];
+        for (var p = 0; p < points.length; p++) {
+          var idx = points[p];
+          ctx.fillText("Y" + rows[idx].year, x(idx), height - 12);
+        }
+        ctx.textAlign = "start";
+      }
+    }
+
+    function solveGoal() {
+      var s = getSettings();
+      var goal = Math.max(0, n("goal"));
+      var years = Math.max(0, Math.round(s.target - s.age));
+      var out = $("goalResult");
+
+      if (!goal) {
+        out.innerHTML = "<strong>Enter a target portfolio value first.</strong>";
+        out.classList.remove("hidden");
+        return;
+      }
+      if (!years) {
+        out.innerHTML = "<strong>Enter a current age and a higher target age first.</strong>";
+        out.classList.remove("hidden");
+        return;
+      }
+
+      if (runModel(Object.assign({}, s, { monthly: 0 })).balance >= goal) {
+        out.innerHTML = "<strong>Approximate monthly amount needed: $0</strong><br>Your current balance and return assumptions already reach this target in the illustration.";
+        out.classList.remove("hidden");
+        out.classList.add("green");
+        return;
+      }
+
+      var low = 0, high = 200000;
+      for (var i = 0; i < 60; i++) {
+        var mid = (low + high) / 2;
+        if (runModel(Object.assign({}, s, { monthly: mid })).balance < goal) low = mid;
+        else high = mid;
+      }
+
+      out.innerHTML = "<strong>Approximate monthly amount needed: " + fmt(high) + "</strong><br>" +
+        "This is an illustration under your current assumptions. Not a guarantee.";
+      out.classList.remove("hidden", "green");
+    }
+
+    $("sampleBtn").addEventListener("click", function () {
+      $("age").value = 32;
+      $("retireAge").value = 65;
+      $("starting").value = 12000;
+      $("monthly").value = 400;
+      $("increase").value = 2;
+      $("returnRate").value = 7;
+      $("inflation").value = 2.5;
+      $("withdrawalRate").value = 4;
+      $("goal").value = "";
+      $("goalResult").classList.add("hidden");
+      calculate();
+    });
+
+    fields.forEach(function (id) {
+      $(id).addEventListener("input", calculate);
+    });
+    $("goalBtn").addEventListener("click", solveGoal);
+    $("goal").addEventListener("keydown", function (e) {
+      if (e.key === "Enter") solveGoal();
+    });
+
+    $("resetBtn").addEventListener("click", function () {
+      fields.concat(["goal"]).forEach(function (id) { $(id).value = ""; });
+      $("goalResult").classList.add("hidden");
+      clearResults();
+    });
+
+    var resizeTimer;
+    window.addEventListener("resize", function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(calculate, 120);
+    });
+
+    clearResults();
+  } catch (err) {
+    document.body.innerHTML = "<div style='padding:40px;font-family:system-ui;max-width:600px;margin:40px auto;'>" +
+      "<h2 style='color:#b91c1c;'>Something went wrong loading the planner</h2>" +
+      "<p>Please try a modern browser (Chrome, Firefox, Edge, or Safari) or re-copy the full HTML.</p>" +
+      "<pre style='background:#f1f5f9;padding:12px;border-radius:8px;overflow:auto;'>" + (err && err.message ? err.message : err) + "</pre>" +
+      "</div>";
   }
-
-  function drawChart(rows) {
-    const canvas = $("growthChart");
-    const parent = canvas.parentElement;
-    const dpr = window.devicePixelRatio || 1;
-    const width = Math.max(280, parent.clientWidth - 20);
-    const height = Math.max(180, parent.clientHeight - 20);
-
-    canvas.width = width * dpr;
-    canvas.height = height * dpr;
-    canvas.style.width = width + "px";
-    canvas.style.height = height + "px";
-
-    const ctx = canvas.getContext("2d");
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    ctx.clearRect(0, 0, width, height);
-
-    if (!rows.length) return;
-
-    const isDark = document.documentElement.getAttribute("data-theme") === "dark";
-    const gridColor = isDark ? "#334155" : "#e2e8f0";
-    const textColor = isDark ? "#94a3b8" : "#64748b";
-    const green = "#059669";
-    const blue = "#2563eb";
-
-    const pad = { left: 68, right: 16, top: 18, bottom: 36 };
-    const maxVal = Math.max(1, ...rows.map(r => r.balance), ...rows.map(r => r.deposited)) * 1.08;
-
-    const x = i => pad.left + (i / Math.max(1, rows.length - 1)) * (width - pad.left - pad.right);
-    const y = v => pad.top + (height - pad.top - pad.bottom) * (1 - v / maxVal);
-
-    // Grid + labels
-    ctx.strokeStyle = gridColor;
-    ctx.fillStyle = textColor;
-    ctx.font = "11px system-ui, sans-serif";
-    ctx.lineWidth = 1;
-
-    for (let i = 0; i <= 4; i++) {
-      const val = maxVal * i / 4;
-      const yy = y(val);
-      ctx.beginPath();
-      ctx.moveTo(pad.left, yy);
-      ctx.lineTo(width - pad.right, yy);
-      ctx.stroke();
-      ctx.fillText(fmt(val).replace("$", "$"), 4, yy + 4);
-    }
-
-    // Area under balance (subtle)
-    if (rows.length > 
+})();
+</script>
+</body>
+</html>
