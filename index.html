@@ -379,4 +379,748 @@ th {
   z-index: 1;
 }
 th:first-child, td:first-child { text-align: left; }
-tbody
+tbody tr:hover { background: color-mix(in srgb, var(--blue) 5%, transparent); }
+
+/* Education */
+.education-intro {
+  color: #fff;
+  background: linear-gradient(135deg, #0f2744, #1e40af);
+  border: 0;
+}
+.education-intro h2, .education-intro p { color: #fff; }
+.education-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+.education-nav a {
+  padding: 7px 13px;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.84rem;
+  font-weight: 500;
+}
+.education-nav a:hover { background: rgba(255,255,255,0.22); }
+
+.education-card { border-left: 5px solid var(--blue); }
+.education-card.green { border-left-color: var(--green); }
+.education-card.amber { border-left-color: var(--amber); }
+.education-card.purple { border-left-color: var(--purple); }
+
+.step, .definition {
+  padding: 16px;
+  background: color-mix(in srgb, var(--bg) 60%, var(--card));
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+.step-num { margin-bottom: 10px; }
+.plain-list, .number-list { padding-left: 20px; margin: 8px 0; }
+.plain-list li, .number-list li { margin: 7px 0; }
+.check-list { list-style: none; padding: 0; margin: 8px 0; }
+.check-list li {
+  margin: 7px 0;
+  padding-left: 26px;
+  position: relative;
+}
+.check-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--green);
+  font-weight: 800;
+}
+
+footer {
+  text-align: center;
+  padding: 30px 16px 50px;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .two, .three, .four, .metrics-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
+  header { padding: 40px 16px 32px; }
+  .card { padding: 18px; }
+  .two, .three, .four, .metrics-grid, .goal-area { grid-template-columns: 1fr; }
+  .chart-wrap { height: 260px; }
+  .button-row button { width: 100%; }
+  .theme-toggle { top: 12px; right: 12px; font-size: 0.8rem; padding: 6px 11px; }
+}
+
+@media print {
+  .theme-toggle, .button-row, .education-nav { display: none !important; }
+  .card, .metric { break-inside: avoid; box-shadow: none; }
+  body { background: #fff; color: #000; }
+}
+</style>
+</head>
+<body>
+<header>
+  <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">
+    <span id="themeIcon">🌙</span> <span id="themeLabel">Dark</span>
+  </button>
+  <div class="shell">
+    <div class="eyebrow">Educational retirement planner</div>
+    <h1>Build a simple investing habit. See what time can do.</h1>
+    <p class="hero-copy">Enter your own numbers to model a long-term, hands-off plan. Everything is driven only by the assumptions you choose.</p>
+    <div class="pills">
+      <span class="pill">One-fund friendly</span>
+      <span class="pill">Monthly auto-investing</span>
+      <span class="pill">Custom withdrawal rate</span>
+      <span class="pill">No account required</span>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="notice">
+    <strong>Educational illustration only.</strong> This tool does not predict market returns. Investments can fall in value, and future results are never guaranteed. Taxes, fees, and inflation can change real outcomes.
+  </section>
+
+  <!-- INPUTS -->
+  <section class="card">
+    <h2>Build your illustration</h2>
+    <p class="section-copy">All fields start blank. Enter only the values you want to explore — or load a realistic sample.</p>
+
+    <div class="grid two">
+      <div class="input-card">
+        <div class="box-heading">
+          <span class="box-number">1</span>
+          <div>
+            <h3>Your timeline</h3>
+            <p class="help" style="border:0;margin:0;padding:0">When are you starting and when is the goal?</p>
+          </div>
+        </div>
+        <div class="field">
+          <label for="age">Current age</label>
+          <input id="age" type="number" min="0" max="100" placeholder="e.g. 30" inputmode="numeric">
+        </div>
+        <div class="field">
+          <label for="retireAge">Target age</label>
+          <input id="retireAge" type="number" min="0" max="110" placeholder="e.g. 65" inputmode="numeric">
+          <p class="help">Must be higher than your current age.</p>
+        </div>
+      </div>
+
+      <div class="input-card contribution-card">
+        <div class="box-heading">
+          <span class="box-number">2</span>
+          <div>
+            <h3>Your contributions</h3>
+            <p class="help" style="border:0;margin:0;padding:0">What is already invested and what will you add?</p>
+          </div>
+        </div>
+        <div class="field">
+          <label for="starting">Current investment balance ($)</label>
+          <input id="starting" type="number" min="0" placeholder="e.g. 5000" inputmode="decimal">
+        </div>
+        <div class="field">
+          <label for="monthly">Monthly auto-investment ($)</label>
+          <input id="monthly" type="number" min="0" placeholder="e.g. 300" inputmode="decimal">
+        </div>
+        <div class="field">
+          <label for="increase">Annual increase to monthly investment (%)</label>
+          <input id="increase" type="number" min="0" max="100" step="0.1" placeholder="e.g. 2" inputmode="decimal">
+          <p class="help">Example: enter 2 to raise the monthly amount by 2% each year.</p>
+        </div>
+      </div>
+
+      <div class="input-card return-card">
+        <div class="box-heading">
+          <span class="box-number">3</span>
+          <div>
+            <h3>Return & inflation</h3>
+            <p class="help" style="border:0;margin:0;padding:0">Assumptions used in the illustration.</p>
+          </div>
+        </div>
+        <div class="field">
+          <label for="returnRate">Expected annual total return (%)</label>
+          <input id="returnRate" type="number" min="-50" max="30" step="0.1" placeholder="e.g. 7" inputmode="decimal">
+          <p class="help">Long-term stock market historical averages are often cited around 7–10% before inflation. This is an assumption, not a prediction.</p>
+        </div>
+        <div class="field">
+          <label for="inflation">Expected annual inflation (%)</label>
+          <input id="inflation" type="number" min="0" max="20" step="0.1" placeholder="e.g. 2.5" inputmode="decimal">
+          <p class="help">Used to show approximate purchasing power of the ending balance.</p>
+        </div>
+      </div>
+
+      <div class="input-card withdrawal-card">
+        <div class="box-heading">
+          <span class="box-number">4</span>
+          <div>
+            <h3>Retirement drawdown</h3>
+            <p class="help" style="border:0;margin:0;padding:0">First-year withdrawal illustration.</p>
+          </div>
+        </div>
+        <div class="field">
+          <label for="withdrawalRate">Annual withdrawal rate (%)</label>
+          <input id="withdrawalRate" type="number" min="0" max="20" step="0.1" placeholder="e.g. 4" inputmode="decimal">
+          <p class="help">Common starting point discussed by many planners is around 3–4%. This is only a first-year estimate.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="button-row">
+      <button class="sample-btn" id="sampleBtn" type="button">Load sample numbers</button>
+      <button class="plain" id="resetBtn" type="button">Clear all fields</button>
+      <button class="plain" type="button" onclick="window.print()">Print / Save PDF</button>
+    </div>
+  </section>
+
+  <!-- KEY METRICS -->
+  <div class="metrics-grid" id="metricsSection">
+    <div class="metric blue">
+      <div class="label">You put in</div>
+      <div class="value" id="contributions">—</div>
+      <div class="sub">Starting + all contributions</div>
+    </div>
+    <div class="metric green">
+      <div class="label">Modeled growth</div>
+      <div class="value" id="growth">—</div>
+      <div class="sub">Above your deposits</div>
+    </div>
+    <div class="metric blue">
+      <div class="label">Value at target age</div>
+      <div class="value" id="ending">—</div>
+      <div class="sub" id="yearsLabel">Enter ages to begin</div>
+    </div>
+    <div class="metric amber">
+      <div class="label">Est. monthly drawdown</div>
+      <div class="value" id="monthlyIncome">—</div>
+      <div class="sub" id="withdrawalLabel">Set a withdrawal rate</div>
+    </div>
+  </div>
+
+  <!-- CHART -->
+  <section class="card">
+    <h2>Portfolio value over time</h2>
+    <p class="section-copy">Green = your total deposits. Blue = modeled portfolio value. The gap is the power of compounding under your assumptions.</p>
+    <div class="chart-wrap">
+      <canvas id="growthChart" role="img" aria-label="Line chart showing deposits versus modeled portfolio value over time"></canvas>
+    </div>
+    <div class="legend">
+      <span><i class="dot green"></i> Your total deposits</span>
+      <span><i class="dot blue"></i> Modeled portfolio value</span>
+    </div>
+  </section>
+
+  <!-- START NOW VS WAIT -->
+  <section class="card">
+    <h2>Starting now versus waiting 5 years</h2>
+    <p class="section-copy">Same assumptions. The only difference is delaying the start of contributions by five years.</p>
+    <div class="grid three">
+      <div class="metric blue">
+        <div class="label">Start now</div>
+        <div class="value" id="startNow">—</div>
+        <div class="sub">At your target age</div>
+      </div>
+      <div class="metric amber">
+        <div class="label">Wait 5 years</div>
+        <div class="value" id="waitFive">—</div>
+        <div class="sub">Same target age</div>
+      </div>
+      <div class="metric green">
+        <div class="label">Cost of waiting</div>
+        <div class="value" id="waitDifference">—</div>
+        <div class="sub">Illustration only</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GOAL CALCULATOR -->
+  <section class="card">
+    <h2>Goal calculator</h2>
+    <p class="section-copy">Want a specific ending portfolio value? See roughly how much you would need to invest each month under your current assumptions.</p>
+    <div class="goal-area">
+      <div>
+        <label for="goal">Target portfolio value ($)</label>
+        <input id="goal" type="number" min="0" placeholder="e.g. 1000000" inputmode="decimal">
+      </div>
+      <div>
+        <button class="primary" id="goalBtn" type="button">Calculate monthly needed</button>
+      </div>
+    </div>
+    <div id="goalResult" class="result-callout hidden"></div>
+  </section>
+
+  <!-- YEAR-BY-YEAR -->
+  <section class="card">
+    <h2>Year-by-year detail</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Year / Age</th>
+            <th>Added that year</th>
+            <th>Total deposited</th>
+            <th>Growth that year</th>
+            <th>Portfolio value</th>
+          </tr>
+        </thead>
+        <tbody id="resultsTable"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- HOW A SIMPLE PLAN WORKS -->
+  <section class="card">
+    <h2>How a simple plan works</h2>
+    <p class="section-copy">You do not need to become an expert. The goal is a routine you can actually stick with.</p>
+    <div class="grid three">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Choose an account</h3>
+        <p>A Roth IRA is often a strong starting point if you are eligible. Traditional IRAs or taxable brokerage accounts can also work depending on your situation.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Automate a realistic amount</h3>
+        <p>Set a recurring transfer and invest an amount that fits your real budget — even $25–$50/month is a valid start.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Stay hands-off</h3>
+        <p>Keep contributing through normal market ups and downs. Review once or twice a year instead of reacting to daily news.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMPORTANT REMINDERS -->
+  <section class="card">
+    <h2>Important reminders</h2>
+    <div class="grid three">
+      <div class="definition">
+        <h3>Protect short-term money</h3>
+        <p>Keep an emergency fund and address high-interest debt before investing money you may need soon.</p>
+      </div>
+      <div class="definition">
+        <h3>Markets can lose value</h3>
+        <p>Investments can decline, sometimes for years. Returns are never guaranteed.</p>
+      </div>
+      <div class="definition">
+        <h3>This is only a model</h3>
+        <p>The calculator ignores taxes, fees, sequence of returns, and the unpredictable path of real markets.</p>
+      </div>
+    </div>
+    <div class="callout amber" style="margin-top:18px">
+      <strong>Use the calculator for planning, not promises.</strong> Focus on a contribution amount you can keep investing consistently.
+    </div>
+  </section>
+
+  <!-- EDUCATION INTRO -->
+  <section class="card education-intro" id="learn">
+    <div class="eyebrow">Simple investing guide</div>
+    <h2>A simple way to start investing</h2>
+    <p>You do not need to be wealthy, an expert, or someone who watches the market every day. Choose an amount you can afford, automate it into a broad fund, reinvest dividends, and give it time.</p>
+    <div class="education-nav">
+      <a href="#what-is-voo">What is VOO?</a>
+      <a href="#how-it-works">How it works</a>
+      <a href="#drip">What is DRIP?</a>
+      <a href="#setup">Simple setup</a>
+      <a href="#taxes">Taxes & accounts</a>
+      <a href="#retirement">Retirement</a>
+    </div>
+  </section>
+
+  <section class="card education-card">
+    <h2>What you are trying to do</h2>
+    <p>The goal is not to get rich quickly or guess next week’s market move. The goal is to gradually build an asset that may give you more choices later.</p>
+    <p>Early years often feel slow because the balance is still small. The real benefit comes from repeating the process for many years and leaving the money invested through both good and bad markets.</p>
+    <div class="callout">
+      <strong>The basic habit:</strong> Pick a realistic monthly amount → automate it → invest in a broad fund → reinvest dividends → let time work.
+    </div>
+  </section>
+
+  <section class="card education-card green" id="what-is-voo">
+    <h2>What VOO is</h2>
+    <div class="grid two">
+      <div>
+        <p>VOO is an exchange-traded fund (ETF) designed to track the S&amp;P 500 — an index of large U.S. companies.</p>
+        <p>Buying shares of VOO means you own tiny pieces of hundreds of companies through one simple investment.</p>
+      </div>
+      <div class="definition">
+        <h3>Why people use a broad fund</h3>
+        <p>One fund is usually simpler than picking individual stocks, constantly trading, or managing a complicated portfolio.</p>
+      </div>
+    </div>
+    <div class="callout amber">
+      <strong>Important:</strong> VOO can (and will) go down in value. Owning many companies does not protect you when the overall market falls.
+    </div>
+  </section>
+
+  <section class="card education-card" id="how-it-works">
+    <h2>What makes it work</h2>
+    <div class="grid three">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Regular contributions</h3>
+        <p>Add money consistently — $25, $50, $100, $300, or whatever fits your actual budget.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Time</h3>
+        <p>The longer money stays invested, the more opportunity it has to potentially grow.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Reinvestment</h3>
+        <p>When dividends and growth stay invested, future returns can apply to both original deposits and past gains.</p>
+      </div>
+    </div>
+    <div class="callout green">
+      <strong>Dollar-cost averaging:</strong> Investing the same dollar amount at regular intervals instead of trying to time the “perfect” moment.
+    </div>
+  </section>
+
+  <section class="card education-card purple" id="drip">
+    <h2>What DRIP means</h2>
+    <p>DRIP stands for <strong>Dividend Reinvestment Plan</strong>. When enabled, dividends automatically buy more shares instead of sitting as cash.</p>
+    <div class="grid two">
+      <div class="definition">
+        <h3>During working years</h3>
+        <p>Most long-term investors keep DRIP on so dividends continue compounding.</p>
+      </div>
+      <div class="definition">
+        <h3>During retirement</h3>
+        <p>Some turn DRIP off so dividends arrive as cash. Note that dividends alone rarely cover all spending needs.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="card education-card green" id="setup">
+    <h2>A simple setup checklist</h2>
+    <ol class="number-list">
+      <li>Build a small emergency cushion first.</li>
+      <li>Choose an account that fits your goal (Roth IRA is a common starting point).</li>
+      <li>Open the account at a major brokerage.</li>
+      <li>Link your checking account.</li>
+      <li>Pick a monthly amount you can afford in a normal month.</li>
+      <li>Schedule automatic transfers and purchases.</li>
+      <li>Turn on dividend reinvestment if you want dividends to buy more shares.</li>
+      <li>Review the plan once or twice per year.</li>
+    </ol>
+    <div class="callout amber">
+      <strong>Start with what is sustainable.</strong> The best monthly amount is the one you can keep investing without hurting rent, food, bills, debt payments, or emergency savings.
+    </div>
+  </section>
+
+  <section class="card education-card purple" id="taxes">
+    <h2>What happens at tax time</h2>
+    <p>Tax treatment depends mainly on the account type, your income, and filing situation.</p>
+    <div class="grid three">
+      <div class="definition">
+        <h3>Roth IRA</h3>
+        <p>Contributions are after-tax. Qualified withdrawals in retirement can generally be tax-free if rules are met.</p>
+      </div>
+      <div class="definition">
+        <h3>Traditional IRA</h3>
+        <p>Contributions may be deductible (rules apply). Withdrawals are generally taxable as ordinary income.</p>
+      </div>
+      <div class="definition">
+        <h3>Taxable brokerage</h3>
+        <p>Flexible access, but dividends and sales can create taxable events each year.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="card education-card green">
+    <h2>What to do (and avoid) while investing</h2>
+    <div class="grid two">
+      <div class="definition">
+        <h3>Do</h3>
+        <ul class="check-list">
+          <li>Keep automatic investing running when your cash flow supports it</li>
+          <li>Review once or twice a year</li>
+          <li>Increase contributions when income rises or expenses fall</li>
+          <li>Keep emergency savings separate</li>
+        </ul>
+      </div>
+      <div class="definition">
+        <h3>Avoid</h3>
+        <ul class="plain-list">
+          <li>Checking the account every day</li>
+          <li>Selling only because headlines are scary</li>
+          <li>Investing money you will need soon</li>
+          <li>Trying to trade based on short-term predictions</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="card education-card amber" id="retirement">
+    <h2>What happens in retirement</h2>
+    <p>The focus shifts from building the account to using it carefully. Market returns, taxes, inflation, health costs, and longevity all matter.</p>
+    <div class="grid three">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Adjust contributions</h3>
+        <p>When paychecks stop, you may reduce or stop new contributions and focus on spending and income.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Keep near-term cash</h3>
+        <p>Hold money needed in the next few years outside stocks so you are less forced to sell after a big decline.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Use a planned schedule</h3>
+        <p>Withdraw a planned amount monthly or quarterly and review the plan each year.</p>
+      </div>
+    </div>
+    <div class="callout amber">
+      <strong>Withdrawal rates are estimates, not guarantees.</strong> The monthly drawdown figure is only a first-year illustration under your assumptions.
+    </div>
+  </section>
+
+  <section class="card education-card">
+    <h2>The simple takeaway</h2>
+    <div class="grid three">
+      <div class="step">
+        <h3>Choose a realistic amount</h3>
+        <p>Start with money you can afford to invest every month.</p>
+      </div>
+      <div class="step">
+        <h3>Automate it</h3>
+        <p>Make the contribution happen without a new decision each month.</p>
+      </div>
+      <div class="step">
+        <h3>Give it time</h3>
+        <p>Stay focused on the long-term plan through normal market changes.</p>
+      </div>
+    </div>
+    <p class="fineprint" style="margin-top:20px">
+      This page is educational only and is not financial, investment, tax, or legal advice. It does not guarantee any return or prevent losses. Past performance does not predict future results.
+    </p>
+  </section>
+</main>
+
+<footer>
+  Built for learning · Not advice · Your numbers, your assumptions
+</footer>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const fields = ["age", "retireAge", "starting", "monthly", "increase", "returnRate", "inflation", "withdrawalRate"];
+  const usd = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+
+  const n = id => {
+    const v = parseFloat($(id).value);
+    return Number.isFinite(v) ? v : 0;
+  };
+
+  const fmt = v => {
+    if (!Number.isFinite(v)) return "—";
+    return usd.format(Math.abs(v) < 0.5 ? 0 : v);
+  };
+
+  // Theme
+  const themeToggle = $("themeToggle");
+  const themeIcon = $("themeIcon");
+  const themeLabel = $("themeLabel");
+  const savedTheme = localStorage.getItem("investTheme") || "light";
+  document.documentElement.setAttribute("data-theme", savedTheme);
+  updateThemeUI(savedTheme);
+
+  themeToggle.addEventListener("click", () => {
+    const next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", next);
+    localStorage.setItem("investTheme", next);
+    updateThemeUI(next);
+    calculate(); // redraw chart with new colors
+  });
+
+  function updateThemeUI(theme) {
+    if (theme === "dark") {
+      themeIcon.textContent = "☀️";
+      themeLabel.textContent = "Light";
+    } else {
+      themeIcon.textContent = "🌙";
+      themeLabel.textContent = "Dark";
+    }
+  }
+
+  function getSettings() {
+    return {
+      age: Math.max(0, Math.min(100, n("age"))),
+      target: Math.max(0, Math.min(110, n("retireAge"))),
+      starting: Math.max(0, n("starting")),
+      monthly: Math.max(0, n("monthly")),
+      increase: Math.max(0, n("increase")) / 100,
+      rate: Math.max(-0.5, Math.min(0.3, n("returnRate") / 100)),
+      inflation: Math.max(0, Math.min(0.2, n("inflation") / 100)),
+      withdrawal: Math.max(0, Math.min(0.2, n("withdrawalRate") / 100))
+    };
+  }
+
+  function runModel(s, yearsOverride = null) {
+    const years = yearsOverride === null
+      ? Math.max(0, Math.round(s.target - s.age))
+      : Math.max(0, yearsOverride);
+
+    const monthlyRate = Math.pow(1 + s.rate, 1 / 12) - 1;
+    let balance = s.starting;
+    let deposited = s.starting;
+    let monthly = s.monthly;
+    const rows = [];
+
+    for (let year = 1; year <= years; year++) {
+      const before = balance;
+      const added = monthly * 12;
+
+      for (let m = 0; m < 12; m++) {
+        balance = balance * (1 + monthlyRate) + monthly;
+      }
+
+      deposited += added;
+      rows.push({
+        year,
+        age: s.age + year,
+        added,
+        deposited,
+        growth: balance - before - added,
+        balance
+      });
+      monthly *= (1 + s.increase);
+    }
+
+    return {
+      balance,
+      deposited,
+      growth: balance - deposited,
+      rows,
+      years
+    };
+  }
+
+  function clearResults() {
+    ["contributions", "growth", "ending", "monthlyIncome", "startNow", "waitFive", "waitDifference"].forEach(id => {
+      $(id).textContent = "—";
+      $(id).classList.remove("negative");
+    });
+    $("yearsLabel").textContent = "Enter ages to begin";
+    $("withdrawalLabel").textContent = "Set a withdrawal rate";
+    $("resultsTable").innerHTML = "";
+    const c = $("growthChart");
+    const ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, c.width, c.height);
+  }
+
+  function calculate() {
+    if (fields.every(id => !$(id).value.trim())) {
+      clearResults();
+      return;
+    }
+
+    const s = getSettings();
+    if (s.target <= s.age && (s.age || s.target)) {
+      // still run if possible, but years will be 0
+    }
+
+    const m = runModel(s);
+
+    $("contributions").textContent = fmt(m.deposited);
+    $("growth").textContent = fmt(m.growth);
+    $("growth").classList.toggle("negative", m.growth < 0);
+    $("ending").textContent = fmt(m.balance);
+
+    if (m.years > 0) {
+      $("yearsLabel").textContent = `Over ${m.years} year${m.years === 1 ? "" : "s"}`;
+      if (s.inflation > 0) {
+        const real = m.balance / Math.pow(1 + s.inflation, m.years);
+        $("yearsLabel").textContent += ` · ~${fmt(real)} in today’s dollars`;
+      }
+    } else {
+      $("yearsLabel").textContent = "Enter ages to begin";
+    }
+
+    if ($("withdrawalRate").value.trim()) {
+      $("monthlyIncome").textContent = fmt(m.balance * s.withdrawal / 12);
+      $("withdrawalLabel").textContent = `Based on ${n("withdrawalRate")}% annual rate`;
+    } else {
+      $("monthlyIncome").textContent = "—";
+      $("withdrawalLabel").textContent = "Set a withdrawal rate";
+    }
+
+    // Start now vs wait
+    const waitYears = Math.min(5, Math.max(0, m.years - 1));
+    const remainingYears = Math.max(0, m.years - waitYears);
+    const waitModel = runModel({ ...s, starting: 0 }, remainingYears);
+    // existing money compounds during the wait, then contributions begin
+    const waitValue = s.starting * Math.pow(1 + s.rate, waitYears) + waitModel.balance;
+
+    $("startNow").textContent = fmt(m.balance);
+    $("waitFive").textContent = fmt(waitValue);
+    $("waitDifference").textContent = fmt(m.balance - waitValue);
+    $("waitDifference").classList.toggle("negative", m.balance - waitValue < 0);
+
+    // Table
+    $("resultsTable").innerHTML = m.rows.map(r => `
+      <tr>
+        <td>Year ${r.year} · Age ${r.age}</td>
+        <td>${fmt(r.added)}</td>
+        <td>${fmt(r.deposited)}</td>
+        <td class="${r.growth < 0 ? "negative" : ""}">${fmt(r.growth)}</td>
+        <td><strong>${fmt(r.balance)}</strong></td>
+      </tr>
+    `).join("");
+
+    drawChart(m.rows);
+  }
+
+  function drawChart(rows) {
+    const canvas = $("growthChart");
+    const parent = canvas.parentElement;
+    const dpr = window.devicePixelRatio || 1;
+    const width = Math.max(280, parent.clientWidth - 20);
+    const height = Math.max(180, parent.clientHeight - 20);
+
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    canvas.style.width = width + "px";
+    canvas.style.height = height + "px";
+
+    const ctx = canvas.getContext("2d");
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, width, height);
+
+    if (!rows.length) return;
+
+    const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+    const gridColor = isDark ? "#334155" : "#e2e8f0";
+    const textColor = isDark ? "#94a3b8" : "#64748b";
+    const green = "#059669";
+    const blue = "#2563eb";
+
+    const pad = { left: 68, right: 16, top: 18, bottom: 36 };
+    const maxVal = Math.max(1, ...rows.map(r => r.balance), ...rows.map(r => r.deposited)) * 1.08;
+
+    const x = i => pad.left + (i / Math.max(1, rows.length - 1)) * (width - pad.left - pad.right);
+    const y = v => pad.top + (height - pad.top - pad.bottom) * (1 - v / maxVal);
+
+    // Grid + labels
+    ctx.strokeStyle = gridColor;
+    ctx.fillStyle = textColor;
+    ctx.font = "11px system-ui, sans-serif";
+    ctx.lineWidth = 1;
+
+    for (let i = 0; i <= 4; i++) {
+      const val = maxVal * i / 4;
+      const yy = y(val);
+      ctx.beginPath();
+      ctx.moveTo(pad.left, yy);
+      ctx.lineTo(width - pad.right, yy);
+      ctx.stroke();
+      ctx.fillText(fmt(val).replace("$", "$"), 4, yy + 4);
+    }
+
+    // Area under balance (subtle)
+    if (rows.length > 
