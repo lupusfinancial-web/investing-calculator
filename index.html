@@ -431,7 +431,7 @@ canvas { width: 100%; height: 100%; display: block; }
 }
 table {
   width: 100%;
-  min-width: 720px;
+  min-width: 780px;
   border-collapse: collapse;
   font-size: 0.9rem;
 }
@@ -790,11 +790,6 @@ footer {
       </div>
     </section>
 
-    <section class="card education-card amber">
-      <h2>Why fees matter</h2>
-      <p>Even small annual fees compound against you. Prefer low-cost index funds so more of the market’s return stays yours.</p>
-    </section>
-
     <section class="card">
       <h2>The simple takeaway</h2>
       <div class="grid three">
@@ -806,7 +801,7 @@ footer {
     </section>
   </div>
 
-  <!-- ===================== DIVIDEND PANEL (SIMPLIFIED) ===================== -->
+  <!-- ===================== DIVIDEND PANEL ===================== -->
   <div id="panelDividend" class="panel" role="tabpanel">
     <section class="notice">
       <strong>Educational illustration only.</strong> Yields and growth rates are assumptions you enter. Companies can cut dividends. Past yields do not guarantee future income.
@@ -815,9 +810,9 @@ footer {
     <section class="card">
       <h2>Build your dividend illustration</h2>
       <p class="section-copy">
-        Your <strong>Core</strong> is a separate cash/interest vessel (like SPAXX). 
-        You move money from Core into your dividend portfolio on a schedule you choose. 
-        The portfolio itself is simple: one yield + optional price growth + DRIP.
+        Your <strong>Core</strong> is a separate cash/interest vessel. 
+        You fund Core on one schedule and move money from Core into the portfolio on another. 
+        This keeps Core from running dry.
       </p>
 
       <div class="grid two">
@@ -841,7 +836,7 @@ footer {
           </div>
         </div>
 
-        <!-- Core (completely separate) -->
+        <!-- Core (completely separate) + both inflow and outflow -->
         <div class="input-card core-card">
           <div class="box-heading">
             <span class="box-number">2</span>
@@ -857,7 +852,21 @@ footer {
           <div class="field">
             <label for="d-coreRate">Core interest / yield (%)</label>
             <input id="d-coreRate" type="number" min="0" max="15" step="0.01" placeholder="e.g. 3.32" inputmode="decimal">
-            <p class="help">SPAXX-style rate. Adjustable. Not a guarantee of future rates.</p>
+            <p class="help">SPAXX-style rate. Adjustable.</p>
+          </div>
+          <div class="field">
+            <label for="d-toCore">Amount added <strong>to</strong> Core ($)</label>
+            <input id="d-toCore" type="number" min="0" placeholder="e.g. 800" inputmode="decimal">
+            <p class="help">How much you put into Core each period (so it never runs dry).</p>
+          </div>
+          <div class="field">
+            <label for="d-toCoreCadence">Cadence of additions <strong>to</strong> Core</label>
+            <select id="d-toCoreCadence">
+              <option value="12">Monthly</option>
+              <option value="4">Quarterly</option>
+              <option value="2">Semi-annually</option>
+              <option value="1">Annually</option>
+            </select>
           </div>
         </div>
       </div>
@@ -879,12 +888,12 @@ footer {
           <div class="field">
             <label for="d-yield">Expected dividend yield (%)</label>
             <input id="d-yield" type="number" min="0" max="20" step="0.1" placeholder="e.g. 3.5" inputmode="decimal">
-            <p class="help">A simple overall yield you expect from the whole portfolio. Beginners can start with 2.5–4%.</p>
+            <p class="help">A simple overall yield. Beginners can start with 2.5–4%.</p>
           </div>
           <div class="field">
             <label for="d-priceGrowth">Expected annual price growth (%)</label>
             <input id="d-priceGrowth" type="number" min="-20" max="20" step="0.1" placeholder="e.g. 3" inputmode="decimal">
-            <p class="help">Optional. Many dividend investors use 0–5%. Leave blank or 0 if you only care about income.</p>
+            <p class="help">Optional. Many dividend investors use 0–5%.</p>
           </div>
 
           <div class="toggle-row" style="margin:18px 18px 8px">
@@ -904,28 +913,28 @@ footer {
           <div class="box-heading">
             <span class="box-number">4</span>
             <div>
-              <h3>Funding the portfolio</h3>
-              <p class="help" style="border:0;margin:0;padding:0">Money moving into the portfolio.</p>
+              <h3>Money flowing into the portfolio</h3>
+              <p class="help" style="border:0;margin:0;padding:0">Transfers from Core + any extra from outside.</p>
             </div>
           </div>
           <div class="field">
-            <label for="d-fromCore">Amount transferred from Core → Portfolio ($)</label>
-            <input id="d-fromCore" type="number" min="0" placeholder="e.g. 500" inputmode="decimal">
+            <label for="d-fromCore">Amount transferred <strong>from Core → Portfolio</strong> ($)</label>
+            <input id="d-fromCore" type="number" min="0" placeholder="e.g. 1500" inputmode="decimal">
           </div>
           <div class="field">
-            <label for="d-coreCadence">Transfer cadence from Core</label>
-            <select id="d-coreCadence">
+            <label for="d-fromCoreCadence">Transfer cadence from Core</label>
+            <select id="d-fromCoreCadence">
               <option value="12">Monthly</option>
-              <option value="4">Quarterly</option>
+              <option value="4" selected>Quarterly</option>
               <option value="2">Semi-annually</option>
               <option value="1">Annually</option>
             </select>
-            <p class="help">How often money leaves Core and enters the portfolio.</p>
+            <p class="help">How often Core sends money into the portfolio.</p>
           </div>
           <div class="field">
             <label for="d-external">Extra contribution from outside ($)</label>
             <input id="d-external" type="number" min="0" placeholder="e.g. 0 or 200" inputmode="decimal">
-            <p class="help">Optional money from paycheck, bonus, etc. (not from Core).</p>
+            <p class="help">Optional money that does <em>not</em> come from Core (paycheck, bonus, etc.).</p>
           </div>
           <div class="field">
             <label for="d-extCadence">Extra contribution cadence</label>
@@ -989,7 +998,8 @@ footer {
           <thead>
             <tr>
               <th>Year / Age</th>
-              <th>From Core</th>
+              <th>Added to Core</th>
+              <th>From Core → Port</th>
               <th>Extra added</th>
               <th>Dividends earned</th>
               <th>Portfolio value</th>
@@ -1001,16 +1011,15 @@ footer {
       </div>
     </section>
 
-    <!-- Simplified education -->
     <section class="card education-intro">
       <div class="eyebrow">Dividend investing guide</div>
-      <h2>A simple way to use a Core + Portfolio system</h2>
-      <p>Keep cash earning interest in a Core account. Move money from Core into a dividend portfolio on a schedule you can stick with. Decide whether to reinvest the dividends or take them as income.</p>
+      <h2>A simple Core + Portfolio system</h2>
+      <p>Keep cash earning interest in Core. Fund Core regularly so it never runs dry. Move money from Core into the portfolio on a schedule you can stick with.</p>
     </section>
 
     <section class="card education-card">
       <h2>What a dividend is</h2>
-      <p>A dividend is a portion of a company’s profits paid to shareholders. Yield is the annual dividend divided by price. A 3.5% yield on a $50,000 portfolio would generate about $1,750 per year if the dividend stays the same.</p>
+      <p>A dividend is a portion of a company’s profits paid to shareholders. Yield is the annual dividend divided by price.</p>
     </section>
 
     <section class="card education-card green">
@@ -1018,11 +1027,11 @@ footer {
       <div class="grid two">
         <div class="definition">
           <h3>Core (your vessel)</h3>
-          <p>Cash or money-market holding (SPAXX, HYSA, etc.). Earns interest. Acts as storage and the source of new investments. Completely separate from the portfolio.</p>
+          <p>Cash or money-market holding. You add money to it on one schedule and send money out of it on another. Completely separate from the portfolio.</p>
         </div>
         <div class="definition">
           <h3>Portfolio</h3>
-          <p>The actual dividend-paying investments. This is where you want long-term growth of income.</p>
+          <p>The actual dividend-paying investments. This is where long-term income is built.</p>
         </div>
       </div>
     </section>
@@ -1036,27 +1045,16 @@ footer {
         </div>
         <div class="definition">
           <h3>DRIP off</h3>
-          <p>Dividends arrive as cash you can spend. Useful when you need income.</p>
+          <p>Dividends arrive as cash you can spend.</p>
         </div>
       </div>
-    </section>
-
-    <section class="card education-card amber">
-      <h2>Simple setup</h2>
-      <ol class="number-list">
-        <li>Decide how much sits in Core vs already invested in the portfolio.</li>
-        <li>Choose a transfer amount and cadence from Core → Portfolio that you can maintain.</li>
-        <li>Pick a realistic overall yield assumption (many broad dividend ETFs sit roughly in the 2.5–4% range).</li>
-        <li>Turn DRIP on while building; turn it off when you want the cash.</li>
-        <li>Review once or twice a year.</li>
-      </ol>
     </section>
 
     <section class="card">
       <h2>The simple takeaway</h2>
       <div class="grid three">
-        <div class="step"><h3>Core is storage + interest</h3><p>Keep it separate. Use it to fund the portfolio.</p></div>
-        <div class="step"><h3>Move money on a schedule</h3><p>Consistent transfers beat perfect timing.</p></div>
+        <div class="step"><h3>Fund Core regularly</h3><p>So it never runs out of money to send to the portfolio.</p></div>
+        <div class="step"><h3>Transfer on a schedule</h3><p>Consistent moves from Core → Portfolio beat perfect timing.</p></div>
         <div class="step"><h3>Decide on DRIP</h3><p>Reinvest while building; take cash when you need income.</p></div>
       </div>
       <p class="fineprint" style="margin-top:20px">This page is educational only and is not financial, investment, tax, or legal advice.</p>
@@ -1133,7 +1131,7 @@ footer {
     tabGrowth.addEventListener("click", function () { switchTab("growth"); });
     tabDividend.addEventListener("click", function () { switchTab("dividend"); });
 
-    // ========== GROWTH LOGIC (unchanged from previous) ==========
+    // ========== GROWTH LOGIC ==========
     var gFields = ["g-age","g-retireAge","g-starting","g-contrib","g-increase","g-returnRate","g-fee","g-inflation","g-withdrawalRate"];
 
     function gGetSettings() {
@@ -1319,8 +1317,8 @@ footer {
       $("g-goalResult").classList.add("hidden"); gClear();
     });
 
-    // ========== DIVIDEND LOGIC (SIMPLIFIED) ==========
-    var dFields = ["d-age","d-retireAge","d-coreStart","d-coreRate","d-portStart","d-yield","d-priceGrowth","d-fromCore","d-external"];
+    // ========== DIVIDEND LOGIC (with Core inflow + outflow) ==========
+    var dFields = ["d-age","d-retireAge","d-coreStart","d-coreRate","d-toCore","d-portStart","d-yield","d-priceGrowth","d-fromCore","d-external"];
 
     function dGetSettings() {
       return {
@@ -1328,11 +1326,13 @@ footer {
         target: Math.max(0, Math.min(110, n("d-retireAge"))),
         coreStart: Math.max(0, n("d-coreStart")),
         coreRate: Math.max(0, n("d-coreRate")) / 100,
+        toCore: Math.max(0, n("d-toCore")),
+        toCoreCadence: parseInt($("d-toCoreCadence").value, 10) || 12,
         portStart: Math.max(0, n("d-portStart")),
         yield: Math.max(0, n("d-yield")) / 100,
         priceGrowth: n("d-priceGrowth") / 100,
         fromCore: Math.max(0, n("d-fromCore")),
-        coreCadence: parseInt($("d-coreCadence").value, 10) || 12,
+        fromCoreCadence: parseInt($("d-fromCoreCadence").value, 10) || 4,
         external: Math.max(0, n("d-external")),
         extCadence: parseInt($("d-extCadence").value, 10) || 12,
         drip: $("d-drip").checked
@@ -1346,35 +1346,53 @@ footer {
       var cumDivCash = 0;
       var rows = [];
 
-      var corePeriodRate = Math.pow(1 + s.coreRate, 1 / s.coreCadence) - 1;
-      var fromCorePerPeriod = s.fromCore;
-      var extPerPeriod = s.external;
+      // We step through the year in the finest cadence that matters
+      // For simplicity we do monthly steps (12) and apply the relevant inflows/outflows when their period hits
+      var months = years * 12;
 
       for (var year = 1; year <= years; year++) {
+        var addedToCoreThisYear = 0;
         var fromCoreThisYear = 0;
         var externalThisYear = 0;
 
-        // Core transfers + interest (applied in periods)
-        for (var p = 0; p < s.coreCadence; p++) {
-          // earn interest on core first
-          core = core * (1 + corePeriodRate);
-          // then transfer (if enough)
-          var transfer = Math.min(fromCorePerPeriod, Math.max(0, core));
-          core -= transfer;
-          port += transfer;
-          fromCoreThisYear += transfer;
-        }
+        for (var m = 0; m < 12; m++) {
+          // Core earns monthly interest
+          var monthlyCoreRate = Math.pow(1 + s.coreRate, 1/12) - 1;
+          core *= (1 + monthlyCoreRate);
 
-        // External contributions
-        for (var e = 0; e < s.extCadence; e++) {
-          port += extPerPeriod;
-          externalThisYear += extPerPeriod;
+          // Add to Core (if this month is a contribution month)
+          if (s.toCoreCadence === 12 || 
+              (s.toCoreCadence === 4 && (m === 2 || m === 5 || m === 8 || m === 11)) ||
+              (s.toCoreCadence === 2 && (m === 5 || m === 11)) ||
+              (s.toCoreCadence === 1 && m === 11)) {
+            core += s.toCore;
+            addedToCoreThisYear += s.toCore;
+          }
+
+          // Transfer from Core → Portfolio
+          if (s.fromCoreCadence === 12 || 
+              (s.fromCoreCadence === 4 && (m === 2 || m === 5 || m === 8 || m === 11)) ||
+              (s.fromCoreCadence === 2 && (m === 5 || m === 11)) ||
+              (s.fromCoreCadence === 1 && m === 11)) {
+            var transfer = Math.min(s.fromCore, Math.max(0, core));
+            core -= transfer;
+            port += transfer;
+            fromCoreThisYear += transfer;
+          }
+
+          // External contributions
+          if (s.extCadence === 12 || 
+              (s.extCadence === 4 && (m === 2 || m === 5 || m === 8 || m === 11)) ||
+              (s.extCadence === 2 && (m === 5 || m === 11)) ||
+              (s.extCadence === 1 && m === 11)) {
+            port += s.external;
+            externalThisYear += s.external;
+          }
         }
 
         // Portfolio: dividends + price growth for the year
-        var avgPort = port; // simplified
-        var divEarned = avgPort * s.yield;
-        var growth = avgPort * s.priceGrowth;
+        var divEarned = port * s.yield;
+        var growth = port * s.priceGrowth;
 
         if (s.drip) {
           port += divEarned + growth;
@@ -1386,6 +1404,7 @@ footer {
         rows.push({
           year: year,
           age: s.age + year,
+          addedToCore: addedToCoreThisYear,
           fromCore: fromCoreThisYear,
           external: externalThisYear,
           divEarned: divEarned,
@@ -1435,6 +1454,7 @@ footer {
       $("d-resultsTable").innerHTML = m.rows.map(function (r) {
         return "<tr>" +
           "<td>Year " + r.year + " · Age " + r.age + "</td>" +
+          "<td>" + fmt(r.addedToCore) + "</td>" +
           "<td>" + fmt(r.fromCore) + "</td>" +
           "<td>" + fmt(r.external) + "</td>" +
           "<td>" + fmt(r.divEarned) + "</td>" +
@@ -1498,13 +1518,15 @@ footer {
     $("d-sampleBtn").addEventListener("click", function () {
       $("d-age").value = 38;
       $("d-retireAge").value = 60;
-      $("d-coreStart").value = 28000;
+      $("d-coreStart").value = 25000;
       $("d-coreRate").value = 3.32;
+      $("d-toCore").value = 800;           // you fund Core monthly
+      $("d-toCoreCadence").value = "12";
       $("d-portStart").value = 42000;
       $("d-yield").value = 3.5;
       $("d-priceGrowth").value = 3;
-      $("d-fromCore").value = 600;
-      $("d-coreCadence").value = "12";
+      $("d-fromCore").value = 1500;       // Core sends quarterly
+      $("d-fromCoreCadence").value = "4";
       $("d-external").value = 0;
       $("d-extCadence").value = "12";
       $("d-drip").checked = true;
@@ -1515,13 +1537,15 @@ footer {
       var el = $(id);
       if (el) el.addEventListener("input", dCalculate);
     });
-    $("d-coreCadence").addEventListener("change", dCalculate);
+    $("d-toCoreCadence").addEventListener("change", dCalculate);
+    $("d-fromCoreCadence").addEventListener("change", dCalculate);
     $("d-extCadence").addEventListener("change", dCalculate);
     $("d-drip").addEventListener("change", dCalculate);
 
     $("d-resetBtn").addEventListener("click", function () {
       dFields.forEach(function (id) { if ($(id)) $(id).value = ""; });
-      $("d-coreCadence").value = "12";
+      $("d-toCoreCadence").value = "12";
+      $("d-fromCoreCadence").value = "4";
       $("d-extCadence").value = "12";
       $("d-drip").checked = true;
       dClear();
