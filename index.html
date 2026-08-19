@@ -460,28 +460,11 @@ th:first-child, td:first-child { text-align: left; }
   border: 0;
 }
 .education-intro h2, .education-intro p { color: #fff; }
-.education-nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 16px;
-}
-.education-nav a {
-  padding: 7px 13px;
-  border: 1px solid rgba(255,255,255,0.3);
-  border-radius: 999px;
-  background: rgba(255,255,255,0.12);
-  color: #fff;
-  text-decoration: none;
-  font-size: 0.84rem;
-  font-weight: 500;
-}
 
 .education-card { border-left: 5px solid var(--blue); }
 .education-card.green { border-left-color: var(--green); }
 .education-card.amber { border-left-color: var(--amber); }
 .education-card.purple { border-left-color: var(--purple); }
-.education-card.teal { border-left-color: #0d9488; }
 
 .step, .definition {
   padding: 16px;
@@ -492,21 +475,8 @@ th:first-child, td:first-child { text-align: left; }
 [data-theme="dark"] .step,
 [data-theme="dark"] .definition { background: #0f172a; }
 .step-num { margin-bottom: 10px; }
-.plain-list, .number-list { padding-left: 20px; margin: 8px 0; }
-.plain-list li, .number-list li { margin: 7px 0; }
-.check-list { list-style: none; padding: 0; margin: 8px 0; }
-.check-list li {
-  margin: 7px 0;
-  padding-left: 26px;
-  position: relative;
-}
-.check-list li::before {
-  content: "✓";
-  position: absolute;
-  left: 0;
-  color: var(--green);
-  font-weight: 800;
-}
+.number-list { padding-left: 20px; margin: 8px 0; }
+.number-list li { margin: 7px 0; }
 
 footer {
   text-align: center;
@@ -529,7 +499,7 @@ footer {
 }
 
 @media print {
-  .theme-toggle, .button-row, .education-nav, .investor-tabs { display: none !important; }
+  .theme-toggle, .button-row, .investor-tabs { display: none !important; }
   .card, .metric { break-inside: avoid; box-shadow: none; }
   body { background: #fff; color: #000; }
   .panel { display: block !important; }
@@ -769,27 +739,6 @@ footer {
       </div>
     </section>
 
-    <section class="card education-card">
-      <h2>What makes growth investing work</h2>
-      <div class="grid three">
-        <div class="step">
-          <div class="step-num">1</div>
-          <h3>Regular contributions</h3>
-          <p>Add money consistently on a cadence you can stick with.</p>
-        </div>
-        <div class="step">
-          <div class="step-num">2</div>
-          <h3>Time</h3>
-          <p>The longer money stays invested, the more opportunity it has to potentially grow.</p>
-        </div>
-        <div class="step">
-          <div class="step-num">3</div>
-          <h3>Low costs + reinvestment</h3>
-          <p>Low expense ratios and reinvested dividends help more of the return stay in your account.</p>
-        </div>
-      </div>
-    </section>
-
     <section class="card">
       <h2>The simple takeaway</h2>
       <div class="grid three">
@@ -811,7 +760,7 @@ footer {
       <h2>Build your dividend illustration</h2>
       <p class="section-copy">
         Your <strong>Core</strong> is a separate cash/interest vessel. 
-        You fund Core on one schedule and move money from Core into the portfolio on another. 
+        You fund Core monthly and move money from Core into the portfolio quarterly (or whatever cadence you choose).
         This keeps Core from running dry.
       </p>
 
@@ -836,7 +785,7 @@ footer {
           </div>
         </div>
 
-        <!-- Core (completely separate) + both inflow and outflow -->
+        <!-- Core -->
         <div class="input-card core-card">
           <div class="box-heading">
             <span class="box-number">2</span>
@@ -855,18 +804,9 @@ footer {
             <p class="help">SPAXX-style rate. Adjustable.</p>
           </div>
           <div class="field">
-            <label for="d-toCore">Amount added <strong>to</strong> Core ($)</label>
+            <label for="d-toCore">Amount added <strong>to</strong> Core each month ($)</label>
             <input id="d-toCore" type="number" min="0" placeholder="e.g. 800" inputmode="decimal">
-            <p class="help">How much you put into Core each period (so it never runs dry).</p>
-          </div>
-          <div class="field">
-            <label for="d-toCoreCadence">Cadence of additions <strong>to</strong> Core</label>
-            <select id="d-toCoreCadence">
-              <option value="12">Monthly</option>
-              <option value="4">Quarterly</option>
-              <option value="2">Semi-annually</option>
-              <option value="1">Annually</option>
-            </select>
+            <p class="help">How much you put into Core every month so it never runs dry.</p>
           </div>
         </div>
       </div>
@@ -918,32 +858,14 @@ footer {
             </div>
           </div>
           <div class="field">
-            <label for="d-fromCore">Amount transferred <strong>from Core → Portfolio</strong> ($)</label>
+            <label for="d-fromCore">Amount transferred <strong>from Core → Portfolio</strong> each quarter ($)</label>
             <input id="d-fromCore" type="number" min="0" placeholder="e.g. 1500" inputmode="decimal">
+            <p class="help">How much leaves Core and enters the portfolio every quarter.</p>
           </div>
           <div class="field">
-            <label for="d-fromCoreCadence">Transfer cadence from Core</label>
-            <select id="d-fromCoreCadence">
-              <option value="12">Monthly</option>
-              <option value="4" selected>Quarterly</option>
-              <option value="2">Semi-annually</option>
-              <option value="1">Annually</option>
-            </select>
-            <p class="help">How often Core sends money into the portfolio.</p>
-          </div>
-          <div class="field">
-            <label for="d-external">Extra contribution from outside ($)</label>
+            <label for="d-external">Extra contribution from outside each month ($)</label>
             <input id="d-external" type="number" min="0" placeholder="e.g. 0 or 200" inputmode="decimal">
             <p class="help">Optional money that does <em>not</em> come from Core (paycheck, bonus, etc.).</p>
-          </div>
-          <div class="field">
-            <label for="d-extCadence">Extra contribution cadence</label>
-            <select id="d-extCadence">
-              <option value="12">Monthly</option>
-              <option value="4">Quarterly</option>
-              <option value="2">Semi-annually</option>
-              <option value="1">Annually</option>
-            </select>
           </div>
         </div>
       </div>
@@ -1027,25 +949,11 @@ footer {
       <div class="grid two">
         <div class="definition">
           <h3>Core (your vessel)</h3>
-          <p>Cash or money-market holding. You add money to it on one schedule and send money out of it on another. Completely separate from the portfolio.</p>
+          <p>Cash or money-market holding. You add money to it monthly and send money out of it quarterly. Completely separate from the portfolio.</p>
         </div>
         <div class="definition">
           <h3>Portfolio</h3>
           <p>The actual dividend-paying investments. This is where long-term income is built.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="card education-card">
-      <h2>DRIP explained</h2>
-      <div class="grid two">
-        <div class="definition">
-          <h3>DRIP on</h3>
-          <p>Dividends automatically buy more shares. Best while you are still building.</p>
-        </div>
-        <div class="definition">
-          <h3>DRIP off</h3>
-          <p>Dividends arrive as cash you can spend.</p>
         </div>
       </div>
     </section>
@@ -1317,7 +1225,7 @@ footer {
       $("g-goalResult").classList.add("hidden"); gClear();
     });
 
-    // ========== DIVIDEND LOGIC (with Core inflow + outflow) ==========
+    // ========== DIVIDEND LOGIC — CORRECT MONTHLY STEP-BY-STEP ==========
     var dFields = ["d-age","d-retireAge","d-coreStart","d-coreRate","d-toCore","d-portStart","d-yield","d-priceGrowth","d-fromCore","d-external"];
 
     function dGetSettings() {
@@ -1326,15 +1234,12 @@ footer {
         target: Math.max(0, Math.min(110, n("d-retireAge"))),
         coreStart: Math.max(0, n("d-coreStart")),
         coreRate: Math.max(0, n("d-coreRate")) / 100,
-        toCore: Math.max(0, n("d-toCore")),
-        toCoreCadence: parseInt($("d-toCoreCadence").value, 10) || 12,
+        toCore: Math.max(0, n("d-toCore")),           // monthly add to core
         portStart: Math.max(0, n("d-portStart")),
         yield: Math.max(0, n("d-yield")) / 100,
         priceGrowth: n("d-priceGrowth") / 100,
-        fromCore: Math.max(0, n("d-fromCore")),
-        fromCoreCadence: parseInt($("d-fromCoreCadence").value, 10) || 4,
-        external: Math.max(0, n("d-external")),
-        extCadence: parseInt($("d-extCadence").value, 10) || 12,
+        fromCore: Math.max(0, n("d-fromCore")),        // quarterly transfer
+        external: Math.max(0, n("d-external")),        // monthly extra
         drip: $("d-drip").checked
       };
     }
@@ -1342,64 +1247,53 @@ footer {
     function dRunModel(s) {
       var years = Math.max(0, Math.round(s.target - s.age));
       var core = s.coreStart;
-      var port = s.portStart;
+      var portfolio = s.portStart;
       var cumDivCash = 0;
       var rows = [];
 
-      // We step through the year in the finest cadence that matters
-      // For simplicity we do monthly steps (12) and apply the relevant inflows/outflows when their period hits
-      var months = years * 12;
+      var monthlyInterest = s.coreRate / 12;
+      var monthlyYield = s.yield / 12;
 
       for (var year = 1; year <= years; year++) {
         var addedToCoreThisYear = 0;
         var fromCoreThisYear = 0;
         var externalThisYear = 0;
+        var dividendsEarned = 0;
 
-        for (var m = 0; m < 12; m++) {
-          // Core earns monthly interest
-          var monthlyCoreRate = Math.pow(1 + s.coreRate, 1/12) - 1;
-          core *= (1 + monthlyCoreRate);
+        for (var month = 1; month <= 12; month++) {
+          // 1. Core monthly addition
+          core += s.toCore;
+          addedToCoreThisYear += s.toCore;
 
-          // Add to Core (if this month is a contribution month)
-          if (s.toCoreCadence === 12 || 
-              (s.toCoreCadence === 4 && (m === 2 || m === 5 || m === 8 || m === 11)) ||
-              (s.toCoreCadence === 2 && (m === 5 || m === 11)) ||
-              (s.toCoreCadence === 1 && m === 11)) {
-            core += s.toCore;
-            addedToCoreThisYear += s.toCore;
-          }
+          // 2. Core monthly interest
+          core *= (1 + monthlyInterest);
 
-          // Transfer from Core → Portfolio
-          if (s.fromCoreCadence === 12 || 
-              (s.fromCoreCadence === 4 && (m === 2 || m === 5 || m === 8 || m === 11)) ||
-              (s.fromCoreCadence === 2 && (m === 5 || m === 11)) ||
-              (s.fromCoreCadence === 1 && m === 11)) {
-            var transfer = Math.min(s.fromCore, Math.max(0, core));
+          // 3. Quarterly transfer (months 3, 6, 9, 12)
+          if (month % 3 === 0) {
+            var transfer = Math.min(core, s.fromCore);
             core -= transfer;
-            port += transfer;
+            portfolio += transfer;
             fromCoreThisYear += transfer;
           }
 
-          // External contributions
-          if (s.extCadence === 12 || 
-              (s.extCadence === 4 && (m === 2 || m === 5 || m === 8 || m === 11)) ||
-              (s.extCadence === 2 && (m === 5 || m === 11)) ||
-              (s.extCadence === 1 && m === 11)) {
-            port += s.external;
-            externalThisYear += s.external;
+          // 4. Extra external contribution (monthly)
+          portfolio += s.external;
+          externalThisYear += s.external;
+
+          // 5. Portfolio dividends (monthly portion)
+          var monthDiv = portfolio * monthlyYield;
+          dividendsEarned += monthDiv;
+
+          // 6. DRIP reinvestment
+          if (s.drip) {
+            portfolio += monthDiv;
+          } else {
+            cumDivCash += monthDiv;
           }
         }
 
-        // Portfolio: dividends + price growth for the year
-        var divEarned = port * s.yield;
-        var growth = port * s.priceGrowth;
-
-        if (s.drip) {
-          port += divEarned + growth;
-        } else {
-          port += growth;
-          cumDivCash += divEarned;
-        }
+        // 7. Annual price growth (applied once at year end)
+        portfolio *= (1 + s.priceGrowth);
 
         rows.push({
           year: year,
@@ -1407,16 +1301,16 @@ footer {
           addedToCore: addedToCoreThisYear,
           fromCore: fromCoreThisYear,
           external: externalThisYear,
-          divEarned: divEarned,
-          port: port,
+          divEarned: dividendsEarned,
+          port: portfolio,
           core: core,
           cumDivCash: cumDivCash
         });
       }
 
-      var finalIncome = port * s.yield;
+      var finalIncome = portfolio * s.yield;
       return {
-        port: port,
+        port: portfolio,
         core: core,
         years: years,
         rows: rows,
@@ -1520,15 +1414,12 @@ footer {
       $("d-retireAge").value = 60;
       $("d-coreStart").value = 25000;
       $("d-coreRate").value = 3.32;
-      $("d-toCore").value = 800;           // you fund Core monthly
-      $("d-toCoreCadence").value = "12";
+      $("d-toCore").value = 800;          // monthly into Core
       $("d-portStart").value = 42000;
       $("d-yield").value = 3.5;
       $("d-priceGrowth").value = 3;
-      $("d-fromCore").value = 1500;       // Core sends quarterly
-      $("d-fromCoreCadence").value = "4";
+      $("d-fromCore").value = 1500;      // quarterly out of Core
       $("d-external").value = 0;
-      $("d-extCadence").value = "12";
       $("d-drip").checked = true;
       dCalculate();
     });
@@ -1537,16 +1428,10 @@ footer {
       var el = $(id);
       if (el) el.addEventListener("input", dCalculate);
     });
-    $("d-toCoreCadence").addEventListener("change", dCalculate);
-    $("d-fromCoreCadence").addEventListener("change", dCalculate);
-    $("d-extCadence").addEventListener("change", dCalculate);
     $("d-drip").addEventListener("change", dCalculate);
 
     $("d-resetBtn").addEventListener("click", function () {
       dFields.forEach(function (id) { if ($(id)) $(id).value = ""; });
-      $("d-toCoreCadence").value = "12";
-      $("d-fromCoreCadence").value = "4";
-      $("d-extCadence").value = "12";
       $("d-drip").checked = true;
       dClear();
     });
