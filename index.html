@@ -476,6 +476,77 @@ th:first-child, td:first-child { text-align: left; }
 [data-theme="dark"] .definition { background: #0f172a; }
 .step-num { margin-bottom: 10px; }
 
+/* Position rows */
+.position-row {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 14px;
+  margin-bottom: 12px;
+  background: #f8fafc;
+}
+[data-theme="dark"] .position-row { background: #0f172a; }
+.position-row .pos-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.position-row .pos-grid .full { grid-column: 1 / -1; }
+.position-row label { font-size: 0.82rem; margin-bottom: 4px; }
+.position-row input, .position-row select {
+  min-height: 40px;
+  font-size: 0.95rem;
+  padding: 8px 10px;
+}
+.position-row .pos-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.position-row .pos-title { font-weight: 700; color: var(--navy); }
+.remove-pos {
+  background: #fee2e2;
+  color: #b91c1c;
+  border: 1px solid #fca5a5;
+  padding: 5px 10px;
+  font-size: 0.8rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+[data-theme="dark"] .remove-pos {
+  background: #7f1d1d;
+  color: #fecaca;
+  border-color: #b91c1c;
+}
+.add-pos-btn {
+  background: #dbeafe;
+  color: #1e40af;
+  border: 1.5px solid #93c5fd;
+  width: 100%;
+  margin-top: 8px;
+}
+[data-theme="dark"] .add-pos-btn {
+  background: #1e3a5f;
+  color: #93c5fd;
+  border-color: #3b82f6;
+}
+
+.howto-box {
+  margin: 12px 18px 18px;
+  padding: 14px 16px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 12px;
+  font-size: 0.88rem;
+  color: var(--text);
+  line-height: 1.5;
+}
+[data-theme="dark"] .howto-box {
+  background: #1e3a5f;
+  border-color: #3b82f6;
+}
+.howto-box strong { color: var(--navy); }
+
 footer {
   text-align: center;
   padding: 30px 16px 50px;
@@ -494,6 +565,7 @@ footer {
   .button-row button { width: 100%; }
   .theme-toggle { top: 10px; right: 10px; font-size: 0.78rem; padding: 6px 10px; }
   .investor-tab { padding: 12px 16px; font-size: 0.92rem; }
+  .position-row .pos-grid { grid-template-columns: 1fr; }
 }
 
 @media print {
@@ -851,11 +923,12 @@ footer {
           <div class="field">
             <label for="d-portStart">Current portfolio balance ($)</label>
             <input id="d-portStart" type="number" min="0" placeholder="e.g. 77229" inputmode="decimal">
+            <p class="help">Used only when no individual positions are entered. If you add positions below, their total market value overrides this field.</p>
           </div>
           <div class="field">
             <label for="d-yield">Expected dividend yield (%)</label>
             <input id="d-yield" type="number" min="0" max="20" step="0.1" placeholder="e.g. 3.5" inputmode="decimal">
-            <p class="help">Overall yield you expect from the whole portfolio. Many broad dividend-focused ETFs have historically been in the roughly 2–4% range; individual stocks can be higher or lower and can change.</p>
+            <p class="help">Used only when no positions are entered. When positions exist, real dividends from those positions are used instead.</p>
           </div>
           <div class="field">
             <label for="d-priceGrowth">Expected annual price growth (%)</label>
@@ -869,12 +942,30 @@ footer {
           <div class="toggle-row" style="margin:18px 18px 8px">
             <div>
               <div class="toggle-label">DRIP (Dividend Reinvestment)</div>
-              <div class="toggle-desc">On = dividends buy more shares. Off = dividends paid as cash you can spend.</div>
+              <div class="toggle-desc">On = dividends buy more shares of the same positions. Off = dividends are paid as cash.</div>
             </div>
             <label class="switch">
               <input type="checkbox" id="d-drip" checked>
               <span class="slider"></span>
             </label>
+          </div>
+
+          <!-- Positions section -->
+          <div class="field" style="margin-top:20px">
+            <label>Individual positions (optional – for more accurate DRIP)</label>
+            
+            <div class="howto-box">
+              <strong>How to fill positions correctly:</strong><br>
+              Enter the <em>current</em> number of shares you own, the current price per share, and the <em>current</em> annual dividend the position pays <strong>per share</strong>.<br><br>
+              • The model treats “Annual dividend per share” as fixed over time (a standard beginner-friendly assumption).<br>
+              • As new money is added or DRIP reinvests dividends, the <strong>share count</strong> increases → total income rises automatically.<br>
+              • You do <strong>not</strong> need to change the dividend-per-share number just because you own more shares.<br>
+              • Payouts per year tells the model how often the company pays (4 = quarterly is most common).<br>
+              • DRIP is controlled only by the global toggle above (On or Off). Fractional shares are assumed when DRIP is On.
+            </div>
+
+            <div id="d-positionsContainer"></div>
+            <button type="button" class="add-pos-btn" id="d-addPosition">+ Add Position</button>
           </div>
         </div>
 
@@ -1021,7 +1112,7 @@ footer {
       <div class="grid two">
         <div class="definition">
           <h3>DRIP on</h3>
-          <p>Dividends automatically buy more shares. This is typically useful while you are still building the portfolio.</p>
+          <p>Dividends automatically buy more shares of the same positions. This is typically useful while you are still building the portfolio.</p>
         </div>
         <div class="definition">
           <h3>DRIP off</h3>
@@ -1297,8 +1388,74 @@ footer {
       $("g-goalResult").classList.add("hidden"); gClear();
     });
 
-    // ========== DIVIDEND LOGIC — FULL CADENCE SUPPORT ==========
+    // ========== DIVIDEND LOGIC ==========
     var dFields = ["d-age","d-retireAge","d-coreStart","d-coreRate","d-toCore","d-portStart","d-yield","d-priceGrowth","d-fromCore","d-external"];
+    var positionIdCounter = 0;
+
+    function addPositionRow(data) {
+      data = data || {};
+      var id = "pos-" + (++positionIdCounter);
+      var container = $("d-positionsContainer");
+      var row = document.createElement("div");
+      row.className = "position-row";
+      row.id = id;
+      row.innerHTML =
+        '<div class="pos-header">' +
+          '<span class="pos-title">Position</span>' +
+          '<button type="button" class="remove-pos" data-id="' + id + '">Remove</button>' +
+        '</div>' +
+        '<div class="pos-grid">' +
+          '<div><label>Ticker (optional)</label><input type="text" class="pos-ticker" placeholder="e.g. SCHD" value="' + (data.ticker || "") + '"></div>' +
+          '<div><label>Shares *</label><input type="number" class="pos-shares" min="0" step="any" placeholder="100" value="' + (data.shares || "") + '"></div>' +
+          '<div><label>Price per share ($) *</label><input type="number" class="pos-price" min="0" step="any" placeholder="80" value="' + (data.price || "") + '"></div>' +
+          '<div><label>Annual div per share ($) *</label><input type="number" class="pos-div" min="0" step="any" placeholder="2.60" value="' + (data.divPerShare || "") + '"></div>' +
+          '<div class="full"><label>Payouts per year *</label>' +
+            '<select class="pos-payouts">' +
+              '<option value="12"' + (data.payoutsPerYear == 12 ? " selected" : "") + '>12 (Monthly)</option>' +
+              '<option value="4"' + (data.payoutsPerYear == 4 || !data.payoutsPerYear ? " selected" : "") + '>4 (Quarterly)</option>' +
+              '<option value="2"' + (data.payoutsPerYear == 2 ? " selected" : "") + '>2 (Semi-annual)</option>' +
+              '<option value="1"' + (data.payoutsPerYear == 1 ? " selected" : "") + '>1 (Annual)</option>' +
+            '</select></div>' +
+        '</div>';
+      container.appendChild(row);
+
+      row.querySelector(".remove-pos").addEventListener("click", function () {
+        row.remove();
+        dCalculate();
+      });
+
+      row.querySelectorAll("input, select").forEach(function (el) {
+        el.addEventListener("input", dCalculate);
+        el.addEventListener("change", dCalculate);
+      });
+    }
+
+    $("d-addPosition").addEventListener("click", function () {
+      addPositionRow();
+    });
+
+    function getPositions() {
+      var positions = [];
+      var rows = document.querySelectorAll("#d-positionsContainer .position-row");
+      rows.forEach(function (row) {
+        var shares = parseFloat(row.querySelector(".pos-shares").value);
+        var price = parseFloat(row.querySelector(".pos-price").value);
+        var divPerShare = parseFloat(row.querySelector(".pos-div").value);
+        var payoutsPerYear = parseFloat(row.querySelector(".pos-payouts").value) || 4;
+        var ticker = row.querySelector(".pos-ticker").value.trim();
+
+        if (isFinite(shares) && shares > 0 && isFinite(price) && price > 0 && isFinite(divPerShare) && divPerShare >= 0) {
+          positions.push({
+            ticker: ticker,
+            shares: shares,
+            price: price,
+            divPerShare: divPerShare,
+            payoutsPerYear: payoutsPerYear
+          });
+        }
+      });
+      return positions;
+    }
 
     function dGetSettings() {
       return {
@@ -1315,7 +1472,8 @@ footer {
         fromCoreCadence: $("d-fromCoreCadence").value || "Quarterly",
         external: Math.max(0, n("d-external")),
         extCadence: $("d-extCadence").value || "Monthly",
-        drip: $("d-drip").checked
+        drip: $("d-drip").checked,
+        positions: getPositions()
       };
     }
 
@@ -1329,10 +1487,23 @@ footer {
     function dRunModel(s) {
       var years = Math.max(0, Math.round(s.target - s.age));
       var core = s.coreStart;
+      var positions = s.positions && s.positions.length ? s.positions.map(function (p) {
+        return {
+          ticker: p.ticker,
+          shares: p.shares,
+          price: p.price,
+          divPerShare: p.divPerShare,
+          payoutsPerYear: p.payoutsPerYear
+        };
+      }) : null;
+
       var portfolio = s.portStart;
+      if (positions) {
+        portfolio = positions.reduce(function (sum, p) { return sum + p.shares * p.price; }, 0);
+      }
+
       var cumDivCash = 0;
       var rows = [];
-
       var coreMonthlyInterest = s.coreRate / 12;
       var dividendMonthlyYield = s.yield / 12;
 
@@ -1349,7 +1520,7 @@ footer {
             addedToCoreThisYear += s.toCore;
           }
 
-          // 2. Core interest (monthly)
+          // 2. Core interest
           core *= (1 + coreMonthlyInterest);
 
           // 3. Transfer from Core → Portfolio
@@ -1358,28 +1529,70 @@ footer {
             core -= transfer;
             portfolio += transfer;
             fromCoreThisYear += transfer;
+
+            if (positions && transfer > 0) {
+              var totalVal = positions.reduce(function (sum, p) { return sum + p.shares * p.price; }, 0) || 1;
+              positions.forEach(function (p) {
+                var weight = (p.shares * p.price) / totalVal;
+                var alloc = transfer * weight;
+                p.shares += alloc / p.price;
+              });
+            }
           }
 
           // 4. External contributions
           if (isEventMonth(s.extCadence, month)) {
             portfolio += s.external;
             externalThisYear += s.external;
+
+            if (positions && s.external > 0) {
+              var totalVal2 = positions.reduce(function (sum, p) { return sum + p.shares * p.price; }, 0) || 1;
+              positions.forEach(function (p) {
+                var weight2 = (p.shares * p.price) / totalVal2;
+                var alloc2 = s.external * weight2;
+                p.shares += alloc2 / p.price;
+              });
+            }
           }
 
-          // 5. Dividends (monthly slice)
-          var dividendsThisMonth = portfolio * dividendMonthlyYield;
-          dividendsEarnedThisYear += dividendsThisMonth;
+          // 5. Dividends
+          var dividendsThisMonth = 0;
 
-          // 6. DRIP
-          if (s.drip) {
-            portfolio += dividendsThisMonth;
+          if (positions) {
+            positions.forEach(function (p) {
+              // Monthly portion of the annual dividend per share
+              var monthlyDivPerShare = p.divPerShare / 12;
+              var d = p.shares * monthlyDivPerShare;
+              dividendsThisMonth += d;
+
+              if (s.drip) {
+                // Reinvest into the same position (fractional shares allowed)
+                p.shares += d / p.price;
+              }
+            });
+            portfolio = positions.reduce(function (sum, p) { return sum + p.shares * p.price; }, 0);
           } else {
+            dividendsThisMonth = portfolio * dividendMonthlyYield;
+            if (s.drip) {
+              portfolio += dividendsThisMonth;
+            }
+          }
+
+          dividendsEarnedThisYear += dividendsThisMonth;
+          if (!s.drip) {
             cumDivCash += dividendsThisMonth;
           }
         }
 
-        // 7. Annual price growth
-        portfolio *= (1 + s.priceGrowth);
+        // 6. Annual price growth
+        if (positions) {
+          positions.forEach(function (p) {
+            p.price *= (1 + s.priceGrowth);
+          });
+          portfolio = positions.reduce(function (sum, p) { return sum + p.shares * p.price; }, 0);
+        } else {
+          portfolio *= (1 + s.priceGrowth);
+        }
 
         rows.push({
           year: year,
@@ -1394,13 +1607,21 @@ footer {
         });
       }
 
-      var finalIncome = portfolio * s.yield;
+      var finalAnnualIncome;
+      if (positions) {
+        finalAnnualIncome = positions.reduce(function (sum, p) {
+          return sum + p.shares * p.divPerShare;
+        }, 0);
+      } else {
+        finalAnnualIncome = portfolio * s.yield;
+      }
+
       return {
         port: portfolio,
         core: core,
         years: years,
         rows: rows,
-        finalAnnualIncome: finalIncome,
+        finalAnnualIncome: finalAnnualIncome,
         cumDivCash: cumDivCash
       };
     }
@@ -1416,7 +1637,8 @@ footer {
     }
 
     function dCalculate() {
-      var anyFilled = dFields.some(function (id) { return $(id) && $(id).value.trim(); });
+      var anyFilled = dFields.some(function (id) { return $(id) && $(id).value.trim(); }) ||
+                      document.querySelectorAll("#d-positionsContainer .position-row").length > 0;
       if (!anyFilled) { dClear(); return; }
 
       var s = dGetSettings();
@@ -1510,6 +1732,12 @@ footer {
       $("d-external").value = 0;
       $("d-extCadence").value = "Monthly";
       $("d-drip").checked = true;
+
+      // Clear existing positions and add two sample ones
+      $("d-positionsContainer").innerHTML = "";
+      addPositionRow({ ticker: "SCHD", shares: 400, price: 80, divPerShare: 2.60, payoutsPerYear: 4 });
+      addPositionRow({ ticker: "VYM", shares: 200, price: 110, divPerShare: 3.40, payoutsPerYear: 4 });
+
       dCalculate();
     });
 
@@ -1528,6 +1756,7 @@ footer {
       $("d-fromCoreCadence").value = "Quarterly";
       $("d-extCadence").value = "Monthly";
       $("d-drip").checked = true;
+      $("d-positionsContainer").innerHTML = "";
       dClear();
     });
 
