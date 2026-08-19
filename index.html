@@ -475,8 +475,6 @@ th:first-child, td:first-child { text-align: left; }
 [data-theme="dark"] .step,
 [data-theme="dark"] .definition { background: #0f172a; }
 .step-num { margin-bottom: 10px; }
-.number-list { padding-left: 20px; margin: 8px 0; }
-.number-list li { margin: 7px 0; }
 
 footer {
   text-align: center;
@@ -598,17 +596,17 @@ footer {
           <div class="field">
             <label for="g-returnRate">Expected annual total return (%)</label>
             <input id="g-returnRate" type="number" min="-50" max="30" step="0.1" placeholder="e.g. 7" inputmode="decimal">
-            <p class="help">Long-term broad-market historical averages are often cited around 7–10% before inflation and fees.</p>
+            <p class="help">Long-term broad U.S. stock market historical averages (before inflation and fees) are often cited in the 7–10% range. Past performance is not a guarantee of future results.</p>
           </div>
           <div class="field">
             <label for="g-fee">Annual expense ratio / fee drag (%)</label>
             <input id="g-fee" type="number" min="0" max="5" step="0.01" placeholder="e.g. 0.03" inputmode="decimal">
-            <p class="help">Many low-cost index funds charge 0.03%–0.20%.</p>
+            <p class="help">Many low-cost index funds charge 0.03%–0.20%. Higher fees reduce net returns over time.</p>
           </div>
           <div class="field">
             <label for="g-inflation">Expected annual inflation (%)</label>
             <input id="g-inflation" type="number" min="0" max="20" step="0.1" placeholder="e.g. 2.5" inputmode="decimal">
-            <p class="help">Used to show approximate purchasing power of the ending balance.</p>
+            <p class="help">Used only to show approximate purchasing power of the ending balance. Long-term U.S. inflation has averaged roughly 2–3% in recent decades, but future rates are uncertain.</p>
           </div>
         </div>
 
@@ -623,7 +621,7 @@ footer {
           <div class="field">
             <label for="g-withdrawalRate">Annual withdrawal rate (%)</label>
             <input id="g-withdrawalRate" type="number" min="0" max="20" step="0.1" placeholder="e.g. 4" inputmode="decimal">
-            <p class="help">Common starting point is around 3–4%. This is only a first-year estimate.</p>
+            <p class="help">A commonly discussed starting point is around 3–4%. This is only a first-year estimate and is not a guarantee that a portfolio will last any specific number of years.</p>
           </div>
         </div>
       </div>
@@ -731,12 +729,41 @@ footer {
       <p>Choose an amount you can afford, automate it into a broad low-cost fund, reinvest dividends, and give it time.</p>
     </section>
 
+    <section class="card education-card">
+      <h2>What broad-market index funds are</h2>
+      <p>Funds such as those that track the S&amp;P 500 (for example VOO or similar) give you ownership in hundreds of large U.S. companies through a single investment. They are designed for long-term total return, not for high current income.</p>
+      <div class="callout amber">
+        <strong>Important:</strong> Stock market investments can and do decline in value, sometimes for extended periods. There is no guarantee of positive returns.
+      </div>
+    </section>
+
+    <section class="card education-card">
+      <h2>What makes growth investing work over long periods</h2>
+      <div class="grid three">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>Regular contributions</h3>
+          <p>Adding money consistently (dollar-cost averaging) reduces the impact of trying to time the market.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>Time in the market</h3>
+          <p>Historically, longer holding periods have increased the probability of positive real returns for broad equity indexes, though past results do not guarantee future ones.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>Low costs + reinvestment</h3>
+          <p>Lower expense ratios leave more of the return in your account. Reinvesting dividends compounds growth.</p>
+        </div>
+      </div>
+    </section>
+
     <section class="card">
       <h2>The simple takeaway</h2>
       <div class="grid three">
-        <div class="step"><h3>Choose a realistic amount & cadence</h3><p>Start with money and a schedule you can maintain.</p></div>
-        <div class="step"><h3>Keep costs low</h3><p>Prefer low expense ratios.</p></div>
-        <div class="step"><h3>Give it time</h3><p>Stay focused on the long-term plan.</p></div>
+        <div class="step"><h3>Choose a realistic amount & cadence</h3><p>Start with money and a schedule you can maintain for years.</p></div>
+        <div class="step"><h3>Keep costs low</h3><p>Prefer low expense ratios when possible.</p></div>
+        <div class="step"><h3>Give it time</h3><p>Stay focused on the long-term plan rather than short-term price moves.</p></div>
       </div>
       <p class="fineprint" style="margin-top:20px">This page is educational only and is not financial, investment, tax, or legal advice.</p>
     </section>
@@ -745,15 +772,15 @@ footer {
   <!-- ===================== DIVIDEND PANEL ===================== -->
   <div id="panelDividend" class="panel" role="tabpanel">
     <section class="notice">
-      <strong>Educational illustration only.</strong> Yields and growth rates are assumptions you enter. Companies can cut dividends. Past yields do not guarantee future income.
+      <strong>Educational illustration only.</strong> Yields and growth rates are assumptions you enter. Companies can cut or eliminate dividends. Past yields do not guarantee future income.
     </section>
 
     <section class="card">
       <h2>Build your dividend illustration</h2>
       <p class="section-copy">
         Your <strong>Core</strong> is a separate cash/interest vessel. 
-        You fund Core on one cadence and transfer from Core → Portfolio on another. 
-        This keeps Core from running dry.
+        You fund Core on one cadence and transfer from Core into the portfolio on another. 
+        Every money movement has its own selectable cadence so the model matches how you actually move money.
       </p>
 
       <div class="grid two">
@@ -793,7 +820,7 @@ footer {
           <div class="field">
             <label for="d-coreRate">Core interest / yield (%)</label>
             <input id="d-coreRate" type="number" min="0" max="15" step="0.01" placeholder="e.g. 3.32" inputmode="decimal">
-            <p class="help">SPAXX-style rate. Adjustable.</p>
+            <p class="help">SPAXX-style or high-yield savings rate. Rates change over time; this is only an assumption.</p>
           </div>
           <div class="field">
             <label for="d-toCore">Amount added <strong>to</strong> Core ($)</label>
@@ -806,7 +833,7 @@ footer {
               <option value="Quarterly">Quarterly</option>
               <option value="Yearly">Yearly</option>
             </select>
-            <p class="help">How often you put money into Core so it never runs dry.</p>
+            <p class="help">How often you put money into Core so it stays funded.</p>
           </div>
         </div>
       </div>
@@ -828,18 +855,21 @@ footer {
           <div class="field">
             <label for="d-yield">Expected dividend yield (%)</label>
             <input id="d-yield" type="number" min="0" max="20" step="0.1" placeholder="e.g. 3.5" inputmode="decimal">
-            <p class="help">A simple overall yield. Beginners can start with 2.5–4%.</p>
+            <p class="help">Overall yield you expect from the whole portfolio. Many broad dividend-focused ETFs have historically been in the roughly 2–4% range; individual stocks can be higher or lower and can change.</p>
           </div>
           <div class="field">
             <label for="d-priceGrowth">Expected annual price growth (%)</label>
             <input id="d-priceGrowth" type="number" min="-20" max="20" step="0.1" placeholder="e.g. 0" inputmode="decimal">
-            <p class="help">Optional. Many dividend investors use 0–5%.</p>
+            <p class="help">
+              Leave this at <strong>0</strong> if you are focused purely on income and want a conservative illustration that does not rely on share-price appreciation. 
+              You may enter a modest positive number (for example 1–4%) if you also expect some capital growth. Past price changes do not guarantee future ones.
+            </p>
           </div>
 
           <div class="toggle-row" style="margin:18px 18px 8px">
             <div>
               <div class="toggle-label">DRIP (Dividend Reinvestment)</div>
-              <div class="toggle-desc">On = dividends buy more shares. Off = dividends paid as cash.</div>
+              <div class="toggle-desc">On = dividends buy more shares. Off = dividends paid as cash you can spend.</div>
             </div>
             <label class="switch">
               <input type="checkbox" id="d-drip" checked>
@@ -848,13 +878,13 @@ footer {
           </div>
         </div>
 
-        <!-- Funding from Core + optional external -->
+        <!-- Funding from Core + external -->
         <div class="input-card contribution-card">
           <div class="box-heading">
             <span class="box-number">4</span>
             <div>
               <h3>Money flowing into the portfolio</h3>
-              <p class="help" style="border:0;margin:0;padding:0">Transfers from Core + any extra from outside.</p>
+              <p class="help" style="border:0;margin:0;padding:0">Every movement has its own amount and cadence.</p>
             </div>
           </div>
           <div class="field">
@@ -871,9 +901,17 @@ footer {
             <p class="help">How often Core sends money into the portfolio.</p>
           </div>
           <div class="field">
-            <label for="d-external">Extra contribution from outside each month ($)</label>
+            <label for="d-external">Extra contribution from outside ($)</label>
             <input id="d-external" type="number" min="0" placeholder="e.g. 0 or 200" inputmode="decimal">
-            <p class="help">Optional money that does <em>not</em> come from Core.</p>
+            <p class="help">Money that does <em>not</em> come from Core (paycheck, bonus, etc.).</p>
+          </div>
+          <div class="field">
+            <label for="d-extCadence">Cadence of extra contributions</label>
+            <select id="d-extCadence">
+              <option value="Monthly">Monthly</option>
+              <option value="Quarterly">Quarterly</option>
+              <option value="Yearly">Yearly</option>
+            </select>
           </div>
         </div>
       </div>
@@ -944,7 +982,12 @@ footer {
     <section class="card education-intro">
       <div class="eyebrow">Dividend investing guide</div>
       <h2>A simple Core + Portfolio system</h2>
-      <p>Keep cash earning interest in Core. Fund Core regularly so it never runs dry. Move money from Core into the portfolio on a schedule you can stick with.</p>
+      <p>Keep cash earning interest in Core. Fund Core regularly so it never runs dry. Move money from Core into the portfolio on a schedule you can stick with. Decide whether to reinvest dividends or take them as cash.</p>
+    </section>
+
+    <section class="card education-card">
+      <h2>What a dividend is</h2>
+      <p>A dividend is a portion of a company’s profits paid to shareholders. Yield is the annual dividend divided by the current price. Dividends can be reduced or eliminated; they are not guaranteed.</p>
     </section>
 
     <section class="card education-card green">
@@ -952,7 +995,7 @@ footer {
       <div class="grid two">
         <div class="definition">
           <h3>Core (your vessel)</h3>
-          <p>Cash or money-market holding. You add money to it on one cadence and send money out of it on another. Completely separate from the portfolio.</p>
+          <p>Cash or money-market holding (for example SPAXX or a high-yield savings account). You add money to it on one cadence and send money out of it on another. It is completely separate from the investment portfolio.</p>
         </div>
         <div class="definition">
           <h3>Portfolio</h3>
@@ -961,12 +1004,38 @@ footer {
       </div>
     </section>
 
+    <section class="card education-card">
+      <h2>Price growth vs pure income focus</h2>
+      <p>
+        If your primary goal is current income, setting expected price growth to <strong>0%</strong> is a reasonable and conservative planning assumption. 
+        It means the illustration does not rely on share prices rising. 
+        In reality many dividend-paying investments have historically shown some long-term price appreciation, but that is not guaranteed and should not be required for an income plan to work.
+      </p>
+      <p>
+        If you are still in the accumulation phase and also expect some capital growth, you may enter a modest positive number. Always treat any growth assumption as uncertain.
+      </p>
+    </section>
+
+    <section class="card education-card">
+      <h2>DRIP explained</h2>
+      <div class="grid two">
+        <div class="definition">
+          <h3>DRIP on</h3>
+          <p>Dividends automatically buy more shares. This is typically useful while you are still building the portfolio.</p>
+        </div>
+        <div class="definition">
+          <h3>DRIP off</h3>
+          <p>Dividends arrive as cash you can spend or redeploy. This is useful when you need the income.</p>
+        </div>
+      </div>
+    </section>
+
     <section class="card">
       <h2>The simple takeaway</h2>
       <div class="grid three">
         <div class="step"><h3>Fund Core regularly</h3><p>So it never runs out of money to send to the portfolio.</p></div>
-        <div class="step"><h3>Transfer on a schedule</h3><p>Consistent moves from Core → Portfolio beat perfect timing.</p></div>
-        <div class="step"><h3>Decide on DRIP</h3><p>Reinvest while building; take cash when you need income.</p></div>
+        <div class="step"><h3>Transfer on a schedule</h3><p>Consistent moves from Core → Portfolio beat trying to time the market.</p></div>
+        <div class="step"><h3>Decide on DRIP</h3><p>Reinvest while building; take cash when you need the income.</p></div>
       </div>
       <p class="fineprint" style="margin-top:20px">This page is educational only and is not financial, investment, tax, or legal advice.</p>
     </section>
@@ -1228,7 +1297,7 @@ footer {
       $("g-goalResult").classList.add("hidden"); gClear();
     });
 
-    // ========== DIVIDEND LOGIC — WITH BOTH CADENCES ==========
+    // ========== DIVIDEND LOGIC — FULL CADENCE SUPPORT ==========
     var dFields = ["d-age","d-retireAge","d-coreStart","d-coreRate","d-toCore","d-portStart","d-yield","d-priceGrowth","d-fromCore","d-external"];
 
     function dGetSettings() {
@@ -1245,8 +1314,16 @@ footer {
         fromCore: Math.max(0, n("d-fromCore")),
         fromCoreCadence: $("d-fromCoreCadence").value || "Quarterly",
         external: Math.max(0, n("d-external")),
+        extCadence: $("d-extCadence").value || "Monthly",
         drip: $("d-drip").checked
       };
+    }
+
+    function isEventMonth(cadence, month) {
+      if (cadence === "Monthly") return true;
+      if (cadence === "Quarterly") return [3, 6, 9, 12].indexOf(month) !== -1;
+      if (cadence === "Yearly") return month === 12;
+      return false;
     }
 
     function dRunModel(s) {
@@ -1266,36 +1343,28 @@ footer {
         var dividendsEarnedThisYear = 0;
 
         for (var month = 1; month <= 12; month++) {
-          // 1. Core additions based on cadence
-          var isAddEvent =
-            (s.toCoreCadence === "Monthly") ||
-            (s.toCoreCadence === "Quarterly" && [3, 6, 9, 12].indexOf(month) !== -1) ||
-            (s.toCoreCadence === "Yearly" && month === 12);
-
-          if (isAddEvent) {
+          // 1. Core additions
+          if (isEventMonth(s.toCoreCadence, month)) {
             core += s.toCore;
             addedToCoreThisYear += s.toCore;
           }
 
-          // 2. Core interest (monthly compounding)
+          // 2. Core interest (monthly)
           core *= (1 + coreMonthlyInterest);
 
-          // 3. Transfer from Core → Portfolio based on transfer cadence
-          var isTransferEvent =
-            (s.fromCoreCadence === "Monthly") ||
-            (s.fromCoreCadence === "Quarterly" && [3, 6, 9, 12].indexOf(month) !== -1) ||
-            (s.fromCoreCadence === "Yearly" && month === 12);
-
-          if (isTransferEvent) {
+          // 3. Transfer from Core → Portfolio
+          if (isEventMonth(s.fromCoreCadence, month)) {
             var transfer = Math.min(core, s.fromCore);
             core -= transfer;
             portfolio += transfer;
             fromCoreThisYear += transfer;
           }
 
-          // 4. Extra external contribution (always monthly for simplicity)
-          portfolio += s.external;
-          externalThisYear += s.external;
+          // 4. External contributions
+          if (isEventMonth(s.extCadence, month)) {
+            portfolio += s.external;
+            externalThisYear += s.external;
+          }
 
           // 5. Dividends (monthly slice)
           var dividendsThisMonth = portfolio * dividendMonthlyYield;
@@ -1439,6 +1508,7 @@ footer {
       $("d-fromCore").value = 1500;
       $("d-fromCoreCadence").value = "Quarterly";
       $("d-external").value = 0;
+      $("d-extCadence").value = "Monthly";
       $("d-drip").checked = true;
       dCalculate();
     });
@@ -1449,12 +1519,14 @@ footer {
     });
     $("d-toCoreCadence").addEventListener("change", dCalculate);
     $("d-fromCoreCadence").addEventListener("change", dCalculate);
+    $("d-extCadence").addEventListener("change", dCalculate);
     $("d-drip").addEventListener("change", dCalculate);
 
     $("d-resetBtn").addEventListener("click", function () {
       dFields.forEach(function (id) { if ($(id)) $(id).value = ""; });
       $("d-toCoreCadence").value = "Monthly";
       $("d-fromCoreCadence").value = "Quarterly";
+      $("d-extCadence").value = "Monthly";
       $("d-drip").checked = true;
       dClear();
     });
