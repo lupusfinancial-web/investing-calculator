@@ -183,10 +183,10 @@ p { margin: 0 0 12px; }
 [data-theme="dark"] .return-card .box-heading { background: #422006; }
 .withdrawal-card .box-heading { background: #f5f3ff; }
 [data-theme="dark"] .withdrawal-card .box-heading { background: #2e1065; }
-.basket-card .box-heading { background: #f0fdfa; }
-[data-theme="dark"] .basket-card .box-heading { background: #134e4a; }
 .core-card .box-heading { background: #fef3c7; }
 [data-theme="dark"] .core-card .box-heading { background: #78350f; }
+.portfolio-card .box-heading { background: #f0fdfa; }
+[data-theme="dark"] .portfolio-card .box-heading { background: #134e4a; }
 
 .box-number, .step-num {
   display: inline-flex;
@@ -204,8 +204,8 @@ p { margin: 0 0 12px; }
 .contribution-card .box-number { background: var(--green); }
 .return-card .box-number { background: var(--amber); }
 .withdrawal-card .box-number { background: var(--purple); }
-.basket-card .box-number { background: #0d9488; }
 .core-card .box-number { background: #b45309; }
+.portfolio-card .box-number { background: #0d9488; }
 
 .field { margin: 16px 18px; }
 .field + .field { margin-top: 18px; }
@@ -431,7 +431,7 @@ canvas { width: 100%; height: 100%; display: block; }
 }
 table {
   width: 100%;
-  min-width: 680px;
+  min-width: 720px;
   border-collapse: collapse;
   font-size: 0.9rem;
 }
@@ -507,22 +507,6 @@ th:first-child, td:first-child { text-align: left; }
   color: var(--green);
   font-weight: 800;
 }
-
-.weight-row {
-  display: grid;
-  grid-template-columns: 1fr 90px;
-  gap: 10px;
-  align-items: center;
-  margin-bottom: 10px;
-}
-.weight-row label { margin: 0; font-weight: 600; font-size: 0.9rem; }
-.weight-sum {
-  font-size: 0.85rem;
-  font-weight: 700;
-  margin-top: 8px;
-}
-.weight-sum.ok { color: var(--green); }
-.weight-sum.bad { color: var(--red); }
 
 footer {
   text-align: center;
@@ -624,7 +608,7 @@ footer {
               <option value="2">Semi-annually</option>
               <option value="1">Annually</option>
             </select>
-            <p class="help">How often you add new money. Monthly is easiest for most people; annual works well for bonuses or tax refunds.</p>
+            <p class="help">How often you add new money.</p>
           </div>
           <div class="field">
             <label for="g-increase">Annual increase to contribution amount (%)</label>
@@ -644,12 +628,12 @@ footer {
           <div class="field">
             <label for="g-returnRate">Expected annual total return (%)</label>
             <input id="g-returnRate" type="number" min="-50" max="30" step="0.1" placeholder="e.g. 7" inputmode="decimal">
-            <p class="help">Long-term broad-market historical averages are often cited around 7–10% before inflation and fees. This is an assumption, not a prediction.</p>
+            <p class="help">Long-term broad-market historical averages are often cited around 7–10% before inflation and fees.</p>
           </div>
           <div class="field">
             <label for="g-fee">Annual expense ratio / fee drag (%)</label>
             <input id="g-fee" type="number" min="0" max="5" step="0.01" placeholder="e.g. 0.03" inputmode="decimal">
-            <p class="help">Many low-cost index funds charge 0.03%–0.20%. Higher fees reduce the net return you keep.</p>
+            <p class="help">Many low-cost index funds charge 0.03%–0.20%.</p>
           </div>
           <div class="field">
             <label for="g-inflation">Expected annual inflation (%)</label>
@@ -669,7 +653,7 @@ footer {
           <div class="field">
             <label for="g-withdrawalRate">Annual withdrawal rate (%)</label>
             <input id="g-withdrawalRate" type="number" min="0" max="20" step="0.1" placeholder="e.g. 4" inputmode="decimal">
-            <p class="help">Common starting point discussed by many planners is around 3–4%. This is only a first-year estimate.</p>
+            <p class="help">Common starting point is around 3–4%. This is only a first-year estimate.</p>
           </div>
         </div>
       </div>
@@ -740,7 +724,7 @@ footer {
 
     <section class="card">
       <h2>Goal calculator</h2>
-      <p class="section-copy">Want a specific ending portfolio value? See roughly how much you would need to contribute each period under your current cadence and assumptions.</p>
+      <p class="section-copy">Want a specific ending portfolio value? See roughly how much you would need to contribute each period.</p>
       <div class="goal-area">
         <div>
           <label for="g-goal">Target portfolio value ($)</label>
@@ -771,34 +755,27 @@ footer {
       </div>
     </section>
 
-    <section class="card education-intro" id="g-learn">
+    <section class="card education-intro">
       <div class="eyebrow">Growth investing guide</div>
       <h2>A simple way to start growth investing</h2>
-      <p>Choose an amount you can afford, automate it into a broad low-cost fund, reinvest dividends, and give it time. You do not need to watch the market every day.</p>
-      <div class="education-nav">
-        <a href="#g-what-is-voo">What is VOO?</a>
-        <a href="#g-how-it-works">How it works</a>
-        <a href="#g-fees">Why fees matter</a>
-        <a href="#g-setup">Simple setup</a>
-        <a href="#g-taxes">Taxes & accounts</a>
-      </div>
+      <p>Choose an amount you can afford, automate it into a broad low-cost fund, reinvest dividends, and give it time.</p>
     </section>
 
-    <section class="card education-card" id="g-what-is-voo">
+    <section class="card education-card">
       <h2>What VOO is</h2>
-      <p>VOO is an ETF designed to track the S&amp;P 500. Buying it means you own tiny pieces of hundreds of large U.S. companies through one simple investment. Total return includes both price changes and dividends.</p>
+      <p>VOO is an ETF designed to track the S&amp;P 500. Buying it means you own tiny pieces of hundreds of large U.S. companies through one simple investment.</p>
       <div class="callout amber">
-        <strong>Important:</strong> VOO can (and will) go down in value. Owning many companies does not protect you when the overall market falls.
+        <strong>Important:</strong> VOO can (and will) go down in value.
       </div>
     </section>
 
-    <section class="card education-card" id="g-how-it-works">
+    <section class="card education-card">
       <h2>What makes growth investing work</h2>
       <div class="grid three">
         <div class="step">
           <div class="step-num">1</div>
           <h3>Regular contributions</h3>
-          <p>Add money consistently on a cadence you can stick with — monthly is most common, but quarterly or annual also works.</p>
+          <p>Add money consistently on a cadence you can stick with.</p>
         </div>
         <div class="step">
           <div class="step-num">2</div>
@@ -808,73 +785,43 @@ footer {
         <div class="step">
           <div class="step-num">3</div>
           <h3>Low costs + reinvestment</h3>
-          <p>Low expense ratios and reinvested dividends help more of the market’s return stay in your account.</p>
+          <p>Low expense ratios and reinvested dividends help more of the return stay in your account.</p>
         </div>
       </div>
     </section>
 
-    <section class="card education-card amber" id="g-fees">
+    <section class="card education-card amber">
       <h2>Why fees matter</h2>
-      <p>Even small annual fees compound against you. A fund that charges 1% per year can leave you with noticeably less after decades than a fund that charges 0.03%–0.10%.</p>
-      <div class="callout">
-        <strong>Tip:</strong> Many broad index ETFs (including popular S&amp;P 500 funds) charge well under 0.10%. The fee field in the calculator lets you see the drag of higher costs.
-      </div>
-    </section>
-
-    <section class="card education-card green" id="g-setup">
-      <h2>A simple setup checklist</h2>
-      <ol class="number-list">
-        <li>Build a small emergency cushion first.</li>
-        <li>Choose an account (Roth IRA is a common starting point if eligible).</li>
-        <li>Open the account at a major brokerage.</li>
-        <li>Link your checking account.</li>
-        <li>Pick a contribution amount and cadence you can afford.</li>
-        <li>Schedule automatic transfers and purchases.</li>
-        <li>Turn on dividend reinvestment.</li>
-        <li>Review once or twice per year.</li>
-      </ol>
-    </section>
-
-    <section class="card education-card purple" id="g-taxes">
-      <h2>What happens at tax time</h2>
-      <div class="grid three">
-        <div class="definition">
-          <h3>Roth IRA</h3>
-          <p>Contributions are after-tax. Qualified withdrawals in retirement can generally be tax-free.</p>
-        </div>
-        <div class="definition">
-          <h3>Traditional IRA</h3>
-          <p>Contributions may be deductible. Withdrawals are generally taxable as ordinary income.</p>
-        </div>
-        <div class="definition">
-          <h3>Taxable brokerage</h3>
-          <p>Flexible access, but dividends and sales can create taxable events each year.</p>
-        </div>
-      </div>
+      <p>Even small annual fees compound against you. Prefer low-cost index funds so more of the market’s return stays yours.</p>
     </section>
 
     <section class="card">
       <h2>The simple takeaway</h2>
       <div class="grid three">
         <div class="step"><h3>Choose a realistic amount & cadence</h3><p>Start with money and a schedule you can maintain.</p></div>
-        <div class="step"><h3>Keep costs low</h3><p>Prefer low expense ratios so more of the return stays yours.</p></div>
-        <div class="step"><h3>Give it time</h3><p>Stay focused on the long-term plan through normal market changes.</p></div>
+        <div class="step"><h3>Keep costs low</h3><p>Prefer low expense ratios.</p></div>
+        <div class="step"><h3>Give it time</h3><p>Stay focused on the long-term plan.</p></div>
       </div>
       <p class="fineprint" style="margin-top:20px">This page is educational only and is not financial, investment, tax, or legal advice.</p>
     </section>
   </div>
 
-  <!-- ===================== DIVIDEND PANEL ===================== -->
+  <!-- ===================== DIVIDEND PANEL (SIMPLIFIED) ===================== -->
   <div id="panelDividend" class="panel" role="tabpanel">
     <section class="notice">
-      <strong>Educational illustration only.</strong> Dividend yields and growth rates are assumptions you enter. Companies can cut or eliminate dividends. Past yields do not guarantee future income. Taxes, fees, and inflation matter.
+      <strong>Educational illustration only.</strong> Yields and growth rates are assumptions you enter. Companies can cut dividends. Past yields do not guarantee future income.
     </section>
 
     <section class="card">
       <h2>Build your dividend illustration</h2>
-      <p class="section-copy">Model a multi-basket dividend approach with optional cash contributions on a chosen cadence and a core cash-like holding (e.g. SPAXX).</p>
+      <p class="section-copy">
+        Your <strong>Core</strong> is a separate cash/interest vessel (like SPAXX). 
+        You move money from Core into your dividend portfolio on a schedule you choose. 
+        The portfolio itself is simple: one yield + optional price growth + DRIP.
+      </p>
 
       <div class="grid two">
+        <!-- Timeline -->
         <div class="input-card">
           <div class="box-heading">
             <span class="box-number">1</span>
@@ -885,7 +832,7 @@ footer {
           </div>
           <div class="field">
             <label for="d-age">Current age</label>
-            <input id="d-age" type="number" min="0" max="100" placeholder="e.g. 35" inputmode="numeric">
+            <input id="d-age" type="number" min="0" max="100" placeholder="e.g. 38" inputmode="numeric">
           </div>
           <div class="field">
             <label for="d-retireAge">Target age</label>
@@ -894,107 +841,50 @@ footer {
           </div>
         </div>
 
-        <div class="input-card contribution-card">
+        <!-- Core (completely separate) -->
+        <div class="input-card core-card">
           <div class="box-heading">
             <span class="box-number">2</span>
             <div>
-              <h3>Cash injections</h3>
-              <p class="help" style="border:0;margin:0;padding:0">How much new money and how often?</p>
+              <h3>Core holding (separate)</h3>
+              <p class="help" style="border:0;margin:0;padding:0">Your cash / interest vessel. Not part of the portfolio.</p>
             </div>
           </div>
           <div class="field">
-            <label for="d-starting">Current total portfolio balance ($)</label>
-            <input id="d-starting" type="number" min="0" placeholder="e.g. 45000" inputmode="decimal">
+            <label for="d-coreStart">Current core balance ($)</label>
+            <input id="d-coreStart" type="number" min="0" placeholder="e.g. 25000" inputmode="decimal">
           </div>
           <div class="field">
-            <label for="d-contrib">Contribution amount ($)</label>
-            <input id="d-contrib" type="number" min="0" placeholder="e.g. 800" inputmode="decimal">
-          </div>
-          <div class="field">
-            <label for="d-cadence">Contribution cadence</label>
-            <select id="d-cadence">
-              <option value="12">Monthly</option>
-              <option value="4">Quarterly</option>
-              <option value="2">Semi-annually</option>
-              <option value="1">Annually</option>
-            </select>
-            <p class="help">How often you add new cash during the year.</p>
+            <label for="d-coreRate">Core interest / yield (%)</label>
+            <input id="d-coreRate" type="number" min="0" max="15" step="0.01" placeholder="e.g. 3.32" inputmode="decimal">
+            <p class="help">SPAXX-style rate. Adjustable. Not a guarantee of future rates.</p>
           </div>
         </div>
       </div>
 
       <div class="grid two" style="margin-top:18px">
-        <div class="input-card basket-card">
+        <!-- Portfolio -->
+        <div class="input-card portfolio-card">
           <div class="box-heading">
             <span class="box-number">3</span>
             <div>
-              <h3>Basket weights & assumptions</h3>
-              <p class="help" style="border:0;margin:0;padding:0">Weights should total 100% (including Core).</p>
-            </div>
-          </div>
-          <div class="field" style="margin-bottom:8px">
-            <div class="weight-row">
-              <label for="d-w-income">Income basket weight (%)</label>
-              <input id="d-w-income" type="number" min="0" max="100" step="1" placeholder="40">
-            </div>
-            <div class="weight-row">
-              <label for="d-y-income">Income yield (%)</label>
-              <input id="d-y-income" type="number" min="0" max="20" step="0.1" placeholder="4.5">
-            </div>
-            <div class="weight-row">
-              <label for="d-g-income">Income growth / price return (%)</label>
-              <input id="d-g-income" type="number" min="-20" max="20" step="0.1" placeholder="2">
-            </div>
-          </div>
-          <div class="field" style="margin-bottom:8px">
-            <div class="weight-row">
-              <label for="d-w-growth">Growth basket weight (%)</label>
-              <input id="d-w-growth" type="number" min="0" max="100" step="1" placeholder="30">
-            </div>
-            <div class="weight-row">
-              <label for="d-y-growth">Growth yield (%)</label>
-              <input id="d-y-growth" type="number" min="0" max="15" step="0.1" placeholder="1.8">
-            </div>
-            <div class="weight-row">
-              <label for="d-g-growth">Growth growth / price return (%)</label>
-              <input id="d-g-growth" type="number" min="-20" max="30" step="0.1" placeholder="7">
+              <h3>Dividend portfolio</h3>
+              <p class="help" style="border:0;margin:0;padding:0">The actual investments that pay dividends.</p>
             </div>
           </div>
           <div class="field">
-            <div class="weight-row">
-              <label for="d-w-stability">Stability basket weight (%)</label>
-              <input id="d-w-stability" type="number" min="0" max="100" step="1" placeholder="20">
-            </div>
-            <div class="weight-row">
-              <label for="d-y-stability">Stability yield (%)</label>
-              <input id="d-y-stability" type="number" min="0" max="15" step="0.1" placeholder="3.2">
-            </div>
-            <div class="weight-row">
-              <label for="d-g-stability">Stability growth / price return (%)</label>
-              <input id="d-g-stability" type="number" min="-20" max="20" step="0.1" placeholder="4">
-            </div>
-          </div>
-        </div>
-
-        <div class="input-card core-card">
-          <div class="box-heading">
-            <span class="box-number">4</span>
-            <div>
-              <h3>Core cash-like holding</h3>
-              <p class="help" style="border:0;margin:0;padding:0">SPAXX-style position (or similar money-market / HYSA).</p>
-            </div>
+            <label for="d-portStart">Current portfolio balance ($)</label>
+            <input id="d-portStart" type="number" min="0" placeholder="e.g. 40000" inputmode="decimal">
           </div>
           <div class="field">
-            <label for="d-w-core">Core weight (%)</label>
-            <input id="d-w-core" type="number" min="0" max="100" step="1" placeholder="10">
+            <label for="d-yield">Expected dividend yield (%)</label>
+            <input id="d-yield" type="number" min="0" max="20" step="0.1" placeholder="e.g. 3.5" inputmode="decimal">
+            <p class="help">A simple overall yield you expect from the whole portfolio. Beginners can start with 2.5–4%.</p>
           </div>
           <div class="field">
-            <label for="d-core-rate">Core interest / yield (%)</label>
-            <input id="d-core-rate" type="number" min="0" max="15" step="0.01" placeholder="3.32">
-            <p class="help">Current SPAXX-like rate is adjustable. This is not a guarantee of future rates.</p>
-          </div>
-          <div class="field">
-            <div id="d-weightSum" class="weight-sum">Weights total: —</div>
+            <label for="d-priceGrowth">Expected annual price growth (%)</label>
+            <input id="d-priceGrowth" type="number" min="-20" max="20" step="0.1" placeholder="e.g. 3" inputmode="decimal">
+            <p class="help">Optional. Many dividend investors use 0–5%. Leave blank or 0 if you only care about income.</p>
           </div>
 
           <div class="toggle-row" style="margin:18px 18px 8px">
@@ -1008,6 +898,45 @@ footer {
             </label>
           </div>
         </div>
+
+        <!-- Funding from Core + optional external -->
+        <div class="input-card contribution-card">
+          <div class="box-heading">
+            <span class="box-number">4</span>
+            <div>
+              <h3>Funding the portfolio</h3>
+              <p class="help" style="border:0;margin:0;padding:0">Money moving into the portfolio.</p>
+            </div>
+          </div>
+          <div class="field">
+            <label for="d-fromCore">Amount transferred from Core → Portfolio ($)</label>
+            <input id="d-fromCore" type="number" min="0" placeholder="e.g. 500" inputmode="decimal">
+          </div>
+          <div class="field">
+            <label for="d-coreCadence">Transfer cadence from Core</label>
+            <select id="d-coreCadence">
+              <option value="12">Monthly</option>
+              <option value="4">Quarterly</option>
+              <option value="2">Semi-annually</option>
+              <option value="1">Annually</option>
+            </select>
+            <p class="help">How often money leaves Core and enters the portfolio.</p>
+          </div>
+          <div class="field">
+            <label for="d-external">Extra contribution from outside ($)</label>
+            <input id="d-external" type="number" min="0" placeholder="e.g. 0 or 200" inputmode="decimal">
+            <p class="help">Optional money from paycheck, bonus, etc. (not from Core).</p>
+          </div>
+          <div class="field">
+            <label for="d-extCadence">Extra contribution cadence</label>
+            <select id="d-extCadence">
+              <option value="12">Monthly</option>
+              <option value="4">Quarterly</option>
+              <option value="2">Semi-annually</option>
+              <option value="1">Annually</option>
+            </select>
+          </div>
+        </div>
       </div>
 
       <div class="button-row">
@@ -1019,16 +948,16 @@ footer {
 
     <div class="metrics-grid">
       <div class="metric blue">
-        <div class="label">You put in</div>
-        <div class="value" id="d-contributions">—</div>
-        <div class="sub">Starting + all cash injections</div>
-      </div>
-      <div class="metric green">
         <div class="label">Ending portfolio value</div>
-        <div class="value" id="d-ending">—</div>
+        <div class="value" id="d-endingPort">—</div>
         <div class="sub" id="d-yearsLabel">Enter ages to begin</div>
       </div>
       <div class="metric amber">
+        <div class="label">Ending core value</div>
+        <div class="value" id="d-endingCore">—</div>
+        <div class="sub">Still sitting in Core</div>
+      </div>
+      <div class="metric green">
         <div class="label">Est. annual dividend income</div>
         <div class="value" id="d-divIncome">—</div>
         <div class="sub" id="d-dripLabel">At target age</div>
@@ -1036,20 +965,20 @@ footer {
       <div class="metric purple">
         <div class="label">Est. monthly income</div>
         <div class="value" id="d-monthlyIncome">—</div>
-        <div class="sub">From dividends + core interest</div>
+        <div class="sub">From portfolio dividends</div>
       </div>
     </div>
 
     <section class="card">
-      <h2>Portfolio value & income over time</h2>
-      <p class="section-copy">Blue = portfolio value. Amber = cumulative cash dividends received (only when DRIP is off).</p>
+      <h2>Portfolio, Core & income over time</h2>
+      <p class="section-copy">Blue = portfolio value · Amber = core balance · Green = cumulative cash dividends (only when DRIP is off)</p>
       <div class="chart-wrap">
         <canvas id="d-growthChart" role="img" aria-label="Dividend portfolio chart"></canvas>
       </div>
       <div class="legend">
         <span><i class="dot blue"></i> Portfolio value</span>
-        <span><i class="dot amber"></i> Cumulative cash dividends (DRIP off)</span>
-        <span><i class="dot green"></i> Total cash injected</span>
+        <span><i class="dot amber"></i> Core balance</span>
+        <span><i class="dot green"></i> Cumulative cash dividends (DRIP off)</span>
       </div>
     </section>
 
@@ -1060,10 +989,11 @@ footer {
           <thead>
             <tr>
               <th>Year / Age</th>
-              <th>Cash added</th>
+              <th>From Core</th>
+              <th>Extra added</th>
               <th>Dividends earned</th>
               <th>Portfolio value</th>
-              <th>Annual income run-rate</th>
+              <th>Core value</th>
             </tr>
           </thead>
           <tbody id="d-resultsTable"></tbody>
@@ -1071,119 +1001,65 @@ footer {
       </div>
     </section>
 
-    <section class="card education-intro" id="d-learn">
+    <!-- Simplified education -->
+    <section class="card education-intro">
       <div class="eyebrow">Dividend investing guide</div>
-      <h2>A simple way to start dividend investing</h2>
-      <p>Focus on companies (or funds) that share profits with owners. Automate contributions, decide whether to reinvest or take the cash, and build a diversified set of income sources.</p>
-      <div class="education-nav">
-        <a href="#d-what-is-div">What is a dividend?</a>
-        <a href="#d-drip-edu">DRIP explained</a>
-        <a href="#d-baskets">Why baskets?</a>
-        <a href="#d-core">Core cash holding</a>
-        <a href="#d-setup-div">Simple setup</a>
-        <a href="#d-risks">Risks to know</a>
-      </div>
+      <h2>A simple way to use a Core + Portfolio system</h2>
+      <p>Keep cash earning interest in a Core account. Move money from Core into a dividend portfolio on a schedule you can stick with. Decide whether to reinvest the dividends or take them as income.</p>
     </section>
 
-    <section class="card education-card" id="d-what-is-div">
+    <section class="card education-card">
       <h2>What a dividend is</h2>
-      <p>A dividend is a portion of a company’s profits paid to shareholders, usually quarterly. You can receive it as cash or automatically reinvest it to buy more shares.</p>
-      <div class="callout">
-        <strong>Yield</strong> is the annual dividend divided by the current price, expressed as a percentage. A 4% yield on a $10,000 position would generate about $400 per year if the dividend stays the same.
-      </div>
+      <p>A dividend is a portion of a company’s profits paid to shareholders. Yield is the annual dividend divided by price. A 3.5% yield on a $50,000 portfolio would generate about $1,750 per year if the dividend stays the same.</p>
     </section>
 
-    <section class="card education-card green" id="d-drip-edu">
-      <h2>What DRIP means</h2>
-      <p>DRIP = Dividend Reinvestment Plan. When it is on, dividends automatically buy more shares instead of sitting as cash.</p>
+    <section class="card education-card green">
+      <h2>Core vs Portfolio</h2>
       <div class="grid two">
         <div class="definition">
-          <h3>DRIP on (accumulation years)</h3>
-          <p>Most long-term investors keep DRIP on so dividends compound. You do not receive spendable cash, but your share count grows.</p>
+          <h3>Core (your vessel)</h3>
+          <p>Cash or money-market holding (SPAXX, HYSA, etc.). Earns interest. Acts as storage and the source of new investments. Completely separate from the portfolio.</p>
         </div>
         <div class="definition">
-          <h3>DRIP off (income years)</h3>
-          <p>Turn it off when you want the cash for living expenses. Dividends become part of your income stream.</p>
+          <h3>Portfolio</h3>
+          <p>The actual dividend-paying investments. This is where you want long-term growth of income.</p>
         </div>
       </div>
     </section>
 
-    <section class="card education-card teal" id="d-baskets">
-      <h2>Why use baskets (Income / Growth / Stability)</h2>
-      <p>A single high-yield stock or fund can be risky. Grouping holdings by role makes the portfolio easier to understand and rebalance.</p>
-      <div class="grid three">
+    <section class="card education-card">
+      <h2>DRIP explained</h2>
+      <div class="grid two">
         <div class="definition">
-          <h3>Income basket</h3>
-          <p>Higher current yield. Often utilities, REITs, energy, or dividend ETFs. More sensitive to rate changes and dividend cuts.</p>
+          <h3>DRIP on</h3>
+          <p>Dividends automatically buy more shares. Best while you are still building.</p>
         </div>
         <div class="definition">
-          <h3>Growth basket</h3>
-          <p>Lower yield, higher expected price appreciation. Dividend growers that raise payouts over time.</p>
+          <h3>DRIP off</h3>
+          <p>Dividends arrive as cash you can spend. Useful when you need income.</p>
         </div>
-        <div class="definition">
-          <h3>Stability basket</h3>
-          <p>Balanced yield and quality. Defensive sectors or broad quality dividend funds.</p>
-        </div>
-      </div>
-      <div class="callout amber">
-        <strong>Weights are personal.</strong> There is no single correct mix. The sample uses 40 / 30 / 20 / 10 only as a starting illustration.
       </div>
     </section>
 
-    <section class="card education-card amber" id="d-core">
-      <h2>Core cash-like holding (SPAXX example)</h2>
-      <p>Many investors keep a slice of the portfolio in a money-market fund or high-yield savings vehicle. SPAXX (Fidelity Government Money Market) is one common example that currently yields in the low-to-mid 3% range (rate changes over time).</p>
-      <ul class="check-list">
-        <li>Provides dry powder for opportunities or emergencies</li>
-        <li>Earns a modest yield while staying liquid</li>
-        <li>Reduces overall portfolio volatility</li>
-        <li>Rate is not fixed — it floats with short-term rates</li>
-      </ul>
-    </section>
-
-    <section class="card education-card green" id="d-setup-div">
-      <h2>A simple dividend setup</h2>
+    <section class="card education-card amber">
+      <h2>Simple setup</h2>
       <ol class="number-list">
-        <li>Decide your target allocation across Income / Growth / Stability / Core.</li>
-        <li>Choose low-cost dividend ETFs or individual stocks that fit each role.</li>
-        <li>Open or use an existing brokerage account (taxable or IRA).</li>
-        <li>Set a contribution cadence you can stick with (monthly is easiest for most people).</li>
-        <li>Turn DRIP on while you are still building the portfolio.</li>
-        <li>Rebalance once or twice a year if weights drift too far.</li>
-        <li>When you need income, turn DRIP off on the positions that will fund spending.</li>
+        <li>Decide how much sits in Core vs already invested in the portfolio.</li>
+        <li>Choose a transfer amount and cadence from Core → Portfolio that you can maintain.</li>
+        <li>Pick a realistic overall yield assumption (many broad dividend ETFs sit roughly in the 2.5–4% range).</li>
+        <li>Turn DRIP on while building; turn it off when you want the cash.</li>
+        <li>Review once or twice a year.</li>
       </ol>
     </section>
 
-    <section class="card education-card purple" id="d-risks">
-      <h2>Risks every dividend investor should know</h2>
-      <div class="grid two">
-        <div class="definition">
-          <h3>Dividend cuts</h3>
-          <p>Companies can reduce or eliminate dividends when profits fall. High yield is not always safer.</p>
-        </div>
-        <div class="definition">
-          <h3>Interest-rate sensitivity</h3>
-          <p>Many high-yield stocks and REITs fall when rates rise because their yields look less attractive versus bonds or cash.</p>
-        </div>
-        <div class="definition">
-          <h3>Concentration risk</h3>
-          <p>Owning only a few high-yield names can hurt if one or two cut the dividend.</p>
-        </div>
-        <div class="definition">
-          <h3>Taxes</h3>
-          <p>In taxable accounts, dividends are usually taxable in the year received (qualified dividends often get preferential rates). IRAs defer or change the tax treatment.</p>
-        </div>
-      </div>
-    </section>
-
     <section class="card">
-      <h2>The simple takeaway for dividend investors</h2>
+      <h2>The simple takeaway</h2>
       <div class="grid three">
-        <div class="step"><h3>Define roles</h3><p>Income, Growth, Stability, and a cash core each serve a purpose.</p></div>
-        <div class="step"><h3>Automate contributions</h3><p>Pick a cadence and amount you can maintain.</p></div>
+        <div class="step"><h3>Core is storage + interest</h3><p>Keep it separate. Use it to fund the portfolio.</p></div>
+        <div class="step"><h3>Move money on a schedule</h3><p>Consistent transfers beat perfect timing.</p></div>
         <div class="step"><h3>Decide on DRIP</h3><p>Reinvest while building; take cash when you need income.</p></div>
       </div>
-      <p class="fineprint" style="margin-top:20px">This page is educational only and is not financial, investment, tax, or legal advice. Dividend rates and yields can change.</p>
+      <p class="fineprint" style="margin-top:20px">This page is educational only and is not financial, investment, tax, or legal advice.</p>
     </section>
   </div>
 </main>
@@ -1257,7 +1133,7 @@ footer {
     tabGrowth.addEventListener("click", function () { switchTab("growth"); });
     tabDividend.addEventListener("click", function () { switchTab("dividend"); });
 
-    // ========== GROWTH LOGIC ==========
+    // ========== GROWTH LOGIC (unchanged from previous) ==========
     var gFields = ["g-age","g-retireAge","g-starting","g-contrib","g-increase","g-returnRate","g-fee","g-inflation","g-withdrawalRate"];
 
     function gGetSettings() {
@@ -1413,7 +1289,7 @@ footer {
       if (!goal) { out.innerHTML = "<strong>Enter a target portfolio value first.</strong>"; out.classList.remove("hidden"); return; }
       if (!years) { out.innerHTML = "<strong>Enter a current age and a higher target age first.</strong>"; out.classList.remove("hidden"); return; }
       if (gRunModel(Object.assign({}, s, { contrib: 0 })).balance >= goal) {
-        out.innerHTML = "<strong>Approximate contribution needed: $0</strong><br>Your current balance already reaches this target under the illustration.";
+        out.innerHTML = "<strong>Approximate contribution needed: $0</strong><br>Your current balance already reaches this target.";
         out.classList.remove("hidden"); out.classList.add("green"); return;
       }
       var low = 0, high = 500000;
@@ -1422,7 +1298,7 @@ footer {
         if (gRunModel(Object.assign({}, s, { contrib: mid })).balance < goal) low = mid; else high = mid;
       }
       var cadenceLabel = {12:"month",4:"quarter",2:"half-year",1:"year"}[s.periodsPerYear] || "period";
-      out.innerHTML = "<strong>Approximate amount needed: " + fmt(high) + " per " + cadenceLabel + "</strong><br>Illustration only under your current assumptions (return, fees, cadence, increases).";
+      out.innerHTML = "<strong>Approximate amount needed: " + fmt(high) + " per " + cadenceLabel + "</strong><br>Illustration only under your current assumptions.";
       out.classList.remove("hidden", "green");
     }
 
@@ -1443,113 +1319,112 @@ footer {
       $("g-goalResult").classList.add("hidden"); gClear();
     });
 
-    // ========== DIVIDEND LOGIC ==========
-    var dFields = ["d-age","d-retireAge","d-starting","d-contrib","d-w-income","d-y-income","d-g-income",
-                   "d-w-growth","d-y-growth","d-g-growth","d-w-stability","d-y-stability","d-g-stability",
-                   "d-w-core","d-core-rate"];
-
-    function dUpdateWeightSum() {
-      var total = n("d-w-income") + n("d-w-growth") + n("d-w-stability") + n("d-w-core");
-      var el = $("d-weightSum");
-      el.textContent = "Weights total: " + total.toFixed(0) + "%";
-      el.className = "weight-sum " + (Math.abs(total - 100) < 0.5 ? "ok" : "bad");
-    }
+    // ========== DIVIDEND LOGIC (SIMPLIFIED) ==========
+    var dFields = ["d-age","d-retireAge","d-coreStart","d-coreRate","d-portStart","d-yield","d-priceGrowth","d-fromCore","d-external"];
 
     function dGetSettings() {
-      var cadence = parseInt($("d-cadence").value, 10) || 12;
       return {
         age: Math.max(0, Math.min(100, n("d-age"))),
         target: Math.max(0, Math.min(110, n("d-retireAge"))),
-        starting: Math.max(0, n("d-starting")),
-        contrib: Math.max(0, n("d-contrib")),
-        periodsPerYear: cadence,
-        drip: $("d-drip").checked,
-        wIncome: Math.max(0, n("d-w-income")) / 100,
-        yIncome: Math.max(0, n("d-y-income")) / 100,
-        gIncome: n("d-g-income") / 100,
-        wGrowth: Math.max(0, n("d-w-growth")) / 100,
-        yGrowth: Math.max(0, n("d-y-growth")) / 100,
-        gGrowth: n("d-g-growth") / 100,
-        wStability: Math.max(0, n("d-w-stability")) / 100,
-        yStability: Math.max(0, n("d-y-stability")) / 100,
-        gStability: n("d-g-stability") / 100,
-        wCore: Math.max(0, n("d-w-core")) / 100,
-        coreRate: Math.max(0, n("d-core-rate")) / 100
+        coreStart: Math.max(0, n("d-coreStart")),
+        coreRate: Math.max(0, n("d-coreRate")) / 100,
+        portStart: Math.max(0, n("d-portStart")),
+        yield: Math.max(0, n("d-yield")) / 100,
+        priceGrowth: n("d-priceGrowth") / 100,
+        fromCore: Math.max(0, n("d-fromCore")),
+        coreCadence: parseInt($("d-coreCadence").value, 10) || 12,
+        external: Math.max(0, n("d-external")),
+        extCadence: parseInt($("d-extCadence").value, 10) || 12,
+        drip: $("d-drip").checked
       };
     }
 
     function dRunModel(s) {
       var years = Math.max(0, Math.round(s.target - s.age));
-      var bal = s.starting;
-      var deposited = s.starting;
+      var core = s.coreStart;
+      var port = s.portStart;
       var cumDivCash = 0;
       var rows = [];
-      var periods = s.periodsPerYear;
-      var contribPerPeriod = s.contrib;
+
+      var corePeriodRate = Math.pow(1 + s.coreRate, 1 / s.coreCadence) - 1;
+      var fromCorePerPeriod = s.fromCore;
+      var extPerPeriod = s.external;
 
       for (var year = 1; year <= years; year++) {
-        var startBal = bal;
-        var addedThisYear = contribPerPeriod * periods;
-        bal += addedThisYear;
-        deposited += addedThisYear;
+        var fromCoreThisYear = 0;
+        var externalThisYear = 0;
 
-        var avgBal = (startBal + bal) / 2;
-        var divIncome = avgBal * (s.wIncome * s.yIncome + s.wGrowth * s.yGrowth + s.wStability * s.yStability + s.wCore * s.coreRate);
-        var priceGrowth = avgBal * (s.wIncome * s.gIncome + s.wGrowth * s.gGrowth + s.wStability * s.gStability);
-
-        if (s.drip) {
-          bal += divIncome + priceGrowth;
-        } else {
-          bal += priceGrowth;
-          cumDivCash += divIncome;
+        // Core transfers + interest (applied in periods)
+        for (var p = 0; p < s.coreCadence; p++) {
+          // earn interest on core first
+          core = core * (1 + corePeriodRate);
+          // then transfer (if enough)
+          var transfer = Math.min(fromCorePerPeriod, Math.max(0, core));
+          core -= transfer;
+          port += transfer;
+          fromCoreThisYear += transfer;
         }
 
-        var runRate = bal * (s.wIncome * s.yIncome + s.wGrowth * s.yGrowth + s.wStability * s.yStability + s.wCore * s.coreRate);
+        // External contributions
+        for (var e = 0; e < s.extCadence; e++) {
+          port += extPerPeriod;
+          externalThisYear += extPerPeriod;
+        }
+
+        // Portfolio: dividends + price growth for the year
+        var avgPort = port; // simplified
+        var divEarned = avgPort * s.yield;
+        var growth = avgPort * s.priceGrowth;
+
+        if (s.drip) {
+          port += divEarned + growth;
+        } else {
+          port += growth;
+          cumDivCash += divEarned;
+        }
 
         rows.push({
           year: year,
           age: s.age + year,
-          added: addedThisYear,
-          divEarned: divIncome,
-          balance: bal,
-          runRate: runRate,
-          cumDivCash: cumDivCash,
-          deposited: deposited
+          fromCore: fromCoreThisYear,
+          external: externalThisYear,
+          divEarned: divEarned,
+          port: port,
+          core: core,
+          cumDivCash: cumDivCash
         });
       }
 
-      var finalRunRate = bal * (s.wIncome * s.yIncome + s.wGrowth * s.yGrowth + s.wStability * s.yStability + s.wCore * s.coreRate);
+      var finalIncome = port * s.yield;
       return {
-        balance: bal,
-        deposited: deposited,
+        port: port,
+        core: core,
         years: years,
         rows: rows,
-        finalAnnualIncome: finalRunRate,
+        finalAnnualIncome: finalIncome,
         cumDivCash: cumDivCash
       };
     }
 
     function dClear() {
-      ["d-contributions","d-ending","d-divIncome","d-monthlyIncome"].forEach(function (id) {
+      ["d-endingPort","d-endingCore","d-divIncome","d-monthlyIncome"].forEach(function (id) {
         $(id).textContent = "—";
       });
       $("d-yearsLabel").textContent = "Enter ages to begin";
       $("d-dripLabel").textContent = "At target age";
       $("d-resultsTable").innerHTML = "";
       var c = $("d-growthChart"); if (c) c.getContext("2d").clearRect(0,0,c.width,c.height);
-      dUpdateWeightSum();
     }
 
     function dCalculate() {
-      dUpdateWeightSum();
       var anyFilled = dFields.some(function (id) { return $(id) && $(id).value.trim(); });
       if (!anyFilled) { dClear(); return; }
 
       var s = dGetSettings();
       var m = dRunModel(s);
 
-      $("d-contributions").textContent = fmt(m.deposited);
-      $("d-ending").textContent = fmt(m.balance);
+      $("d-endingPort").textContent = fmt(m.port);
+      $("d-endingCore").textContent = fmt(m.core);
       if (m.years > 0) $("d-yearsLabel").textContent = "Over " + m.years + " year" + (m.years === 1 ? "" : "s");
       else $("d-yearsLabel").textContent = "Enter ages to begin";
 
@@ -1558,7 +1433,14 @@ footer {
       $("d-monthlyIncome").textContent = fmt(m.finalAnnualIncome / 12);
 
       $("d-resultsTable").innerHTML = m.rows.map(function (r) {
-        return "<tr><td>Year " + r.year + " · Age " + r.age + "</td><td>" + fmt(r.added) + "</td><td>" + fmt(r.divEarned) + "</td><td><strong>" + fmt(r.balance) + "</strong></td><td>" + fmt(r.runRate) + "</td></tr>";
+        return "<tr>" +
+          "<td>Year " + r.year + " · Age " + r.age + "</td>" +
+          "<td>" + fmt(r.fromCore) + "</td>" +
+          "<td>" + fmt(r.external) + "</td>" +
+          "<td>" + fmt(r.divEarned) + "</td>" +
+          "<td><strong>" + fmt(r.port) + "</strong></td>" +
+          "<td>" + fmt(r.core) + "</td>" +
+          "</tr>";
       }).join("");
 
       dDrawChart(m.rows, s.drip);
@@ -1580,8 +1462,8 @@ footer {
       var pad = { left: 68, right: 16, top: 18, bottom: 36 };
       var maxVal = 1;
       rows.forEach(function (r) {
-        if (r.balance > maxVal) maxVal = r.balance;
-        if (r.deposited > maxVal) maxVal = r.deposited;
+        if (r.port > maxVal) maxVal = r.port;
+        if (r.core > maxVal) maxVal = r.core;
         if (!dripOn && r.cumDivCash > maxVal) maxVal = r.cumDivCash;
       });
       maxVal *= 1.08;
@@ -1600,9 +1482,9 @@ footer {
         rows.forEach(function (r, i) { var px = x(i), py = y(r[key]); if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py); });
         ctx.strokeStyle = color; ctx.lineWidth = lw; ctx.lineJoin = "round"; ctx.lineCap = "round"; ctx.stroke();
       }
-      drawLine("deposited", "#059669", 2);
-      drawLine("balance", "#2563eb", 2.6);
-      if (!dripOn) drawLine("cumDivCash", "#d97706", 2.2);
+      drawLine("port", "#2563eb", 2.6);
+      drawLine("core", "#d97706", 2.2);
+      if (!dripOn) drawLine("cumDivCash", "#059669", 2);
 
       if (rows.length >= 2) {
         ctx.fillStyle = textColor; ctx.textAlign = "center";
@@ -1615,21 +1497,16 @@ footer {
 
     $("d-sampleBtn").addEventListener("click", function () {
       $("d-age").value = 38;
-      $("d-retireAge").value = 62;
-      $("d-starting").value = 65000;
-      $("d-contrib").value = 750;
-      $("d-cadence").value = "12";
-      $("d-w-income").value = 40;
-      $("d-y-income").value = 4.5;
-      $("d-g-income").value = 2;
-      $("d-w-growth").value = 30;
-      $("d-y-growth").value = 1.8;
-      $("d-g-growth").value = 7;
-      $("d-w-stability").value = 20;
-      $("d-y-stability").value = 3.2;
-      $("d-g-stability").value = 4;
-      $("d-w-core").value = 10;
-      $("d-core-rate").value = 3.32;
+      $("d-retireAge").value = 60;
+      $("d-coreStart").value = 28000;
+      $("d-coreRate").value = 3.32;
+      $("d-portStart").value = 42000;
+      $("d-yield").value = 3.5;
+      $("d-priceGrowth").value = 3;
+      $("d-fromCore").value = 600;
+      $("d-coreCadence").value = "12";
+      $("d-external").value = 0;
+      $("d-extCadence").value = "12";
       $("d-drip").checked = true;
       dCalculate();
     });
@@ -1638,11 +1515,14 @@ footer {
       var el = $(id);
       if (el) el.addEventListener("input", dCalculate);
     });
-    $("d-cadence").addEventListener("change", dCalculate);
+    $("d-coreCadence").addEventListener("change", dCalculate);
+    $("d-extCadence").addEventListener("change", dCalculate);
     $("d-drip").addEventListener("change", dCalculate);
+
     $("d-resetBtn").addEventListener("click", function () {
       dFields.forEach(function (id) { if ($(id)) $(id).value = ""; });
-      $("d-cadence").value = "12";
+      $("d-coreCadence").value = "12";
+      $("d-extCadence").value = "12";
       $("d-drip").checked = true;
       dClear();
     });
