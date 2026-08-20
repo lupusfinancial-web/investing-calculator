@@ -594,18 +594,57 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted);font-size:.85
       row.className="basket-row";row.id=id;
       row.innerHTML='<div class="basket-header"><span class="basket-title">Basket</span><button type="button" class="remove-basket">Remove</button></div><div class="basket-grid"><div><label>Basket name</label><input type="text" class="basket-name" placeholder="e.g. Income" value="'+(data.name||"")+'"></div><div><label>Target weight of new money (%)</label><input type="number" class="basket-weight" min="0" max="100" step="0.1" placeholder="75" value="'+(data.weight||"")+'"></div></div>';
       $("d-basketsContainer").appendChild(row);
-      row.querySelector(".remove-basket").addEventListener("click",function(){row.remove();refreshPositionBasketOptions();updateWeightStatus();dCalculate()});
-      row.querySelectorAll("input").forEach(function(el){el.addEventListener("input",function(){refreshPositionBasketOptions();updateWeightStatus();dCalculate()})});
-      refreshPositionBasketOptions();updateWeightStatus();
+      row.querySelector(".remove-basket").addEventListener("click",function(){
+        row.remove();
+        refreshAllPositionBasketSelects();
+        updateWeightStatus();
+        dCalculate();
+      });
+      row.querySelectorAll("input").forEach(function(el){
+        el.addEventListener("input",function(){
+          refreshAllPositionBasketSelects();
+          updateWeightStatus();
+          dCalculate();
+        });
+      });
+      refreshAllPositionBasketSelects();
+      updateWeightStatus();
     }
     $("d-addBasket").addEventListener("click",function(){addBasketRow()});
 
     function getBaskets(){
       var baskets=[];
       document.querySelectorAll("#d-basketsContainer .basket-row").forEach(function(row){
-        baskets.push({id:row.id,name:row.querySelector(".basket-name").value.trim()||"Unnamed",weight:parseFloat(row.querySelector(".basket-weight").value)||0});
+        baskets.push({
+          id:row.id,
+          name:row.querySelector(".basket-name").value.trim()||"Unnamed",
+          weight:parseFloat(row.querySelector(".basket-weight").value)||0
+        });
       });
       return baskets;
+    }
+
+    // FIXED: Properly rebuild every position's basket dropdown while preserving the selected value
+    function refreshAllPositionBasketSelects(){
+      var baskets=getBaskets();
+      document.querySelectorAll("#d-positionsContainer .position-row").forEach(function(row){
+        var select=row.querySelector(".pos-basket");
+        if(!select)return;
+        var currentValue=select.value;
+        var html="";
+        if(baskets.length===0){
+          html='<option value="">— Create a basket first —</option>';
+        }else{
+          baskets.forEach(function(b){
+            html+='<option value="'+b.id+'"'+(b.id===currentValue?" selected":"")+'>'+b.name+'</option>';
+          });
+        }
+        select.innerHTML=html;
+        // If the previously selected basket was deleted, fall back to the first available
+        if(baskets.length>0 && !baskets.some(function(b){return b.id===currentValue})){
+          select.value=baskets[0].id;
+        }
+      });
     }
 
     function addPositionRow(data){
@@ -613,22 +652,47 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted);font-size:.85
       var id="pos-"+(++positionIdCounter);
       var row=document.createElement("div");
       row.className="position-row";row.id=id;
-      var basketOptions=getBaskets().map(function(b){return '<option value="'+b.id+'"'+(data.basketId===b.id?" selected":"")+'>'+b.name+'</option>'}).join("");
-      row.innerHTML='<div class="pos-header"><span class="pos-title">Position</span><button type="button" class="remove-pos">Remove</button></div><div class="pos-grid"><div><label>Ticker</label><input type="text" class="pos-ticker" placeholder="SCHD" value="'+(data.ticker||"")+'"></div><div><label>Basket</label><select class="pos-basket">'+basketOptions+'</select></div><div><label>Weight inside basket (%)</label><input type="number" class="pos-weight" min="0" max="100" step="0.1" placeholder="40" value="'+(data.weight||"")+'"></div><div><label>Shares *</label><input type="number" class="pos-shares" min="0" step="any" placeholder="100" value="'+(data.shares||"")+'"></div><div><label>Price per share ($)*</label><input type="number" class="pos-price" min="0" step="any" placeholder="80" value="'+(data.price||"")+'"></div><div><label>Annual div per share ($)*</label><input type="number" class="pos-div" min="0" step="any" placeholder="2.60" value="'+(data.divPerShare||"")+'"></div><div class="full"><label>Payouts per year</label><select class="pos-payouts"><option value="12"'+(data.payoutsPerYear==12?" selected":"")+'>12 (Monthly)</option><option value="4"'+(data.payoutsPerYear==4||!data.payoutsPerYear?" selected":"")+'>4 (Quarterly)</option><option value="2"'+(data.payoutsPerYear==2?" selected":"")+'>2 (Semi-annual)</option><option value="1"'+(data.payoutsPerYear==1?" selected":"")+'>1 (Annual)</option></select></div></div>';
+
+      var baskets=getBaskets();
+      var basketOptions="";
+      if(baskets.length===0){
+        basketOptions='<option value="">— Create a basket first —</option>';
+      }else{
+        baskets.forEach(function(b){
+          basketOptions+='<option value="'+b.id+'"'+(data.basketId===b.id?" selected":"")+'>'+b.name+'</option>';
+        });
+      }
+
+      row.innerHTML=
+        '<div class="pos-header"><span class="pos-title">Position</span><button type="button" class="remove-pos">Remove</button></div>'+
+        '<div class="pos-grid">'+
+          '<div><label>Ticker</label><input type="text" class="pos-ticker" placeholder="SCHD" value="'+(data.ticker||"")+'"></div>'+
+          '<div><label>Basket</label><select class="pos-basket">'+basketOptions+'</select></div>'+
+          '<div><label>Weight inside basket (%)</label><input type="number" class="pos-weight" min="0" max="100" step="0.1" placeholder="40" value="'+(data.weight||"")+'"></div>'+
+          '<div><label>Shares *</label><input type="number" class="pos-shares" min="0" step="any" placeholder="100" value="'+(data.shares||"")+'"></div>'+
+          '<div><label>Price per share ($)*</label><input type="number" class="pos-price" min="0" step="any" placeholder="80" value="'+(data.price||"")+'"></div>'+
+          '<div><label>Annual div per share ($)*</label><input type="number" class="pos-div" min="0" step="any" placeholder="2.60" value="'+(data.divPerShare||"")+'"></div>'+
+          '<div class="full"><label>Payouts per year</label><select class="pos-payouts">'+
+            '<option value="12"'+(data.payoutsPerYear==12?" selected":"")+'>12 (Monthly)</option>'+
+            '<option value="4"'+(data.payoutsPerYear==4||!data.payoutsPerYear?" selected":"")+'>4 (Quarterly)</option>'+
+            '<option value="2"'+(data.payoutsPerYear==2?" selected":"")+'>2 (Semi-annual)</option>'+
+            '<option value="1"'+(data.payoutsPerYear==1?" selected":"")+'>1 (Annual)</option>'+
+          '</select></div>'+
+        '</div>';
       $("d-positionsContainer").appendChild(row);
-      row.querySelector(".remove-pos").addEventListener("click",function(){row.remove();updateWeightStatus();dCalculate()});
-      row.querySelectorAll("input,select").forEach(function(el){el.addEventListener("input",function(){updateWeightStatus();dCalculate()});el.addEventListener("change",function(){updateWeightStatus();dCalculate()})});
+
+      row.querySelector(".remove-pos").addEventListener("click",function(){
+        row.remove();
+        updateWeightStatus();
+        dCalculate();
+      });
+      row.querySelectorAll("input,select").forEach(function(el){
+        el.addEventListener("input",function(){updateWeightStatus();dCalculate()});
+        el.addEventListener("change",function(){updateWeightStatus();dCalculate()});
+      });
       updateWeightStatus();
     }
     $("d-addPosition").addEventListener("click",function(){addPositionRow()});
-
-    function refreshPositionBasketOptions(){
-      var baskets=getBaskets();
-      document.querySelectorAll("#d-positionsContainer .pos-basket").forEach(function(select){
-        var current=select.value;
-        select.innerHTML=baskets.map(function(b){return '<option value="'+b.id+'"'+(b.id===current?" selected":"")+'>'+b.name+'</option>'}).join("");
-      });
-    }
 
     function getPositions(){
       var positions=[];
@@ -640,7 +704,7 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted);font-size:.85
         var weight=parseFloat(row.querySelector(".pos-weight").value)||0;
         var basketId=row.querySelector(".pos-basket").value;
         var ticker=row.querySelector(".pos-ticker").value.trim();
-        if(isFinite(shares)&&shares>0&&isFinite(price)&&price>0){
+        if(isFinite(shares)&&shares>0&&isFinite(price)&&price>0&&basketId){
           positions.push({ticker:ticker,shares:shares,price:price,divPerShare:divPerShare,payoutsPerYear:payoutsPerYear,weight:weight,basketId:basketId});
         }
       });
@@ -683,7 +747,6 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted);font-size:.85
         var line=lines[i].trim();
         if(!line)continue;
 
-        // Look for a ticker at the start of a line (2-5 uppercase letters)
         var tickerMatch=line.match(/^([A-Z]{2,5})\b/);
         if(tickerMatch && !/CASH|HELD|TOTAL|GRAND|ACCOUNT|MANAGE|BASKET/i.test(line)){
           currentTicker=tickerMatch[1];
@@ -691,14 +754,11 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted);font-size:.85
         }
 
         if(currentTicker){
-          // Look for numbers that look like quantity (often with 3 decimals) and price
           var nums=line.match(/[\d,]+\.?\d*/g);
           if(nums && nums.length>=2){
-            // Heuristic: try to find a quantity-like number and a price-like number
             for(var j=0;j<nums.length-1;j++){
               var qty=parseFloat(nums[j].replace(/,/g,""));
               var price=parseFloat(nums[j+1].replace(/,/g,""));
-              // Quantity is usually between 0.001 and 100000, price between 1 and 2000
               if(qty>0.001 && qty<100000 && price>1 && price<2000){
                 found.push({ticker:currentTicker,shares:qty,price:price});
                 currentTicker=null;
@@ -709,7 +769,6 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted);font-size:.85
         }
       }
 
-      // Fallback simpler pattern if nothing found
       if(found.length===0){
         var re=/\b([A-Z]{2,5})\b[\s\S]{0,200}?([\d,]+\.\d{2,3})\s+\$?([\d,]+\.\d{2})/g;
         var m;
@@ -717,9 +776,7 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted);font-size:.85
           if(/CASH|HELD|TOTAL|GRAND|ACCOUNT/i.test(m[1]))continue;
           var qty=parseFloat(m[2].replace(/,/g,""));
           var price=parseFloat(m[3].replace(/,/g,""));
-          if(qty>0 && price>0){
-            found.push({ticker:m[1],shares:qty,price:price});
-          }
+          if(qty>0 && price>0)found.push({ticker:m[1],shares:qty,price:price});
         }
       }
 
@@ -906,7 +963,7 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted);font-size:.85
         addPositionRow({ticker:"VYM",shares:51.454,price:165.34,divPerShare:2.19,payoutsPerYear:4,weight:15,basketId:gr});
         addPositionRow({ticker:"SGOV",shares:75.789,price:100.59,divPerShare:3.74,payoutsPerYear:12,weight:100,basketId:st});
         updateWeightStatus();dCalculate();
-      },50);
+      },80);
     });
 
     $("d-resetBtn").addEventListener("click",function(){
