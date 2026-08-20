@@ -10,16 +10,16 @@
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
 header{padding:36px 20px 0;color:#fff;background:linear-gradient(135deg,var(--header-from),var(--header-to));position:relative}
 .shell,main{max-width:1140px;margin:0 auto}main{padding:24px 16px 70px}
-.theme-toggle{position:absolute;top:16px;right:16px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:7px 13px;border-radius:999px;font-size:0.82rem;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;z-index:10}
+.theme-toggle{position:absolute;top:16px;right:16px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:7px 13px;border-radius:999px;font-size:.82rem;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;z-index:10}
 .theme-toggle:hover{background:rgba(255,255,255,0.25)}
-.eyebrow{color:#93c5fd;font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px}
+.eyebrow{color:#93c5fd;font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
 h1{max-width:820px;margin:0 0 10px;font-size:clamp(1.75rem,4.5vw,2.85rem);line-height:1.15;font-weight:800}
 .hero-copy{max-width:720px;color:#dbeafe;font-size:1.05rem;margin:0 0 18px}
 .investor-tabs{display:flex;gap:0;margin-top:22px;border-bottom:2px solid rgba(255,255,255,0.15)}
-.investor-tab{padding:14px 28px;background:transparent;border:none;color:rgba(255,255,255,0.65);font:inherit;font-weight:700;font-size:1rem;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:color 0.15s,border-color 0.15s}
+.investor-tab{padding:14px 28px;background:transparent;border:none;color:rgba(255,255,255,0.65);font:inherit;font-weight:700;font-size:1rem;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:color .15s,border-color .15s}
 .investor-tab:hover{color:#fff}.investor-tab.active{color:#fff;border-bottom-color:#93c5fd;background:rgba(255,255,255,0.08);border-radius:10px 10px 0 0}
 .panel{display:none}.panel.active{display:block}
-.notice{margin-bottom:22px;padding:14px 18px;background:#fffbeb;border:1px solid #fcd34d;border-left:5px solid #f59e0b;border-radius:var(--radius-sm);color:#78350f;font-size:0.95rem}
+.notice{margin-bottom:22px;padding:14px 18px;background:#fffbeb;border:1px solid #fcd34d;border-left:5px solid #f59e0b;border-radius:var(--radius-sm);color:#78350f;font-size:.95rem}
 [data-theme="dark"] .notice{background:#422006;border-color:#b45309;color:#fde68a}
 .card{margin-bottom:22px;padding:26px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
 h2{margin:0 0 6px;color:var(--navy);font-size:1.35rem;font-weight:750}h3{margin:0 0 4px;color:var(--navy);font-size:1.05rem}p{margin:0 0 12px}
@@ -33,15 +33,15 @@ h2{margin:0 0 6px;color:var(--navy);font-size:1.35rem;font-weight:750}h3{margin:
 .withdrawal-card .box-heading{background:#f5f3ff}[data-theme="dark"] .withdrawal-card .box-heading{background:#2e1065}
 .core-card .box-heading{background:#fef3c7}[data-theme="dark"] .core-card .box-heading{background:#78350f}
 .portfolio-card .box-heading{background:#f0fdfa}[data-theme="dark"] .portfolio-card .box-heading{background:#134e4a}
-.box-number,.step-num{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:var(--blue);color:#fff;font-weight:800;font-size:0.9rem;flex-shrink:0}
+.box-number,.step-num{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:var(--blue);color:#fff;font-weight:800;font-size:.9rem;flex-shrink:0}
 .contribution-card .box-number{background:var(--green)}.return-card .box-number{background:var(--amber)}.withdrawal-card .box-number{background:var(--purple)}.core-card .box-number{background:#b45309}.portfolio-card .box-number{background:#0d9488}
 .field{margin:16px 18px}.field+.field{margin-top:18px}
-label{display:block;margin-bottom:6px;color:var(--navy);font-weight:700;font-size:0.92rem}
+label{display:block;margin-bottom:6px;color:var(--navy);font-weight:700;font-size:.92rem}
 input,select,textarea{width:100%;min-height:48px;padding:10px 14px;border:1.5px solid var(--line);border-radius:var(--radius-sm);background:var(--input-bg);color:var(--text);font:inherit;font-size:1.05rem}
-textarea{min-height:110px;font-size:0.88rem;font-family:ui-monospace,monospace}
-input:focus,select:focus,textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,0.25)}
-input::placeholder,textarea::placeholder{color:#94a3b8;opacity:0.8}
-.help{margin:8px 0 0;padding-top:8px;border-top:1px solid var(--line);font-size:0.8rem}
+textarea{min-height:110px;font-size:.88rem;font-family:ui-monospace,monospace}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.25)}
+input::placeholder,textarea::placeholder{color:#94a3b8;opacity:.8}
+.help{margin:8px 0 0;padding-top:8px;border-top:1px solid var(--line);font-size:.8rem}
 .button-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
 button{padding:11px 18px;border:0;border-radius:var(--radius-sm);font:inherit;font-weight:700;cursor:pointer}
 .plain{background:#e2e8f0;color:var(--text)}[data-theme="dark"] .plain{background:#334155}
@@ -49,21 +49,21 @@ button{padding:11px 18px;border:0;border-radius:var(--radius-sm);font:inherit;fo
 .sample-btn{background:#d1fae5;color:#065f46;border:1.5px solid #6ee7b7}[data-theme="dark"] .sample-btn{background:#064e3b;color:#6ee7b7;border-color:#34d399}
 .toggle-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:16px 18px;padding:14px 16px;background:#f8fafc;border:1px solid var(--line);border-radius:12px}
 [data-theme="dark"] .toggle-row{background:#0f172a}
-.toggle-label{font-weight:700;color:var(--navy)}.toggle-desc{font-size:0.82rem;color:var(--muted);margin-top:2px}
+.toggle-label{font-weight:700;color:var(--navy)}.toggle-desc{font-size:.82rem;color:var(--muted);margin-top:2px}
 .switch{position:relative;width:52px;height:30px;flex-shrink:0}
 .switch input{opacity:0;width:0;height:0}
-.slider{position:absolute;cursor:pointer;inset:0;background:#cbd5e1;border-radius:30px;transition:0.2s}
-.slider:before{position:absolute;content:"";height:22px;width:22px;left:4px;bottom:4px;background:white;border-radius:50%;transition:0.2s}
+.slider{position:absolute;cursor:pointer;inset:0;background:#cbd5e1;border-radius:30px;transition:.2s}
+.slider:before{position:absolute;content:"";height:22px;width:22px;left:4px;bottom:4px;background:#fff;border-radius:50%;transition:.2s}
 .switch input:checked+.slider{background:var(--green)}.switch input:checked+.slider:before{transform:translateX(22px)}
 .metrics-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:22px}
 .metric{min-height:110px;padding:16px 18px;background:var(--card);border:1.5px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}
 .metric.blue{border-top:4px solid var(--blue)}.metric.green{border-top:4px solid var(--green)}.metric.amber{border-top:4px solid var(--amber)}.metric.purple{border-top:4px solid var(--purple)}
-.label{color:var(--muted);font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.03em}
+.label{color:var(--muted);font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.03em}
 .value{min-height:32px;margin-top:4px;color:var(--navy);font-size:clamp(1.2rem,2.6vw,1.6rem);font-weight:800}
-.negative{color:var(--red)!important}.sub{font-size:0.82rem;margin-top:2px}
+.negative{color:var(--red)!important}.sub{font-size:.82rem;margin-top:2px}
 .chart-wrap{height:320px;padding:10px;border:1px solid var(--line);border-radius:12px;background:#f8fafc}[data-theme="dark"] .chart-wrap{background:#0f172a}
 canvas{width:100%;height:100%;display:block}
-.legend{display:flex;flex-wrap:wrap;gap:16px;margin-top:12px;font-size:0.9rem;color:var(--muted)}
+.legend{display:flex;flex-wrap:wrap;gap:16px;margin-top:12px;font-size:.9rem;color:var(--muted)}
 .dot{display:inline-block;width:11px;height:11px;margin-right:6px;border-radius:50%;vertical-align:middle}
 .dot.green{background:var(--green)}.dot.blue{background:var(--blue)}.dot.amber{background:var(--amber)}.dot.purple{background:var(--purple)}
 .goal-area{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:end}
@@ -73,9 +73,9 @@ canvas{width:100%;height:100%;display:block}
 .callout.amber{background:#fffbeb;border-color:#fcd34d;color:#78350f}[data-theme="dark"] .callout.amber{background:#422006;border-color:#d97706;color:#fde68a}
 .hidden{display:none!important}
 .table-wrap{max-height:400px;overflow:auto;border:1px solid var(--line);border-radius:12px}
-table{width:100%;min-width:780px;border-collapse:collapse;font-size:0.9rem}
+table{width:100%;min-width:780px;border-collapse:collapse;font-size:.9rem}
 th,td{padding:11px 14px;text-align:right;white-space:nowrap;border-bottom:1px solid var(--line)}
-th{position:sticky;top:0;background:#eff6ff;color:var(--navy);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.03em;z-index:1}[data-theme="dark"] th{background:#1e3a5f}
+th{position:sticky;top:0;background:#eff6ff;color:var(--navy);font-size:.75rem;text-transform:uppercase;letter-spacing:.03em;z-index:1}[data-theme="dark"] th{background:#1e3a5f}
 th:first-child,td:first-child{text-align:left}
 .education-intro{color:#fff;background:linear-gradient(135deg,#0f2744,#1e40af);border:0}.education-intro h2,.education-intro p{color:#fff}
 .education-card{border-left:5px solid var(--blue)}.education-card.green{border-left-color:var(--green)}.education-card.amber{border-left-color:var(--amber)}.education-card.purple{border-left-color:var(--purple)}
@@ -84,29 +84,27 @@ th:first-child,td:first-child{text-align:left}
 .basket-row,.position-row{border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:12px;background:#f8fafc}[data-theme="dark"] .basket-row,[data-theme="dark"] .position-row{background:#0f172a}
 .basket-row{background:#f0f9ff;border-color:#7dd3fc}[data-theme="dark"] .basket-row{background:#0c4a6e;border-color:#0284c7}
 .pos-grid,.basket-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.pos-grid .full,.basket-grid .full{grid-column:1/-1}
-.position-row label,.basket-row label{font-size:0.82rem;margin-bottom:4px}
-.position-row input,.position-row select,.basket-row input,.basket-row select{min-height:40px;font-size:0.95rem;padding:8px 10px}
+.position-row label,.basket-row label{font-size:.82rem;margin-bottom:4px}
+.position-row input,.position-row select,.basket-row input,.basket-row select{min-height:40px;font-size:.95rem;padding:8px 10px}
 .pos-header,.basket-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
 .pos-title,.basket-title{font-weight:700;color:var(--navy)}
-.remove-pos,.remove-basket{background:#fee2e2;color:#b91c1c;border:1px solid #fca5a5;padding:5px 10px;font-size:0.8rem;border-radius:8px;cursor:pointer}
+.remove-pos,.remove-basket{background:#fee2e2;color:#b91c1c;border:1px solid #fca5a5;padding:5px 10px;font-size:.8rem;border-radius:8px;cursor:pointer}
 [data-theme="dark"] .remove-pos,[data-theme="dark"] .remove-basket{background:#7f1d1d;color:#fecaca;border-color:#b91c1c}
 .add-pos-btn,.add-basket-btn,.parse-btn{background:#dbeafe;color:#1e40af;border:1.5px solid #93c5fd;width:100%;margin-top:8px}
 [data-theme="dark"] .add-pos-btn,[data-theme="dark"] .add-basket-btn,[data-theme="dark"] .parse-btn{background:#1e3a5f;color:#93c5fd;border-color:#3b82f6}
-.weight-status{margin:8px 0 0;font-size:0.85rem;font-weight:600}.weight-ok{color:var(--green)}.weight-bad{color:var(--red)}
-.howto-box,.guidance-box{margin:12px 18px 18px;padding:14px 16px;background:#eff6ff;border:1px solid #bfdbfe;border-radius:12px;font-size:0.88rem;color:var(--text);line-height:1.5}
+.weight-status{margin:8px 0 0;font-size:.85rem;font-weight:600}.weight-ok{color:var(--green)}.weight-bad{color:var(--red)}
+.howto-box,.guidance-box{margin:12px 18px 18px;padding:14px 16px;background:#eff6ff;border:1px solid #bfdbfe;border-radius:12px;font-size:.88rem;color:var(--text);line-height:1.5}
 [data-theme="dark"] .howto-box,[data-theme="dark"] .guidance-box{background:#1e3a5f;border-color:#3b82f6}
 .howto-box strong,.guidance-box strong{color:var(--navy)}
-footer{text-align:center;padding:30px 16px 50px;color:var(--muted);font-size:0.85rem}
+footer{text-align:center;padding:30px 16px 50px;color:var(--muted);font-size:.85rem}
 @media(max-width:900px){.two,.three,.metrics-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:600px){header{padding:32px 16px 0}.card{padding:18px}.two,.three,.metrics-grid,.goal-area{grid-template-columns:1fr}.chart-wrap{height:250px}.button-row button{width:100%}.theme-toggle{top:10px;right:10px;font-size:0.78rem;padding:6px 10px}.investor-tab{padding:12px 16px;font-size:0.92rem}.pos-grid,.basket-grid{grid-template-columns:1fr}}
+@media(max-width:600px){header{padding:32px 16px 0}.card{padding:18px}.two,.three,.metrics-grid,.goal-area{grid-template-columns:1fr}.chart-wrap{height:250px}.button-row button{width:100%}.theme-toggle{top:10px;right:10px;font-size:.78rem;padding:6px 10px}.investor-tab{padding:12px 16px;font-size:.92rem}.pos-grid,.basket-grid{grid-template-columns:1fr}}
 @media print{.theme-toggle,.button-row,.investor-tabs{display:none!important}.card,.metric{break-inside:avoid;box-shadow:none}body{background:#fff;color:#000}.panel{display:block!important}}
 </style>
 </head>
 <body>
 <header>
-  <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">
-    <span id="themeIcon">🌙</span> <span id="themeLabel">Dark</span>
-  </button>
+  <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode"><span id="themeIcon">🌙</span> <span id="themeLabel">Dark</span></button>
   <div class="shell">
     <div class="eyebrow">Educational investing planner</div>
     <h1>Build a simple investing habit. See what time can do.</h1>
@@ -119,15 +117,87 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted);font-size:0.8
 </header>
 
 <main>
-  <!-- GROWTH PANEL (kept minimal but complete so the page loads) -->
+  <!-- ===================== GROWTH PANEL ===================== -->
   <div id="panelGrowth" class="panel active" role="tabpanel">
     <section class="notice">
-      <strong>Educational illustration only.</strong> This tool does not predict market returns.
+      <strong>Educational illustration only.</strong> This tool does not predict market returns. Past performance does not guarantee future results.
     </section>
+
     <section class="card">
-      <h2>Growth Investor panel</h2>
-      <p>The full Growth panel from previous versions is still present in the working file. For this fix we are focusing on making the Dividend side load correctly.</p>
-      <p>Switch to the <strong>Dividend Investor</strong> tab to use the updated calculator.</p>
+      <h2>Build your growth illustration</h2>
+      <p class="section-copy">Enter your starting point, contribution plan, expected return and fees. The chart and table update as you type.</p>
+
+      <div class="grid two">
+        <div class="input-card">
+          <div class="box-heading"><span class="box-number">1</span><div><h3>Your timeline & starting point</h3></div></div>
+          <div class="field"><label for="g-age">Current age</label><input id="g-age" type="number" min="0" max="100" placeholder="e.g. 35"></div>
+          <div class="field"><label for="g-target">Target age</label><input id="g-target" type="number" min="0" max="110" placeholder="e.g. 65"></div>
+          <div class="field"><label for="g-starting">Current portfolio value ($)</label><input id="g-starting" type="number" min="0" placeholder="e.g. 25000"></div>
+        </div>
+
+        <div class="input-card contribution-card">
+          <div class="box-heading"><span class="box-number">2</span><div><h3>Contributions</h3></div></div>
+          <div class="field"><label for="g-contrib">Contribution amount ($)</label><input id="g-contrib" type="number" min="0" placeholder="e.g. 500"></div>
+          <div class="field"><label for="g-freq">Contribution frequency</label>
+            <select id="g-freq"><option value="12">Monthly</option><option value="4">Quarterly</option><option value="1">Yearly</option></select>
+          </div>
+          <div class="field"><label for="g-increase">Annual contribution increase (%)</label><input id="g-increase" type="number" min="0" step="0.1" placeholder="e.g. 3"></div>
+        </div>
+      </div>
+
+      <div class="grid two" style="margin-top:18px">
+        <div class="input-card return-card">
+          <div class="box-heading"><span class="box-number">3</span><div><h3>Expected returns & costs</h3></div></div>
+          <div class="field"><label for="g-rate">Expected annual return (%)</label><input id="g-rate" type="number" min="-20" max="30" step="0.1" placeholder="e.g. 7"></div>
+          <div class="field"><label for="g-fee">Annual fees / expense ratio (%)</label><input id="g-fee" type="number" min="0" max="5" step="0.01" placeholder="e.g. 0.1"></div>
+          <div class="field"><label for="g-inflation">Expected inflation (%)</label><input id="g-inflation" type="number" min="0" max="10" step="0.1" placeholder="e.g. 2.5"></div>
+        </div>
+
+        <div class="input-card withdrawal-card">
+          <div class="box-heading"><span class="box-number">4</span><div><h3>Withdrawal estimate (optional)</h3></div></div>
+          <div class="field"><label for="g-withdraw">Safe withdrawal rate (%)</label><input id="g-withdraw" type="number" min="0" max="10" step="0.1" placeholder="e.g. 4"></div>
+          <p class="help" style="margin:12px 18px">Common rule-of-thumb is 3–4%. This is only an illustration.</p>
+        </div>
+      </div>
+
+      <div class="button-row">
+        <button class="sample-btn" id="g-sampleBtn" type="button">Load sample numbers</button>
+        <button class="plain" id="g-resetBtn" type="button">Clear all fields</button>
+        <button class="plain" type="button" onclick="window.print()">Print / Save PDF</button>
+      </div>
+    </section>
+
+    <div class="metrics-grid">
+      <div class="metric blue"><div class="label">Ending portfolio value</div><div class="value" id="g-ending">—</div><div class="sub" id="g-yearsLabel">Enter ages to begin</div></div>
+      <div class="metric green"><div class="label">Total contributions</div><div class="value" id="g-deposited">—</div><div class="sub">Your money put in</div></div>
+      <div class="metric amber"><div class="label">Growth from compounding</div><div class="value" id="g-growth">—</div><div class="sub">Market return after fees</div></div>
+      <div class="metric purple"><div class="label">Est. annual withdrawal</div><div class="value" id="g-withdrawAmt">—</div><div class="sub">At target age</div></div>
+    </div>
+
+    <section class="card">
+      <h2>Portfolio growth over time</h2>
+      <div class="chart-wrap"><canvas id="g-growthChart"></canvas></div>
+      <div class="legend"><span><i class="dot blue"></i> Portfolio value</span><span><i class="dot green"></i> Total deposited</span></div>
+    </section>
+
+    <section class="card">
+      <h2>Year-by-year detail</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Year / Age</th><th>Added this year</th><th>Total deposited</th><th>Growth</th><th>Ending balance</th></tr></thead>
+          <tbody id="g-resultsTable"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Goal solver</h2>
+      <p class="section-copy">What monthly contribution would be needed to reach a target portfolio value?</p>
+      <div class="goal-area">
+        <div class="field" style="margin:0"><label for="g-goal">Target portfolio value ($)</label><input id="g-goal" type="number" min="0" placeholder="e.g. 1000000"></div>
+        <button class="primary" id="g-goalBtn" type="button">Solve</button>
+      </div>
+      <div id="g-goalResult" class="result-callout hidden"></div>
     </section>
   </div>
 
@@ -139,96 +209,54 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted);font-size:0.8
 
     <section class="card">
       <h2>Build your dividend illustration</h2>
-      <p class="section-copy">
-        Your <strong>Core</strong> is a separate cash/interest vessel. 
-        You fund Core on one cadence and transfer from Core into the portfolio on another. 
-        New money is allocated according to the <strong>basket weights</strong> you define below.
-      </p>
+      <p class="section-copy">Your <strong>Core</strong> is a separate cash/interest vessel. You fund Core on one cadence and transfer from Core into the portfolio on another. New money is allocated according to the <strong>basket weights</strong> you define below.</p>
 
       <div class="grid two">
         <div class="input-card">
-          <div class="box-heading">
-            <span class="box-number">1</span>
-            <div><h3>Your timeline</h3><p class="help" style="border:0;margin:0;padding:0">When are you starting and when is the goal?</p></div>
-          </div>
-          <div class="field">
-            <label for="d-age">Current age</label>
-            <input id="d-age" type="number" min="0" max="100" placeholder="e.g. 46" inputmode="numeric">
-          </div>
-          <div class="field">
-            <label for="d-retireAge">Target age</label>
-            <input id="d-retireAge" type="number" min="0" max="110" placeholder="e.g. 56" inputmode="numeric">
-            <p class="help">Must be higher than your current age.</p>
-          </div>
+          <div class="box-heading"><span class="box-number">1</span><div><h3>Your timeline</h3><p class="help" style="border:0;margin:0;padding:0">When are you starting and when is the goal?</p></div></div>
+          <div class="field"><label for="d-age">Current age</label><input id="d-age" type="number" min="0" max="100" placeholder="e.g. 46"></div>
+          <div class="field"><label for="d-retireAge">Target age</label><input id="d-retireAge" type="number" min="0" max="110" placeholder="e.g. 56"><p class="help">Must be higher than your current age.</p></div>
         </div>
 
         <div class="input-card core-card">
-          <div class="box-heading">
-            <span class="box-number">2</span>
-            <div><h3>Core holding (separate)</h3><p class="help" style="border:0;margin:0;padding:0">Your cash / interest vessel. Not part of the portfolio.</p></div>
-          </div>
-          <div class="field">
-            <label for="d-coreStart">Current core balance ($)</label>
-            <input id="d-coreStart" type="number" min="0" placeholder="e.g. 7507" inputmode="decimal">
-          </div>
-          <div class="field">
-            <label for="d-coreRate">Core interest / yield (%)</label>
-            <input id="d-coreRate" type="number" min="0" max="15" step="0.01" placeholder="e.g. 3.31" inputmode="decimal">
-          </div>
-          <div class="field">
-            <label for="d-toCore">Amount added to Core ($)</label>
-            <input id="d-toCore" type="number" min="0" placeholder="e.g. 375" inputmode="decimal">
-          </div>
-          <div class="field">
-            <label for="d-toCoreCadence">Cadence of additions to Core</label>
-            <select id="d-toCoreCadence">
-              <option value="Monthly">Monthly</option>
-              <option value="Quarterly">Quarterly</option>
-              <option value="Yearly">Yearly</option>
-            </select>
+          <div class="box-heading"><span class="box-number">2</span><div><h3>Core holding (separate)</h3><p class="help" style="border:0;margin:0;padding:0">Your cash / interest vessel. Not part of the portfolio.</p></div></div>
+          <div class="field"><label for="d-coreStart">Current core balance ($)</label><input id="d-coreStart" type="number" min="0" placeholder="e.g. 7507"></div>
+          <div class="field"><label for="d-coreRate">Core interest / yield (%)</label><input id="d-coreRate" type="number" min="0" max="15" step="0.01" placeholder="e.g. 3.31"></div>
+          <div class="field"><label for="d-toCore">Amount added to Core ($)</label><input id="d-toCore" type="number" min="0" placeholder="e.g. 375"></div>
+          <div class="field"><label for="d-toCoreCadence">Cadence of additions to Core</label>
+            <select id="d-toCoreCadence"><option value="Monthly">Monthly</option><option value="Quarterly">Quarterly</option><option value="Yearly">Yearly</option></select>
           </div>
         </div>
       </div>
 
       <div class="grid two" style="margin-top:18px">
         <div class="input-card portfolio-card">
-          <div class="box-heading">
-            <span class="box-number">3</span>
-            <div><h3>Dividend portfolio + Baskets</h3><p class="help" style="border:0;margin:0;padding:0">Define your baskets and the positions inside them.</p></div>
-          </div>
+          <div class="box-heading"><span class="box-number">3</span><div><h3>Dividend portfolio + Baskets</h3><p class="help" style="border:0;margin:0;padding:0">Define your baskets and the positions inside them.</p></div></div>
 
-          <!-- Current portfolio value -->
           <div class="field">
             <label for="d-portStart">Current portfolio value ($)</label>
-            <input id="d-portStart" type="number" min="0" placeholder="Leave blank or 0 if starting from zero" inputmode="decimal">
+            <input id="d-portStart" type="number" min="0" placeholder="Leave blank or 0 if starting from zero">
             <p class="help">Used when no positions are entered. When positions exist, the model uses the real sum of (shares × price).</p>
           </div>
 
           <div class="field">
             <label for="d-priceGrowth">Expected annual price growth (%)</label>
-            <input id="d-priceGrowth" type="number" min="-20" max="20" step="0.1" placeholder="e.g. 1" inputmode="decimal">
+            <input id="d-priceGrowth" type="number" min="-20" max="20" step="0.1" placeholder="e.g. 1">
+            <p class="help">Leave at 0 for a pure income focus. Enter a modest positive number only if you also expect some capital growth.</p>
           </div>
 
           <div class="toggle-row" style="margin:18px 18px 8px">
-            <div>
-              <div class="toggle-label">DRIP (Dividend Reinvestment)</div>
-              <div class="toggle-desc">On = dividends buy more shares. Off = dividends paid as cash.</div>
-            </div>
+            <div><div class="toggle-label">DRIP (Dividend Reinvestment)</div><div class="toggle-desc">On = dividends buy more shares. Off = dividends paid as cash.</div></div>
             <label class="switch"><input type="checkbox" id="d-drip" checked><span class="slider"></span></label>
           </div>
 
-          <!-- Blended yield option -->
           <div class="toggle-row" style="margin:8px 18px">
-            <div>
-              <div class="toggle-label">Use conservative blended yield</div>
-              <div class="toggle-desc">When on, ignores individual dividend-per-share and applies one yield % to the whole portfolio.</div>
-            </div>
+            <div><div class="toggle-label">Use conservative blended yield</div><div class="toggle-desc">When on, ignores individual dividend-per-share and applies one yield % to the whole portfolio.</div></div>
             <label class="switch"><input type="checkbox" id="d-useBlended"><span class="slider"></span></label>
           </div>
-
           <div class="field" id="d-blendedYieldField" style="display:none">
             <label for="d-blendedYield">Expected blended portfolio yield (%)</label>
-            <input id="d-blendedYield" type="number" min="0" max="15" step="0.1" placeholder="e.g. 4.5" inputmode="decimal">
+            <input id="d-blendedYield" type="number" min="0" max="15" step="0.1" placeholder="e.g. 4.5">
           </div>
 
           <div class="guidance-box">
@@ -248,19 +276,13 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted);font-size:0.8
             4. New money is split by basket % first, then by position weights inside the basket.
           </div>
 
-          <!-- Paste holdings -->
           <div class="field">
             <label>Paste holdings from brokerage (optional)</label>
-            <p class="help" style="border:0;margin:0 0 8px;padding:0">
-              Copy the positions text from Fidelity (or similar) and paste below. 
-              The tool will create rows with Ticker, Shares and Price. 
-              You still fill Annual div/share, Payouts, Basket and Weight.
-            </p>
+            <p class="help" style="border:0;margin:0 0 8px;padding:0">Copy the positions text from Fidelity (or similar) and paste below. The tool will create rows with Ticker, Shares and Price. You still fill Annual div/share, Payouts, Basket and Weight.</p>
             <textarea id="d-pasteHoldings" placeholder="Paste Fidelity positions text here..."></textarea>
             <button type="button" class="parse-btn" id="d-parseBtn">Parse &amp; Add Positions</button>
           </div>
 
-          <!-- Baskets -->
           <div class="field" style="margin-top:10px">
             <label>Your Baskets</label>
             <div id="d-basketsContainer"></div>
@@ -268,7 +290,6 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted);font-size:0.8
             <div id="d-basketWeightStatus" class="weight-status"></div>
           </div>
 
-          <!-- Positions -->
           <div class="field" style="margin-top:20px">
             <label>Positions inside the baskets</label>
             <div id="d-positionsContainer"></div>
@@ -278,33 +299,14 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted);font-size:0.8
         </div>
 
         <div class="input-card contribution-card">
-          <div class="box-heading">
-            <span class="box-number">4</span>
-            <div><h3>Money flowing into the portfolio</h3><p class="help" style="border:0;margin:0;padding:0">Every movement has its own amount and cadence.</p></div>
+          <div class="box-heading"><span class="box-number">4</span><div><h3>Money flowing into the portfolio</h3><p class="help" style="border:0;margin:0;padding:0">Every movement has its own amount and cadence.</p></div></div>
+          <div class="field"><label for="d-fromCore">Amount transferred from Core → Portfolio ($)</label><input id="d-fromCore" type="number" min="0" placeholder="e.g. 1200"></div>
+          <div class="field"><label for="d-fromCoreCadence">Transfer cadence from Core</label>
+            <select id="d-fromCoreCadence"><option value="Monthly">Monthly</option><option value="Quarterly" selected>Quarterly</option><option value="Yearly">Yearly</option></select>
           </div>
-          <div class="field">
-            <label for="d-fromCore">Amount transferred from Core → Portfolio ($)</label>
-            <input id="d-fromCore" type="number" min="0" placeholder="e.g. 1200" inputmode="decimal">
-          </div>
-          <div class="field">
-            <label for="d-fromCoreCadence">Transfer cadence from Core</label>
-            <select id="d-fromCoreCadence">
-              <option value="Monthly">Monthly</option>
-              <option value="Quarterly" selected>Quarterly</option>
-              <option value="Yearly">Yearly</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="d-external">Extra contribution from outside ($)</label>
-            <input id="d-external" type="number" min="0" placeholder="e.g. 750" inputmode="decimal">
-          </div>
-          <div class="field">
-            <label for="d-extCadence">Cadence of extra contributions</label>
-            <select id="d-extCadence">
-              <option value="Monthly">Monthly</option>
-              <option value="Quarterly">Quarterly</option>
-              <option value="Yearly">Yearly</option>
-            </select>
+          <div class="field"><label for="d-external">Extra contribution from outside ($)</label><input id="d-external" type="number" min="0" placeholder="e.g. 750"></div>
+          <div class="field"><label for="d-extCadence">Cadence of extra contributions</label>
+            <select id="d-extCadence"><option value="Monthly">Monthly</option><option value="Quarterly">Quarterly</option><option value="Yearly">Yearly</option></select>
           </div>
         </div>
       </div>
@@ -317,26 +319,10 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted);font-size:0.8
     </section>
 
     <div class="metrics-grid">
-      <div class="metric blue">
-        <div class="label">Ending portfolio value</div>
-        <div class="value" id="d-endingPort">—</div>
-        <div class="sub" id="d-yearsLabel">Enter ages to begin</div>
-      </div>
-      <div class="metric amber">
-        <div class="label">Ending core value</div>
-        <div class="value" id="d-endingCore">—</div>
-        <div class="sub">Still sitting in Core</div>
-      </div>
-      <div class="metric green">
-        <div class="label">Est. annual dividend income</div>
-        <div class="value" id="d-divIncome">—</div>
-        <div class="sub" id="d-dripLabel">At target age</div>
-      </div>
-      <div class="metric purple">
-        <div class="label">Est. monthly income</div>
-        <div class="value" id="d-monthlyIncome">—</div>
-        <div class="sub">From portfolio dividends</div>
-      </div>
+      <div class="metric blue"><div class="label">Ending portfolio value</div><div class="value" id="d-endingPort">—</div><div class="sub" id="d-yearsLabel">Enter ages to begin</div></div>
+      <div class="metric amber"><div class="label">Ending core value</div><div class="value" id="d-endingCore">—</div><div class="sub">Still sitting in Core</div></div>
+      <div class="metric green"><div class="label">Est. annual dividend income</div><div class="value" id="d-divIncome">—</div><div class="sub" id="d-dripLabel">At target age</div></div>
+      <div class="metric purple"><div class="label">Est. monthly income</div><div class="value" id="d-monthlyIncome">—</div><div class="sub">From portfolio dividends</div></div>
     </div>
 
     <section class="card">
@@ -353,11 +339,7 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted);font-size:0.8
       <h2>Year-by-year detail</h2>
       <div class="table-wrap">
         <table>
-          <thead>
-            <tr>
-              <th>Year / Age</th><th>Added to Core</th><th>From Core → Port</th><th>Extra added</th><th>Dividends earned</th><th>Portfolio value</th><th>Core value</th>
-            </tr>
-          </thead>
+          <thead><tr><th>Year / Age</th><th>Added to Core</th><th>From Core → Port</th><th>Extra added</th><th>Dividends earned</th><th>Portfolio value</th><th>Core value</th></tr></thead>
           <tbody id="d-resultsTable"></tbody>
         </table>
       </div>
@@ -368,430 +350,452 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted);font-size:0.8
 <footer>Built for learning · Not advice · Your numbers, your assumptions</footer>
 
 <script>
-(function () {
-  try {
-    var $ = function (id) { return document.getElementById(id); };
-    var usd = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
-    function n(id) { var el = $(id); if (!el) return 0; var v = parseFloat(el.value); return isFinite(v) ? v : 0; }
-    function fmt(v) { if (!isFinite(v)) return "—"; return usd.format(Math.abs(v) < 0.5 ? 0 : v); }
+(function(){
+  try{
+    var $=function(id){return document.getElementById(id)};
+    var usd=new Intl.NumberFormat("en-US",{style:"currency",currency:"USD",maximumFractionDigits:0});
+    function n(id){var el=$(id);if(!el)return 0;var v=parseFloat(el.value);return isFinite(v)?v:0}
+    function fmt(v){if(!isFinite(v))return "—";return usd.format(Math.abs(v)<0.5?0:v)}
 
     // Theme
-    var savedTheme = localStorage.getItem("investTheme") || "light";
-    document.documentElement.setAttribute("data-theme", savedTheme);
-    function updateThemeUI(theme) {
-      $("themeIcon").textContent = theme === "dark" ? "☀️" : "🌙";
-      $("themeLabel").textContent = theme === "dark" ? "Light" : "Dark";
-    }
-    updateThemeUI(savedTheme);
-    $("themeToggle").addEventListener("click", function () {
-      var next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
-      document.documentElement.setAttribute("data-theme", next);
-      localStorage.setItem("investTheme", next);
-      updateThemeUI(next);
-      if ($("panelDividend").classList.contains("active")) dCalculate();
+    var saved=localStorage.getItem("investTheme")||"light";
+    document.documentElement.setAttribute("data-theme",saved);
+    function updateTheme(t){$("themeIcon").textContent=t==="dark"?"☀️":"🌙";$("themeLabel").textContent=t==="dark"?"Light":"Dark"}
+    updateTheme(saved);
+    $("themeToggle").addEventListener("click",function(){
+      var next=document.documentElement.getAttribute("data-theme")==="dark"?"light":"dark";
+      document.documentElement.setAttribute("data-theme",next);
+      localStorage.setItem("investTheme",next);updateTheme(next);
+      if($("panelGrowth").classList.contains("active"))gCalculate();
+      if($("panelDividend").classList.contains("active"))dCalculate();
     });
 
     // Tabs
-    function switchTab(which) {
-      if (which === "growth") {
-        $("tabGrowth").classList.add("active"); $("tabGrowth").setAttribute("aria-selected", "true");
-        $("tabDividend").classList.remove("active"); $("tabDividend").setAttribute("aria-selected", "false");
-        $("panelGrowth").classList.add("active"); $("panelDividend").classList.remove("active");
-      } else {
-        $("tabDividend").classList.add("active"); $("tabDividend").setAttribute("aria-selected", "true");
-        $("tabGrowth").classList.remove("active"); $("tabGrowth").setAttribute("aria-selected", "false");
-        $("panelDividend").classList.add("active"); $("panelGrowth").classList.remove("active");
+    function switchTab(w){
+      if(w==="growth"){
+        $("tabGrowth").classList.add("active");$("tabGrowth").setAttribute("aria-selected","true");
+        $("tabDividend").classList.remove("active");$("tabDividend").setAttribute("aria-selected","false");
+        $("panelGrowth").classList.add("active");$("panelDividend").classList.remove("active");
+        gCalculate();
+      }else{
+        $("tabDividend").classList.add("active");$("tabDividend").setAttribute("aria-selected","true");
+        $("tabGrowth").classList.remove("active");$("tabGrowth").setAttribute("aria-selected","false");
+        $("panelDividend").classList.add("active");$("panelGrowth").classList.remove("active");
         dCalculate();
       }
     }
-    $("tabGrowth").addEventListener("click", function () { switchTab("growth"); });
-    $("tabDividend").addEventListener("click", function () { switchTab("dividend"); });
+    $("tabGrowth").addEventListener("click",function(){switchTab("growth")});
+    $("tabDividend").addEventListener("click",function(){switchTab("dividend")});
 
-    // Blended yield toggle
-    $("d-useBlended").addEventListener("change", function () {
-      $("d-blendedYieldField").style.display = this.checked ? "block" : "none";
+    // ===================== GROWTH LOGIC =====================
+    function gGetSettings(){
+      return{
+        age:Math.max(0,Math.min(100,n("g-age"))),
+        target:Math.max(0,Math.min(110,n("g-target"))),
+        starting:Math.max(0,n("g-starting")),
+        contrib:Math.max(0,n("g-contrib")),
+        periodsPerYear:parseInt($("g-freq").value)||12,
+        increase:Math.max(0,n("g-increase"))/100,
+        rate:n("g-rate")/100,
+        fee:Math.max(0,n("g-fee"))/100,
+        inflation:Math.max(0,n("g-inflation"))/100,
+        withdraw:Math.max(0,n("g-withdraw"))/100
+      };
+    }
+
+    function gRunModel(s){
+      var years=Math.max(0,Math.round(s.target-s.age));
+      var netRate=s.rate-s.fee;
+      var periodRate=Math.pow(1+netRate,1/s.periodsPerYear)-1;
+      var balance=s.starting,deposited=s.starting,contrib=s.contrib,rows=[];
+      for(var year=1;year<=years;year++){
+        var before=balance,added=0;
+        for(var p=0;p<s.periodsPerYear;p++){
+          balance=balance*(1+periodRate)+contrib;
+          added+=contrib;
+        }
+        deposited+=added;
+        rows.push({year:year,age:s.age+year,added:added,deposited:deposited,growth:balance-before-added,balance:balance});
+        contrib*=(1+s.increase);
+      }
+      return{balance:balance,deposited:deposited,growth:balance-deposited,rows:rows,years:years};
+    }
+
+    function gClear(){
+      ["g-ending","g-deposited","g-growth","g-withdrawAmt"].forEach(function(id){$(id).textContent="—"});
+      $("g-yearsLabel").textContent="Enter ages to begin";
+      $("g-resultsTable").innerHTML="";
+      var c=$("g-growthChart");if(c)c.getContext("2d").clearRect(0,0,c.width,c.height);
+      $("g-goalResult").classList.add("hidden");
+    }
+
+    function gCalculate(){
+      var s=gGetSettings();
+      if(!s.age&&!s.target&&!s.starting&&!s.contrib){gClear();return}
+      var m=gRunModel(s);
+      $("g-ending").textContent=fmt(m.balance);
+      $("g-deposited").textContent=fmt(m.deposited);
+      $("g-growth").textContent=fmt(m.growth);
+      $("g-yearsLabel").textContent=m.years>0?("Over "+m.years+" year"+(m.years===1?"":"s")):"Enter ages to begin";
+      $("g-withdrawAmt").textContent=s.withdraw>0?fmt(m.balance*s.withdraw):"—";
+      $("g-resultsTable").innerHTML=m.rows.map(function(r){
+        return"<tr><td>Year "+r.year+" · Age "+r.age+"</td><td>"+fmt(r.added)+"</td><td>"+fmt(r.deposited)+"</td><td>"+fmt(r.growth)+"</td><td><strong>"+fmt(r.balance)+"</strong></td></tr>";
+      }).join("");
+      gDrawChart(m.rows);
+    }
+
+    function gDrawChart(rows){
+      var canvas=$("g-growthChart");
+      if(!canvas||!rows.length)return;
+      var parent=canvas.parentElement,dpr=window.devicePixelRatio||1;
+      var w=Math.max(280,parent.clientWidth-20),h=Math.max(180,parent.clientHeight-20);
+      canvas.width=w*dpr;canvas.height=h*dpr;canvas.style.width=w+"px";canvas.style.height=h+"px";
+      var ctx=canvas.getContext("2d");ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,w,h);
+      var isDark=document.documentElement.getAttribute("data-theme")==="dark";
+      var grid=isDark?"#334155":"#e2e8f0",txt=isDark?"#94a3b8":"#64748b";
+      var pad={left:68,right:16,top:18,bottom:36};
+      var max=1;rows.forEach(function(r){if(r.balance>max)max=r.balance;if(r.deposited>max)max=r.deposited});max*=1.08;
+      function x(i){return pad.left+(i/Math.max(1,rows.length-1))*(w-pad.left-pad.right)}
+      function y(v){return pad.top+(h-pad.top-pad.bottom)*(1-v/max)}
+      ctx.strokeStyle=grid;ctx.fillStyle=txt;ctx.font="11px system-ui,sans-serif";ctx.lineWidth=1;
+      for(var g=0;g<=4;g++){var val=max*g/4,yy=y(val);ctx.beginPath();ctx.moveTo(pad.left,yy);ctx.lineTo(w-pad.right,yy);ctx.stroke();ctx.fillText(fmt(val),4,yy+4)}
+      function line(key,col,lw){ctx.beginPath();rows.forEach(function(r,i){var px=x(i),py=y(r[key]);if(i===0)ctx.moveTo(px,py);else ctx.lineTo(px,py)});ctx.strokeStyle=col;ctx.lineWidth=lw;ctx.lineJoin="round";ctx.stroke()}
+      line("balance","#2563eb",2.6);line("deposited","#059669",2.2);
+    }
+
+    $("g-goalBtn").addEventListener("click",function(){
+      var s=gGetSettings(),goal=Math.max(0,n("g-goal")),years=Math.max(0,Math.round(s.target-s.age)),out=$("g-goalResult");
+      if(!goal){out.innerHTML="<strong>Enter a target portfolio value first.</strong>";out.classList.remove("hidden");return}
+      if(!years){out.innerHTML="<strong>Enter a current age and a higher target age first.</strong>";out.classList.remove("hidden");return}
+      if(gRunModel(Object.assign({},s,{contrib:0})).balance>=goal){
+        out.innerHTML="<strong>Approximate monthly amount needed: $0.</strong><br>Your current balance and assumptions already reach this target.";
+        out.classList.remove("hidden");return;
+      }
+      var low=0,high=100000;
+      for(var i=0;i<70;i++){var mid=(low+high)/2;if(gRunModel(Object.assign({},s,{contrib:mid})).balance<goal)low=mid;else high=mid}
+      out.innerHTML="<strong>Approximate monthly amount needed: "+fmt(high)+" per month.</strong><br>This is an illustration, not a guarantee.";
+      out.classList.remove("hidden");
+    });
+
+    $("g-sampleBtn").addEventListener("click",function(){
+      $("g-age").value=35;$("g-target").value=65;$("g-starting").value=25000;
+      $("g-contrib").value=500;$("g-freq").value="12";$("g-increase").value=3;
+      $("g-rate").value=7;$("g-fee").value=0.1;$("g-inflation").value=2.5;$("g-withdraw").value=4;
+      gCalculate();
+    });
+    $("g-resetBtn").addEventListener("click",function(){
+      ["g-age","g-target","g-starting","g-contrib","g-increase","g-rate","g-fee","g-inflation","g-withdraw","g-goal"].forEach(function(id){if($(id))$(id).value=""});
+      $("g-freq").value="12";gClear();
+    });
+    ["g-age","g-target","g-starting","g-contrib","g-increase","g-rate","g-fee","g-inflation","g-withdraw"].forEach(function(id){
+      var el=$(id);if(el)el.addEventListener("input",gCalculate);
+    });
+    $("g-freq").addEventListener("change",gCalculate);
+
+    // ===================== DIVIDEND LOGIC =====================
+    $("d-useBlended").addEventListener("change",function(){
+      $("d-blendedYieldField").style.display=this.checked?"block":"none";
       dCalculate();
     });
 
-    // ===== BASKETS & POSITIONS =====
-    var basketIdCounter = 0, positionIdCounter = 0;
+    var basketIdCounter=0,positionIdCounter=0;
 
-    function addBasketRow(data) {
-      data = data || {};
-      var id = "basket-" + (++basketIdCounter);
-      var row = document.createElement("div");
-      row.className = "basket-row";
-      row.id = id;
-      row.innerHTML = '<div class="basket-header"><span class="basket-title">Basket</span><button type="button" class="remove-basket">Remove</button></div>' +
-        '<div class="basket-grid">' +
-        '<div><label>Basket name</label><input type="text" class="basket-name" placeholder="e.g. Income" value="' + (data.name || "") + '"></div>' +
-        '<div><label>Target weight of new money (%)</label><input type="number" class="basket-weight" min="0" max="100" step="0.1" placeholder="75" value="' + (data.weight || "") + '"></div>' +
-        '</div>';
+    function addBasketRow(data){
+      data=data||{};
+      var id="basket-"+(++basketIdCounter);
+      var row=document.createElement("div");
+      row.className="basket-row";row.id=id;
+      row.innerHTML='<div class="basket-header"><span class="basket-title">Basket</span><button type="button" class="remove-basket">Remove</button></div><div class="basket-grid"><div><label>Basket name</label><input type="text" class="basket-name" placeholder="e.g. Income" value="'+(data.name||"")+'"></div><div><label>Target weight of new money (%)</label><input type="number" class="basket-weight" min="0" max="100" step="0.1" placeholder="75" value="'+(data.weight||"")+'"></div></div>';
       $("d-basketsContainer").appendChild(row);
-      row.querySelector(".remove-basket").addEventListener("click", function () {
-        row.remove(); refreshPositionBasketOptions(); updateWeightStatus(); dCalculate();
-      });
-      row.querySelectorAll("input").forEach(function (el) {
-        el.addEventListener("input", function () { refreshPositionBasketOptions(); updateWeightStatus(); dCalculate(); });
-      });
-      refreshPositionBasketOptions(); updateWeightStatus();
+      row.querySelector(".remove-basket").addEventListener("click",function(){row.remove();refreshPositionBasketOptions();updateWeightStatus();dCalculate()});
+      row.querySelectorAll("input").forEach(function(el){el.addEventListener("input",function(){refreshPositionBasketOptions();updateWeightStatus();dCalculate()})});
+      refreshPositionBasketOptions();updateWeightStatus();
     }
-    $("d-addBasket").addEventListener("click", function () { addBasketRow(); });
+    $("d-addBasket").addEventListener("click",function(){addBasketRow()});
 
-    function getBaskets() {
-      var baskets = [];
-      document.querySelectorAll("#d-basketsContainer .basket-row").forEach(function (row) {
-        baskets.push({
-          id: row.id,
-          name: row.querySelector(".basket-name").value.trim() || "Unnamed",
-          weight: parseFloat(row.querySelector(".basket-weight").value) || 0
-        });
+    function getBaskets(){
+      var baskets=[];
+      document.querySelectorAll("#d-basketsContainer .basket-row").forEach(function(row){
+        baskets.push({id:row.id,name:row.querySelector(".basket-name").value.trim()||"Unnamed",weight:parseFloat(row.querySelector(".basket-weight").value)||0});
       });
       return baskets;
     }
 
-    function addPositionRow(data) {
-      data = data || {};
-      var id = "pos-" + (++positionIdCounter);
-      var row = document.createElement("div");
-      row.className = "position-row";
-      row.id = id;
-      var basketOptions = getBaskets().map(function (b) {
-        return '<option value="' + b.id + '"' + (data.basketId === b.id ? " selected" : "") + '>' + b.name + '</option>';
-      }).join("");
-      row.innerHTML = '<div class="pos-header"><span class="pos-title">Position</span><button type="button" class="remove-pos">Remove</button></div>' +
-        '<div class="pos-grid">' +
-        '<div><label>Ticker</label><input type="text" class="pos-ticker" placeholder="SCHD" value="' + (data.ticker || "") + '"></div>' +
-        '<div><label>Basket</label><select class="pos-basket">' + basketOptions + '</select></div>' +
-        '<div><label>Weight inside basket (%)</label><input type="number" class="pos-weight" min="0" max="100" step="0.1" placeholder="40" value="' + (data.weight || "") + '"></div>' +
-        '<div><label>Shares *</label><input type="number" class="pos-shares" min="0" step="any" placeholder="100" value="' + (data.shares || "") + '"></div>' +
-        '<div><label>Price per share ($)*</label><input type="number" class="pos-price" min="0" step="any" placeholder="80" value="' + (data.price || "") + '"></div>' +
-        '<div><label>Annual div per share ($)*</label><input type="number" class="pos-div" min="0" step="any" placeholder="2.60" value="' + (data.divPerShare || "") + '"></div>' +
-        '<div class="full"><label>Payouts per year</label><select class="pos-payouts">' +
-        '<option value="12"' + (data.payoutsPerYear == 12 ? " selected" : "") + '>12 (Monthly)</option>' +
-        '<option value="4"' + (data.payoutsPerYear == 4 || !data.payoutsPerYear ? " selected" : "") + '>4 (Quarterly)</option>' +
-        '<option value="2"' + (data.payoutsPerYear == 2 ? " selected" : "") + '>2 (Semi-annual)</option>' +
-        '<option value="1"' + (data.payoutsPerYear == 1 ? " selected" : "") + '>1 (Annual)</option></select></div></div>';
+    function addPositionRow(data){
+      data=data||{};
+      var id="pos-"+(++positionIdCounter);
+      var row=document.createElement("div");
+      row.className="position-row";row.id=id;
+      var basketOptions=getBaskets().map(function(b){return '<option value="'+b.id+'"'+(data.basketId===b.id?" selected":"")+'>'+b.name+'</option>'}).join("");
+      row.innerHTML='<div class="pos-header"><span class="pos-title">Position</span><button type="button" class="remove-pos">Remove</button></div><div class="pos-grid"><div><label>Ticker</label><input type="text" class="pos-ticker" placeholder="SCHD" value="'+(data.ticker||"")+'"></div><div><label>Basket</label><select class="pos-basket">'+basketOptions+'</select></div><div><label>Weight inside basket (%)</label><input type="number" class="pos-weight" min="0" max="100" step="0.1" placeholder="40" value="'+(data.weight||"")+'"></div><div><label>Shares *</label><input type="number" class="pos-shares" min="0" step="any" placeholder="100" value="'+(data.shares||"")+'"></div><div><label>Price per share ($)*</label><input type="number" class="pos-price" min="0" step="any" placeholder="80" value="'+(data.price||"")+'"></div><div><label>Annual div per share ($)*</label><input type="number" class="pos-div" min="0" step="any" placeholder="2.60" value="'+(data.divPerShare||"")+'"></div><div class="full"><label>Payouts per year</label><select class="pos-payouts"><option value="12"'+(data.payoutsPerYear==12?" selected":"")+'>12 (Monthly)</option><option value="4"'+(data.payoutsPerYear==4||!data.payoutsPerYear?" selected":"")+'>4 (Quarterly)</option><option value="2"'+(data.payoutsPerYear==2?" selected":"")+'>2 (Semi-annual)</option><option value="1"'+(data.payoutsPerYear==1?" selected":"")+'>1 (Annual)</option></select></div></div>';
       $("d-positionsContainer").appendChild(row);
-      row.querySelector(".remove-pos").addEventListener("click", function () {
-        row.remove(); updateWeightStatus(); dCalculate();
-      });
-      row.querySelectorAll("input, select").forEach(function (el) {
-        el.addEventListener("input", function () { updateWeightStatus(); dCalculate(); });
-        el.addEventListener("change", function () { updateWeightStatus(); dCalculate(); });
-      });
+      row.querySelector(".remove-pos").addEventListener("click",function(){row.remove();updateWeightStatus();dCalculate()});
+      row.querySelectorAll("input,select").forEach(function(el){el.addEventListener("input",function(){updateWeightStatus();dCalculate()});el.addEventListener("change",function(){updateWeightStatus();dCalculate()})});
       updateWeightStatus();
     }
-    $("d-addPosition").addEventListener("click", function () { addPositionRow(); });
+    $("d-addPosition").addEventListener("click",function(){addPositionRow()});
 
-    function refreshPositionBasketOptions() {
-      var baskets = getBaskets();
-      document.querySelectorAll("#d-positionsContainer .pos-basket").forEach(function (select) {
-        var current = select.value;
-        select.innerHTML = baskets.map(function (b) {
-          return '<option value="' + b.id + '"' + (b.id === current ? " selected" : "") + '>' + b.name + '</option>';
-        }).join("");
+    function refreshPositionBasketOptions(){
+      var baskets=getBaskets();
+      document.querySelectorAll("#d-positionsContainer .pos-basket").forEach(function(select){
+        var current=select.value;
+        select.innerHTML=baskets.map(function(b){return '<option value="'+b.id+'"'+(b.id===current?" selected":"")+'>'+b.name+'</option>'}).join("");
       });
     }
 
-    function getPositions() {
-      var positions = [];
-      document.querySelectorAll("#d-positionsContainer .position-row").forEach(function (row) {
-        var shares = parseFloat(row.querySelector(".pos-shares").value);
-        var price = parseFloat(row.querySelector(".pos-price").value);
-        var divPerShare = parseFloat(row.querySelector(".pos-div").value) || 0;
-        var payoutsPerYear = parseFloat(row.querySelector(".pos-payouts").value) || 4;
-        var weight = parseFloat(row.querySelector(".pos-weight").value) || 0;
-        var basketId = row.querySelector(".pos-basket").value;
-        var ticker = row.querySelector(".pos-ticker").value.trim();
-        if (isFinite(shares) && shares > 0 && isFinite(price) && price > 0) {
-          positions.push({ ticker: ticker, shares: shares, price: price, divPerShare: divPerShare, payoutsPerYear: payoutsPerYear, weight: weight, basketId: basketId });
+    function getPositions(){
+      var positions=[];
+      document.querySelectorAll("#d-positionsContainer .position-row").forEach(function(row){
+        var shares=parseFloat(row.querySelector(".pos-shares").value);
+        var price=parseFloat(row.querySelector(".pos-price").value);
+        var divPerShare=parseFloat(row.querySelector(".pos-div").value)||0;
+        var payoutsPerYear=parseFloat(row.querySelector(".pos-payouts").value)||4;
+        var weight=parseFloat(row.querySelector(".pos-weight").value)||0;
+        var basketId=row.querySelector(".pos-basket").value;
+        var ticker=row.querySelector(".pos-ticker").value.trim();
+        if(isFinite(shares)&&shares>0&&isFinite(price)&&price>0){
+          positions.push({ticker:ticker,shares:shares,price:price,divPerShare:divPerShare,payoutsPerYear:payoutsPerYear,weight:weight,basketId:basketId});
         }
       });
       return positions;
     }
 
-    function updateWeightStatus() {
-      var baskets = getBaskets();
-      var totalBasket = baskets.reduce(function (s, b) { return s + b.weight; }, 0);
-      var el = $("d-basketWeightStatus");
-      if (baskets.length === 0) el.textContent = "";
-      else if (Math.abs(totalBasket - 100) < 0.05) { el.textContent = "Basket weights total 100% ✓"; el.className = "weight-status weight-ok"; }
-      else { el.textContent = "Basket weights currently total " + totalBasket.toFixed(1) + "% (must = 100%)"; el.className = "weight-status weight-bad"; }
+    function updateWeightStatus(){
+      var baskets=getBaskets();
+      var totalBasket=baskets.reduce(function(s,b){return s+b.weight},0);
+      var basketStatus=$("d-basketWeightStatus");
+      if(baskets.length===0)basketStatus.textContent="";
+      else if(Math.abs(totalBasket-100)<0.05){basketStatus.textContent="Basket weights total 100% ✓";basketStatus.className="weight-status weight-ok"}
+      else{basketStatus.textContent="Basket weights currently total "+totalBasket.toFixed(1)+"% (must equal 100%)";basketStatus.className="weight-status weight-bad"}
 
-      var messages = [];
-      baskets.forEach(function (b) {
-        var posIn = getPositions().filter(function (p) { return p.basketId === b.id; });
-        if (posIn.length === 0) return;
-        var total = posIn.reduce(function (s, p) { return s + p.weight; }, 0);
-        if (Math.abs(total - 100) >= 0.05) messages.push(b.name + ": " + total.toFixed(1) + "%");
+      var messages=[];
+      baskets.forEach(function(b){
+        var posInBasket=getPositions().filter(function(p){return p.basketId===b.id});
+        if(posInBasket.length===0)return;
+        var total=posInBasket.reduce(function(s,p){return s+p.weight},0);
+        if(Math.abs(total-100)>=0.05)messages.push(b.name+": "+total.toFixed(1)+"%");
       });
-      var pel = $("d-positionWeightStatus");
-      if (messages.length === 0 && getPositions().length > 0) { pel.textContent = "All position weights inside baskets total 100% ✓"; pel.className = "weight-status weight-ok"; }
-      else if (messages.length > 0) { pel.textContent = "Position weights need adjustment → " + messages.join(" · "); pel.className = "weight-status weight-bad"; }
-      else pel.textContent = "";
+      var posStatus=$("d-positionWeightStatus");
+      if(messages.length===0&&getPositions().length>0){posStatus.textContent="All position weights inside baskets total 100% ✓";posStatus.className="weight-status weight-ok"}
+      else if(messages.length>0){posStatus.textContent="Position weights need adjustment → "+messages.join(" · ");posStatus.className="weight-status weight-bad"}
+      else posStatus.textContent="";
     }
 
-    // ===== PASTE PARSER =====
-    $("d-parseBtn").addEventListener("click", function () {
-      var text = $("d-pasteHoldings").value;
-      if (!text.trim()) return;
-      var found = [];
-      // Look for common Fidelity pattern: TICKER ... quantity ... price
-      var re = /\b([A-Z]{2,5})\b[\s\S]*?([\d,]+\.\d{3})\s+\$?([\d,]+\.\d{2})/g;
+    $("d-parseBtn").addEventListener("click",function(){
+      var text=$("d-pasteHoldings").value;
+      if(!text.trim())return;
+      var found=[];
+      var re=/\b([A-Z]{2,5})\b[\s\S]*?([\d,]+\.\d{3})\s+\$?([\d,]+\.\d{2})/g;
       var m;
-      while ((m = re.exec(text)) !== null) {
-        var ticker = m[1];
-        if (/CASH|HELD|TOTAL|GRAND|ACCOUNT/i.test(ticker)) continue;
-        found.push({
-          ticker: ticker,
-          shares: parseFloat(m[2].replace(/,/g, "")),
-          price: parseFloat(m[3].replace(/,/g, ""))
-        });
+      while((m=re.exec(text))!==null){
+        if(/CASH|HELD|TOTAL|GRAND|ACCOUNT/i.test(m[1]))continue;
+        found.push({ticker:m[1],shares:parseFloat(m[2].replace(/,/g,"")),price:parseFloat(m[3].replace(/,/g,""))});
       }
-      if (found.length === 0) {
-        alert("Could not detect positions. Make sure you pasted the section that contains ticker symbols, quantities and prices.");
-        return;
-      }
-      found.forEach(function (p) { addPositionRow(p); });
-      $("d-pasteHoldings").value = "";
-      updateWeightStatus();
-      dCalculate();
-      alert("Added " + found.length + " positions.\nNow fill in Annual div/share, Payouts, Basket and Weight for each.");
+      if(found.length===0){alert("Could not detect positions. Make sure you pasted the section that contains ticker symbols, quantities and prices.");return}
+      found.forEach(function(p){addPositionRow(p)});
+      $("d-pasteHoldings").value="";
+      updateWeightStatus();dCalculate();
+      alert("Added "+found.length+" positions.\nNow fill in Annual div/share, Payouts, Basket and Weight for each.");
     });
 
-    // ===== MODEL =====
-    function dGetSettings() {
-      return {
-        age: Math.max(0, Math.min(100, n("d-age"))),
-        target: Math.max(0, Math.min(110, n("d-retireAge"))),
-        coreStart: Math.max(0, n("d-coreStart")),
-        coreRate: Math.max(0, n("d-coreRate")) / 100,
-        toCore: Math.max(0, n("d-toCore")),
-        toCoreCadence: $("d-toCoreCadence").value || "Monthly",
-        portStart: Math.max(0, n("d-portStart")),
-        priceGrowth: n("d-priceGrowth") / 100,
-        fromCore: Math.max(0, n("d-fromCore")),
-        fromCoreCadence: $("d-fromCoreCadence").value || "Quarterly",
-        external: Math.max(0, n("d-external")),
-        extCadence: $("d-extCadence").value || "Monthly",
-        drip: $("d-drip").checked,
-        useBlended: $("d-useBlended").checked,
-        blendedYield: Math.max(0, n("d-blendedYield")) / 100,
-        baskets: getBaskets(),
-        positions: getPositions()
+    function dGetSettings(){
+      return{
+        age:Math.max(0,Math.min(100,n("d-age"))),
+        target:Math.max(0,Math.min(110,n("d-retireAge"))),
+        coreStart:Math.max(0,n("d-coreStart")),
+        coreRate:Math.max(0,n("d-coreRate"))/100,
+        toCore:Math.max(0,n("d-toCore")),
+        toCoreCadence:$("d-toCoreCadence").value||"Monthly",
+        portStart:Math.max(0,n("d-portStart")),
+        priceGrowth:n("d-priceGrowth")/100,
+        fromCore:Math.max(0,n("d-fromCore")),
+        fromCoreCadence:$("d-fromCoreCadence").value||"Quarterly",
+        external:Math.max(0,n("d-external")),
+        extCadence:$("d-extCadence").value||"Monthly",
+        drip:$("d-drip").checked,
+        useBlended:$("d-useBlended").checked,
+        blendedYield:Math.max(0,n("d-blendedYield"))/100,
+        baskets:getBaskets(),
+        positions:getPositions()
       };
     }
 
-    function isEventMonth(cadence, month) {
-      if (cadence === "Monthly") return true;
-      if (cadence === "Quarterly") return [3, 6, 9, 12].indexOf(month) !== -1;
-      if (cadence === "Yearly") return month === 12;
+    function isEventMonth(cadence,month){
+      if(cadence==="Monthly")return true;
+      if(cadence==="Quarterly")return [3,6,9,12].indexOf(month)!==-1;
+      if(cadence==="Yearly")return month===12;
       return false;
     }
 
-    function dRunModel(s) {
-      var years = Math.max(0, Math.round(s.target - s.age));
-      var core = s.coreStart;
-      var positions = s.positions.map(function (p) {
-        return { ticker: p.ticker, shares: p.shares, price: p.price, divPerShare: p.divPerShare, payoutsPerYear: p.payoutsPerYear, weight: p.weight, basketId: p.basketId };
-      });
-      var basketWeightMap = {};
-      s.baskets.forEach(function (b) { basketWeightMap[b.id] = b.weight / 100; });
+    function dRunModel(s){
+      var years=Math.max(0,Math.round(s.target-s.age));
+      var core=s.coreStart;
+      var positions=s.positions.map(function(p){return{ticker:p.ticker,shares:p.shares,price:p.price,divPerShare:p.divPerShare,payoutsPerYear:p.payoutsPerYear,weight:p.weight,basketId:p.basketId}});
+      var basketWeightMap={};s.baskets.forEach(function(b){basketWeightMap[b.id]=b.weight/100});
+      var portfolio=positions.length>0?positions.reduce(function(sum,p){return sum+p.shares*p.price},0):s.portStart;
+      var cumDivCash=0,rows=[];
+      var coreMonthlyInterest=s.coreRate/12;
 
-      var portfolio = positions.length > 0
-        ? positions.reduce(function (sum, p) { return sum + p.shares * p.price; }, 0)
-        : s.portStart;
-
-      var cumDivCash = 0, rows = [];
-      var coreMonthlyInterest = s.coreRate / 12;
-
-      function allocateMoney(amount) {
-        if (amount <= 0 || positions.length === 0) return;
-        var byBasket = {};
-        positions.forEach(function (p) {
-          if (!byBasket[p.basketId]) byBasket[p.basketId] = [];
-          byBasket[p.basketId].push(p);
-        });
-        Object.keys(byBasket).forEach(function (bid) {
-          var basketMoney = amount * (basketWeightMap[bid] || 0);
-          if (basketMoney <= 0) return;
-          var list = byBasket[bid];
-          var totalW = list.reduce(function (s, p) { return s + p.weight; }, 0) || 1;
-          list.forEach(function (p) {
-            p.shares += (basketMoney * (p.weight / totalW)) / p.price;
+      function allocateMoney(amount){
+        if(amount<=0||positions.length===0)return;
+        var byBasket={};
+        positions.forEach(function(p){if(!byBasket[p.basketId])byBasket[p.basketId]=[];byBasket[p.basketId].push(p)});
+        Object.keys(byBasket).forEach(function(basketId){
+          var basketPct=basketWeightMap[basketId]||0;
+          var basketMoney=amount*basketPct;
+          if(basketMoney<=0)return;
+          var posList=byBasket[basketId];
+          var totalWeight=posList.reduce(function(s,p){return s+p.weight},0)||1;
+          posList.forEach(function(p){
+            var posPct=p.weight/totalWeight;
+            var posMoney=basketMoney*posPct;
+            p.shares+=posMoney/p.price;
           });
         });
       }
 
-      for (var year = 1; year <= years; year++) {
-        var addedToCoreThisYear = 0, fromCoreThisYear = 0, externalThisYear = 0, dividendsEarnedThisYear = 0;
-        for (var month = 1; month <= 12; month++) {
-          if (isEventMonth(s.toCoreCadence, month)) { core += s.toCore; addedToCoreThisYear += s.toCore; }
-          core *= (1 + coreMonthlyInterest);
-          if (isEventMonth(s.fromCoreCadence, month)) {
-            var transfer = Math.min(core, s.fromCore);
-            core -= transfer; fromCoreThisYear += transfer;
+      for(var year=1;year<=years;year++){
+        var addedToCoreThisYear=0,fromCoreThisYear=0,externalThisYear=0,dividendsEarnedThisYear=0;
+        for(var month=1;month<=12;month++){
+          if(isEventMonth(s.toCoreCadence,month)){core+=s.toCore;addedToCoreThisYear+=s.toCore}
+          core*=(1+coreMonthlyInterest);
+          if(isEventMonth(s.fromCoreCadence,month)){
+            var transfer=Math.min(core,s.fromCore);
+            core-=transfer;fromCoreThisYear+=transfer;
             allocateMoney(transfer);
           }
-          if (isEventMonth(s.extCadence, month)) {
-            externalThisYear += s.external;
-            allocateMoney(s.external);
-          }
+          if(isEventMonth(s.extCadence,month)){externalThisYear+=s.external;allocateMoney(s.external)}
 
-          var dividendsThisMonth = 0;
-          if (s.useBlended && s.blendedYield > 0) {
-            portfolio = positions.length > 0 ? positions.reduce(function (sum, p) { return sum + p.shares * p.price; }, 0) : portfolio;
-            dividendsThisMonth = portfolio * (s.blendedYield / 12);
-            if (s.drip && positions.length > 0) {
-              var totalVal = portfolio || 1;
-              positions.forEach(function (p) {
-                p.shares += (dividendsThisMonth * ((p.shares * p.price) / totalVal)) / p.price;
-              });
-            } else if (s.drip) portfolio += dividendsThisMonth;
-          } else if (positions.length > 0) {
-            positions.forEach(function (p) {
-              var monthlyDiv = p.shares * (p.divPerShare / 12);
-              dividendsThisMonth += monthlyDiv;
-              if (s.drip) p.shares += monthlyDiv / p.price;
+          var dividendsThisMonth=0;
+          if(s.useBlended&&s.blendedYield>0){
+            portfolio=positions.length>0?positions.reduce(function(sum,p){return sum+p.shares*p.price},0):portfolio;
+            dividendsThisMonth=portfolio*(s.blendedYield/12);
+            if(s.drip&&positions.length>0){
+              var totalVal=portfolio||1;
+              positions.forEach(function(p){p.shares+=(dividendsThisMonth*((p.shares*p.price)/totalVal))/p.price});
+            }else if(s.drip)portfolio+=dividendsThisMonth;
+          }else if(positions.length>0){
+            positions.forEach(function(p){
+              var monthlyDiv=p.shares*(p.divPerShare/12);
+              dividendsThisMonth+=monthlyDiv;
+              if(s.drip)p.shares+=monthlyDiv/p.price;
             });
-            portfolio = positions.reduce(function (sum, p) { return sum + p.shares * p.price; }, 0);
+            portfolio=positions.reduce(function(sum,p){return sum+p.shares*p.price},0);
           }
-          dividendsEarnedThisYear += dividendsThisMonth;
-          if (!s.drip) cumDivCash += dividendsThisMonth;
+          dividendsEarnedThisYear+=dividendsThisMonth;
+          if(!s.drip)cumDivCash+=dividendsThisMonth;
         }
-        if (positions.length > 0) {
-          positions.forEach(function (p) { p.price *= (1 + s.priceGrowth); });
-          portfolio = positions.reduce(function (sum, p) { return sum + p.shares * p.price; }, 0);
-        } else portfolio *= (1 + s.priceGrowth);
+        if(positions.length>0){
+          positions.forEach(function(p){p.price*=(1+s.priceGrowth)});
+          portfolio=positions.reduce(function(sum,p){return sum+p.shares*p.price},0);
+        }else portfolio*=(1+s.priceGrowth);
 
-        rows.push({ year: year, age: s.age + year, addedToCore: addedToCoreThisYear, fromCore: fromCoreThisYear, external: externalThisYear, divEarned: dividendsEarnedThisYear, port: portfolio, core: core, cumDivCash: cumDivCash });
+        rows.push({year:year,age:s.age+year,addedToCore:addedToCoreThisYear,fromCore:fromCoreThisYear,external:externalThisYear,divEarned:dividendsEarnedThisYear,port:portfolio,core:core,cumDivCash:cumDivCash});
       }
 
-      var finalAnnualIncome = 0;
-      if (s.useBlended && s.blendedYield > 0) finalAnnualIncome = portfolio * s.blendedYield;
-      else if (positions.length > 0) finalAnnualIncome = positions.reduce(function (sum, p) { return sum + p.shares * p.divPerShare; }, 0);
+      var finalAnnualIncome=0;
+      if(s.useBlended&&s.blendedYield>0)finalAnnualIncome=portfolio*s.blendedYield;
+      else if(positions.length>0)finalAnnualIncome=positions.reduce(function(sum,p){return sum+p.shares*p.divPerShare},0);
 
-      return { port: portfolio, core: core, years: years, rows: rows, finalAnnualIncome: finalAnnualIncome, cumDivCash: cumDivCash };
+      return{port:portfolio,core:core,years:years,rows:rows,finalAnnualIncome:finalAnnualIncome,cumDivCash:cumDivCash};
     }
 
-    function dClear() {
-      ["d-endingPort","d-endingCore","d-divIncome","d-monthlyIncome"].forEach(function (id) { $(id).textContent = "—"; });
-      $("d-yearsLabel").textContent = "Enter ages to begin";
-      $("d-dripLabel").textContent = "At target age";
-      $("d-resultsTable").innerHTML = "";
-      var c = $("d-growthChart"); if (c) c.getContext("2d").clearRect(0,0,c.width,c.height);
+    function dClear(){
+      ["d-endingPort","d-endingCore","d-divIncome","d-monthlyIncome"].forEach(function(id){$(id).textContent="—"});
+      $("d-yearsLabel").textContent="Enter ages to begin";
+      $("d-dripLabel").textContent="At target age";
+      $("d-resultsTable").innerHTML="";
+      var c=$("d-growthChart");if(c)c.getContext("2d").clearRect(0,0,c.width,c.height);
     }
 
-    function dCalculate() {
-      var s = dGetSettings();
-      if (!s.age && !s.target && s.positions.length === 0 && !s.portStart) { dClear(); return; }
-      var m = dRunModel(s);
-      $("d-endingPort").textContent = fmt(m.port);
-      $("d-endingCore").textContent = fmt(m.core);
-      $("d-yearsLabel").textContent = m.years > 0 ? ("Over " + m.years + " year" + (m.years === 1 ? "" : "s")) : "Enter ages to begin";
-      $("d-divIncome").textContent = fmt(m.finalAnnualIncome);
-      $("d-dripLabel").textContent = s.drip ? "DRIP on · income is reinvested" : "DRIP off · cash available";
-      $("d-monthlyIncome").textContent = fmt(m.finalAnnualIncome / 12);
-      $("d-resultsTable").innerHTML = m.rows.map(function (r) {
-        return "<tr><td>Year " + r.year + " · Age " + r.age + "</td><td>" + fmt(r.addedToCore) + "</td><td>" + fmt(r.fromCore) + "</td><td>" + fmt(r.external) + "</td><td>" + fmt(r.divEarned) + "</td><td><strong>" + fmt(r.port) + "</strong></td><td>" + fmt(r.core) + "</td></tr>";
+    function dCalculate(){
+      var s=dGetSettings();
+      if(!s.age&&!s.target&&s.positions.length===0&&!s.portStart){dClear();return}
+      var m=dRunModel(s);
+      $("d-endingPort").textContent=fmt(m.port);
+      $("d-endingCore").textContent=fmt(m.core);
+      $("d-yearsLabel").textContent=m.years>0?("Over "+m.years+" year"+(m.years===1?"":"s")):"Enter ages to begin";
+      $("d-divIncome").textContent=fmt(m.finalAnnualIncome);
+      $("d-dripLabel").textContent=s.drip?"DRIP on · income is reinvested":"DRIP off · cash available";
+      $("d-monthlyIncome").textContent=fmt(m.finalAnnualIncome/12);
+      $("d-resultsTable").innerHTML=m.rows.map(function(r){
+        return"<tr><td>Year "+r.year+" · Age "+r.age+"</td><td>"+fmt(r.addedToCore)+"</td><td>"+fmt(r.fromCore)+"</td><td>"+fmt(r.external)+"</td><td>"+fmt(r.divEarned)+"</td><td><strong>"+fmt(r.port)+"</strong></td><td>"+fmt(r.core)+"</td></tr>";
       }).join("");
-      dDrawChart(m.rows, s.drip);
+      dDrawChart(m.rows,s.drip);
     }
 
-    function dDrawChart(rows, dripOn) {
-      var canvas = $("d-growthChart");
-      if (!canvas || !rows.length) return;
-      var parent = canvas.parentElement, dpr = window.devicePixelRatio || 1;
-      var width = Math.max(280, parent.clientWidth - 20), height = Math.max(180, parent.clientHeight - 20);
-      canvas.width = width * dpr; canvas.height = height * dpr;
-      canvas.style.width = width + "px"; canvas.style.height = height + "px";
-      var ctx = canvas.getContext("2d");
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.clearRect(0, 0, width, height);
-      var isDark = document.documentElement.getAttribute("data-theme") === "dark";
-      var gridColor = isDark ? "#334155" : "#e2e8f0", textColor = isDark ? "#94a3b8" : "#64748b";
-      var pad = { left: 68, right: 16, top: 18, bottom: 36 };
-      var maxVal = 1;
-      rows.forEach(function (r) {
-        if (r.port > maxVal) maxVal = r.port;
-        if (r.core > maxVal) maxVal = r.core;
-        if (!dripOn && r.cumDivCash > maxVal) maxVal = r.cumDivCash;
-      });
-      maxVal *= 1.08;
-      function x(i) { return pad.left + (i / Math.max(1, rows.length - 1)) * (width - pad.left - pad.right); }
-      function y(v) { return pad.top + (height - pad.top - pad.bottom) * (1 - v / maxVal); }
-      ctx.strokeStyle = gridColor; ctx.fillStyle = textColor; ctx.font = "11px system-ui,sans-serif"; ctx.lineWidth = 1;
-      for (var g = 0; g <= 4; g++) {
-        var val = maxVal * g / 4, yy = y(val);
-        ctx.beginPath(); ctx.moveTo(pad.left, yy); ctx.lineTo(width - pad.right, yy); ctx.stroke();
-        ctx.fillText(fmt(val), 4, yy + 4);
-      }
-      function drawLine(key, color, lw) {
-        ctx.beginPath();
-        rows.forEach(function (r, i) { var px = x(i), py = y(r[key]); if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py); });
-        ctx.strokeStyle = color; ctx.lineWidth = lw; ctx.lineJoin = "round"; ctx.stroke();
-      }
-      drawLine("port", "#2563eb", 2.6);
-      drawLine("core", "#d97706", 2.2);
-      if (!dripOn) drawLine("cumDivCash", "#059669", 2);
+    function dDrawChart(rows,dripOn){
+      var canvas=$("d-growthChart");
+      if(!canvas||!rows.length)return;
+      var parent=canvas.parentElement,dpr=window.devicePixelRatio||1;
+      var width=Math.max(280,parent.clientWidth-20),height=Math.max(180,parent.clientHeight-20);
+      canvas.width=width*dpr;canvas.height=height*dpr;canvas.style.width=width+"px";canvas.style.height=height+"px";
+      var ctx=canvas.getContext("2d");ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,width,height);
+      var isDark=document.documentElement.getAttribute("data-theme")==="dark";
+      var gridColor=isDark?"#334155":"#e2e8f0",textColor=isDark?"#94a3b8":"#64748b";
+      var pad={left:68,right:16,top:18,bottom:36};
+      var maxVal=1;rows.forEach(function(r){if(r.port>maxVal)maxVal=r.port;if(r.core>maxVal)maxVal=r.core;if(!dripOn&&r.cumDivCash>maxVal)maxVal=r.cumDivCash});maxVal*=1.08;
+      function x(i){return pad.left+(i/Math.max(1,rows.length-1))*(width-pad.left-pad.right)}
+      function y(v){return pad.top+(height-pad.top-pad.bottom)*(1-v/maxVal)}
+      ctx.strokeStyle=gridColor;ctx.fillStyle=textColor;ctx.font="11px system-ui,sans-serif";ctx.lineWidth=1;
+      for(var g=0;g<=4;g++){var val=maxVal*g/4,yy=y(val);ctx.beginPath();ctx.moveTo(pad.left,yy);ctx.lineTo(width-pad.right,yy);ctx.stroke();ctx.fillText(fmt(val),4,yy+4)}
+      function drawLine(key,color,lw){ctx.beginPath();rows.forEach(function(r,i){var px=x(i),py=y(r[key]);if(i===0)ctx.moveTo(px,py);else ctx.lineTo(px,py)});ctx.strokeStyle=color;ctx.lineWidth=lw;ctx.lineJoin="round";ctx.stroke()}
+      drawLine("port","#2563eb",2.6);drawLine("core","#d97706",2.2);if(!dripOn)drawLine("cumDivCash","#059669",2);
     }
 
-    // Sample
-    $("d-sampleBtn").addEventListener("click", function () {
-      $("d-age").value = 46; $("d-retireAge").value = 56;
-      $("d-coreStart").value = 7507; $("d-coreRate").value = 3.31;
-      $("d-toCore").value = 375; $("d-toCoreCadence").value = "Monthly";
-      $("d-portStart").value = 77600; $("d-priceGrowth").value = 1;
-      $("d-fromCore").value = 1200; $("d-fromCoreCadence").value = "Quarterly";
-      $("d-external").value = 750; $("d-extCadence").value = "Monthly";
-      $("d-drip").checked = true; $("d-useBlended").checked = false;
-      $("d-basketsContainer").innerHTML = ""; $("d-positionsContainer").innerHTML = "";
-      addBasketRow({ name: "Income", weight: 75 });
-      addBasketRow({ name: "Growth", weight: 15 });
-      addBasketRow({ name: "Stability", weight: 10 });
-      setTimeout(function () {
-        var baskets = getBaskets();
-        var inc = baskets.find(function (b) { return b.name === "Income"; }).id;
-        var gr = baskets.find(function (b) { return b.name === "Growth"; }).id;
-        var st = baskets.find(function (b) { return b.name === "Stability"; }).id;
-        addPositionRow({ ticker: "SCHD", shares: 415.369, price: 35.09, divPerShare: 3.04, payoutsPerYear: 12, weight: 35, basketId: inc });
-        addPositionRow({ ticker: "DIVO", shares: 297.561, price: 48.73, divPerShare: 6.17, payoutsPerYear: 12, weight: 25, basketId: inc });
-        addPositionRow({ ticker: "JEPQ", shares: 193.163, price: 59.87, divPerShare: 10.88, payoutsPerYear: 12, weight: 20, basketId: inc });
-        addPositionRow({ ticker: "JEPI", shares: 146.004, price: 57.96, divPerShare: 7.92, payoutsPerYear: 12, weight: 20, basketId: inc });
-        addPositionRow({ ticker: "VOO", shares: 12.335, price: 706.91, divPerShare: 1.04, payoutsPerYear: 4, weight: 60, basketId: gr });
-        addPositionRow({ ticker: "VXUS", shares: 33.286, price: 86.97, divPerShare: 2.53, payoutsPerYear: 4, weight: 25, basketId: gr });
-        addPositionRow({ ticker: "VYM", shares: 51.454, price: 165.34, divPerShare: 2.19, payoutsPerYear: 4, weight: 15, basketId: gr });
-        addPositionRow({ ticker: "SGOV", shares: 75.789, price: 100.59, divPerShare: 3.74, payoutsPerYear: 12, weight: 100, basketId: st });
-        updateWeightStatus(); dCalculate();
-      }, 50);
+    $("d-sampleBtn").addEventListener("click",function(){
+      $("d-age").value=46;$("d-retireAge").value=56;
+      $("d-coreStart").value=7507;$("d-coreRate").value=3.31;
+      $("d-toCore").value=375;$("d-toCoreCadence").value="Monthly";
+      $("d-portStart").value=77600;$("d-priceGrowth").value=1;
+      $("d-fromCore").value=1200;$("d-fromCoreCadence").value="Quarterly";
+      $("d-external").value=750;$("d-extCadence").value="Monthly";
+      $("d-drip").checked=true;$("d-useBlended").checked=false;
+      $("d-basketsContainer").innerHTML="";$("d-positionsContainer").innerHTML="";
+      addBasketRow({name:"Income",weight:75});
+      addBasketRow({name:"Growth",weight:15});
+      addBasketRow({name:"Stability",weight:10});
+      setTimeout(function(){
+        var baskets=getBaskets();
+        var inc=baskets.find(function(b){return b.name==="Income"}).id;
+        var gr=baskets.find(function(b){return b.name==="Growth"}).id;
+        var st=baskets.find(function(b){return b.name==="Stability"}).id;
+        addPositionRow({ticker:"SCHD",shares:415.369,price:35.09,divPerShare:3.04,payoutsPerYear:12,weight:35,basketId:inc});
+        addPositionRow({ticker:"DIVO",shares:297.561,price:48.73,divPerShare:6.17,payoutsPerYear:12,weight:25,basketId:inc});
+        addPositionRow({ticker:"JEPQ",shares:193.163,price:59.87,divPerShare:10.88,payoutsPerYear:12,weight:20,basketId:inc});
+        addPositionRow({ticker:"JEPI",shares:146.004,price:57.96,divPerShare:7.92,payoutsPerYear:12,weight:20,basketId:inc});
+        addPositionRow({ticker:"VOO",shares:12.335,price:706.91,divPerShare:1.04,payoutsPerYear:4,weight:60,basketId:gr});
+        addPositionRow({ticker:"VXUS",shares:33.286,price:86.97,divPerShare:2.53,payoutsPerYear:4,weight:25,basketId:gr});
+        addPositionRow({ticker:"VYM",shares:51.454,price:165.34,divPerShare:2.19,payoutsPerYear:4,weight:15,basketId:gr});
+        addPositionRow({ticker:"SGOV",shares:75.789,price:100.59,divPerShare:3.74,payoutsPerYear:12,weight:100,basketId:st});
+        updateWeightStatus();dCalculate();
+      },50);
     });
 
-    // Reset
-    $("d-resetBtn").addEventListener("click", function () {
-      ["d-age","d-retireAge","d-coreStart","d-coreRate","d-toCore","d-portStart","d-priceGrowth","d-fromCore","d-external","d-blendedYield"].forEach(function (id) { if ($(id)) $(id).value = ""; });
-      $("d-toCoreCadence").value = "Monthly"; $("d-fromCoreCadence").value = "Quarterly"; $("d-extCadence").value = "Monthly";
-      $("d-drip").checked = true; $("d-useBlended").checked = false; $("d-blendedYieldField").style.display = "none";
-      $("d-basketsContainer").innerHTML = ""; $("d-positionsContainer").innerHTML = "";
-      $("d-basketWeightStatus").textContent = ""; $("d-positionWeightStatus").textContent = "";
+    $("d-resetBtn").addEventListener("click",function(){
+      ["d-age","d-retireAge","d-coreStart","d-coreRate","d-toCore","d-portStart","d-priceGrowth","d-fromCore","d-external","d-blendedYield"].forEach(function(id){if($(id))$(id).value=""});
+      $("d-toCoreCadence").value="Monthly";$("d-fromCoreCadence").value="Quarterly";$("d-extCadence").value="Monthly";
+      $("d-drip").checked=true;$("d-useBlended").checked=false;$("d-blendedYieldField").style.display="none";
+      $("d-basketsContainer").innerHTML="";$("d-positionsContainer").innerHTML="";
+      $("d-basketWeightStatus").textContent="";$("d-positionWeightStatus").textContent="";
       dClear();
     });
 
-    // Listeners
-    ["d-age","d-retireAge","d-coreStart","d-coreRate","d-toCore","d-portStart","d-priceGrowth","d-fromCore","d-external","d-blendedYield"].forEach(function (id) {
-      var el = $(id); if (el) el.addEventListener("input", dCalculate);
+    ["d-age","d-retireAge","d-coreStart","d-coreRate","d-toCore","d-portStart","d-priceGrowth","d-fromCore","d-external","d-blendedYield"].forEach(function(id){
+      var el=$(id);if(el)el.addEventListener("input",dCalculate);
     });
-    ["d-toCoreCadence","d-fromCoreCadence","d-extCadence","d-drip"].forEach(function (id) {
-      var el = $(id); if (el) el.addEventListener("change", dCalculate);
-    });
-
-    window.addEventListener("resize", function () {
-      if ($("panelDividend").classList.contains("active")) dCalculate();
+    ["d-toCoreCadence","d-fromCoreCadence","d-extCadence","d-drip"].forEach(function(id){
+      var el=$(id);if(el)el.addEventListener("change",dCalculate);
     });
 
-    dClear();
-  } catch (err) {
-    document.body.innerHTML = "<div style='padding:40px;font-family:system-ui;max-width:600px;margin:40px auto;'><h2 style='color:#b91c1c'>Something went wrong</h2><pre>" + (err && err.message ? err.message : err) + "</pre></div>";
+    window.addEventListener("resize",function(){
+      if($("panelGrowth").classList.contains("active"))gCalculate();
+      if($("panelDividend").classList.contains("active"))dCalculate();
+    });
+
+    gClear();dClear();
+  }catch(err){
+    document.body.innerHTML="<div style='padding:40px;font-family:system-ui;max-width:600px;margin:40px auto'><h2 style='color:#b91c1c'>Something went wrong</h2><pre>"+(err&&err.message?err.message:err)+"</pre></div>";
   }
 })();
 </script>
