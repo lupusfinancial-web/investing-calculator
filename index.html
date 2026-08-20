@@ -199,6 +199,43 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted);font-size:.85
       </div>
       <div id="g-goalResult" class="result-callout hidden"></div>
     </section>
+
+    <!-- GROWTH EDUCATION -->
+    <section class="card education-intro">
+      <h2>Simple growth investing basics</h2>
+      <p>Time and consistent contributions are the two biggest drivers of long-term results for most people.</p>
+    </section>
+
+    <section class="card education-card">
+      <h3>Compound growth</h3>
+      <p>When your investments earn a return, that return itself can earn more return in the future. This is compounding. Starting earlier or contributing more regularly gives compounding more years to work.</p>
+    </section>
+
+    <section class="card education-card green">
+      <h3>Fees matter</h3>
+      <p>Even small annual fees reduce the amount that can compound. Lower-cost funds leave more of the return working for you over decades.</p>
+    </section>
+
+    <section class="card education-card amber">
+      <h3>Inflation</h3>
+      <p>Prices tend to rise over time. A dollar in the future will buy less than a dollar today. The calculator can show results in today’s dollars when you enter an inflation assumption.</p>
+    </section>
+
+    <section class="card education-card purple">
+      <h3>Withdrawal rates</h3>
+      <p>A common planning rule of thumb is 3–4% of the portfolio per year in retirement. This is only a starting point for illustration, not a guarantee that the money will last.</p>
+    </section>
+
+    <section class="card">
+      <h3>The simple takeaway</h3>
+      <div class="grid two">
+        <div class="step"><div class="step-num">1</div><strong>Start with what you can</strong><p class="help" style="border:0;margin:8px 0 0;padding:0">Even small regular contributions add up.</p></div>
+        <div class="step"><div class="step-num">2</div><strong>Keep costs low</strong><p class="help" style="border:0;margin:8px 0 0;padding:0">Fees and taxes reduce what compounds.</p></div>
+        <div class="step"><div class="step-num">3</div><strong>Stay invested</strong><p class="help" style="border:0;margin:8px 0 0;padding:0">Time in the market usually beats timing the market.</p></div>
+        <div class="step"><div class="step-num">4</div><strong>Review occasionally</strong><p class="help" style="border:0;margin:8px 0 0;padding:0">Adjust contributions and assumptions as life changes.</p></div>
+      </div>
+      <p class="fineprint" style="margin-top:18px">This page is educational only and is not financial, investment, tax, or legal advice.</p>
+    </section>
   </div>
 
   <!-- ===================== DIVIDEND PANEL ===================== -->
@@ -343,6 +380,56 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted);font-size:.85
           <tbody id="d-resultsTable"></tbody>
         </table>
       </div>
+    </section>
+
+    <!-- DIVIDEND EDUCATION -->
+    <section class="card education-intro">
+      <h2>Dividend investing basics</h2>
+      <p>This style focuses on building a stream of income from dividends while the portfolio itself can still grow.</p>
+    </section>
+
+    <section class="card education-card">
+      <h3>Core vs Portfolio</h3>
+      <div class="grid two">
+        <div class="definition">
+          <strong>Core (your vessel)</strong>
+          <p style="margin:8px 0 0">Cash or money-market holding (for example SPAXX or a high-yield savings account). You add money to it on one cadence and send money out of it on another. It is completely separate from the investment portfolio.</p>
+        </div>
+        <div class="definition">
+          <strong>Portfolio</strong>
+          <p style="margin:8px 0 0">The actual dividend-paying investments. This is where long-term income is built.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card education-card green">
+      <h3>Price growth vs pure income focus</h3>
+      <p>If your primary goal is current income, setting expected price growth to 0% is a reasonable and conservative planning assumption. It means the illustration does not rely on share prices rising. In reality many dividend-paying investments have historically shown some long-term price appreciation, but that is not guaranteed and should not be required for an income plan to work.</p>
+    </section>
+
+    <section class="card education-card amber">
+      <h3>DRIP explained</h3>
+      <div class="grid two">
+        <div class="definition">
+          <strong>DRIP on</strong>
+          <p style="margin:8px 0 0">Dividends automatically buy more shares of the same positions. This is typically useful while you are still building the portfolio.</p>
+        </div>
+        <div class="definition">
+          <strong>DRIP off</strong>
+          <p style="margin:8px 0 0">Dividends arrive as cash you can spend or redeploy. This is useful when you need the income.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card education-card purple">
+      <h3>The simple takeaway</h3>
+      <div class="grid two">
+        <div class="step"><div class="step-num">1</div><strong>Fund Core regularly</strong><p class="help" style="border:0;margin:8px 0 0;padding:0">So it never runs out of money to send to the portfolio.</p></div>
+        <div class="step"><div class="step-num">2</div><strong>Transfer on a schedule</strong><p class="help" style="border:0;margin:8px 0 0;padding:0">Consistent moves from Core → Portfolio beat trying to time the market.</p></div>
+        <div class="step"><div class="step-num">3</div><strong>Decide on DRIP</strong><p class="help" style="border:0;margin:8px 0 0;padding:0">Reinvest while building; take cash when you need the income.</p></div>
+        <div class="step"><div class="step-num">4</div><strong>Use realistic yields</strong><p class="help" style="border:0;margin:8px 0 0;padding:0">Very high current yields often compress over long periods.</p></div>
+      </div>
+      <p class="fineprint" style="margin-top:18px">This page is educational only and is not financial, investment, tax, or legal advice.</p>
     </section>
   </div>
 </main>
@@ -581,21 +668,71 @@ footer{text-align:center;padding:30px 16px 50px;color:var(--muted);font-size:.85
       else posStatus.textContent="";
     }
 
+    // Improved paste parser
     $("d-parseBtn").addEventListener("click",function(){
       var text=$("d-pasteHoldings").value;
-      if(!text.trim())return;
-      var found=[];
-      var re=/\b([A-Z]{2,5})\b[\s\S]*?([\d,]+\.\d{3})\s+\$?([\d,]+\.\d{2})/g;
-      var m;
-      while((m=re.exec(text))!==null){
-        if(/CASH|HELD|TOTAL|GRAND|ACCOUNT/i.test(m[1]))continue;
-        found.push({ticker:m[1],shares:parseFloat(m[2].replace(/,/g,"")),price:parseFloat(m[3].replace(/,/g,""))});
+      if(!text.trim()){
+        alert("Please paste your holdings text first.");
+        return;
       }
-      if(found.length===0){alert("Could not detect positions. Make sure you pasted the section that contains ticker symbols, quantities and prices.");return}
+      var found=[];
+      var lines=text.split(/\r?\n/);
+      var currentTicker=null;
+
+      for(var i=0;i<lines.length;i++){
+        var line=lines[i].trim();
+        if(!line)continue;
+
+        // Look for a ticker at the start of a line (2-5 uppercase letters)
+        var tickerMatch=line.match(/^([A-Z]{2,5})\b/);
+        if(tickerMatch && !/CASH|HELD|TOTAL|GRAND|ACCOUNT|MANAGE|BASKET/i.test(line)){
+          currentTicker=tickerMatch[1];
+          continue;
+        }
+
+        if(currentTicker){
+          // Look for numbers that look like quantity (often with 3 decimals) and price
+          var nums=line.match(/[\d,]+\.?\d*/g);
+          if(nums && nums.length>=2){
+            // Heuristic: try to find a quantity-like number and a price-like number
+            for(var j=0;j<nums.length-1;j++){
+              var qty=parseFloat(nums[j].replace(/,/g,""));
+              var price=parseFloat(nums[j+1].replace(/,/g,""));
+              // Quantity is usually between 0.001 and 100000, price between 1 and 2000
+              if(qty>0.001 && qty<100000 && price>1 && price<2000){
+                found.push({ticker:currentTicker,shares:qty,price:price});
+                currentTicker=null;
+                break;
+              }
+            }
+          }
+        }
+      }
+
+      // Fallback simpler pattern if nothing found
+      if(found.length===0){
+        var re=/\b([A-Z]{2,5})\b[\s\S]{0,200}?([\d,]+\.\d{2,3})\s+\$?([\d,]+\.\d{2})/g;
+        var m;
+        while((m=re.exec(text))!==null){
+          if(/CASH|HELD|TOTAL|GRAND|ACCOUNT/i.test(m[1]))continue;
+          var qty=parseFloat(m[2].replace(/,/g,""));
+          var price=parseFloat(m[3].replace(/,/g,""));
+          if(qty>0 && price>0){
+            found.push({ticker:m[1],shares:qty,price:price});
+          }
+        }
+      }
+
+      if(found.length===0){
+        alert("Could not detect any positions.\n\nTips:\n• Make sure you copied the positions section that shows ticker, quantity and price.\n• Try copying a smaller section first.");
+        return;
+      }
+
       found.forEach(function(p){addPositionRow(p)});
       $("d-pasteHoldings").value="";
-      updateWeightStatus();dCalculate();
-      alert("Added "+found.length+" positions.\nNow fill in Annual div/share, Payouts, Basket and Weight for each.");
+      updateWeightStatus();
+      dCalculate();
+      alert("Added "+found.length+" positions.\n\nNow fill in:\n• Annual dividend per share\n• Payouts per year\n• Which basket it belongs to\n• Weight inside that basket");
     });
 
     function dGetSettings(){
